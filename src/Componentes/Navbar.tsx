@@ -11,7 +11,7 @@ export const Navbar = () => {
 
   // Função para atualizar a seção ativa ao rolar a página
   const updateActiveSection = () => {
-    const SessaoHome = document.getElementById('SessaoHome');
+    //const SessaoHome = document.getElementById('SessaoHome');
     const SessaoSobre = document.getElementById('SessaoSobre');
     const SessaoProdutos = document.getElementById('SessaoProdutos');
     const SessaoNoticias = document.getElementById('SessaoNoticias');
