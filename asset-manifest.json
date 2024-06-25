@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46cbd055.css",
+    "main.js": "/static/js/main.65e34680.js",
+    "static/js/453.d19d173d.chunk.js": "/static/js/453.d19d173d.chunk.js",
+    "static/media/LogoStoll.png": "/static/media/LogoStoll.66aa087059bba0ba3de2.png",
+    "index.html": "/index.html",
+    "main.46cbd055.css.map": "/static/css/main.46cbd055.css.map",
+    "main.65e34680.js.map": "/static/js/main.65e34680.js.map",
+    "453.d19d173d.chunk.js.map": "/static/js/453.d19d173d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46cbd055.css",
+    "static/js/main.65e34680.js"
+  ]
+}
