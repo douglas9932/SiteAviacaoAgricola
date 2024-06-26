@@ -9,47 +9,73 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState('SessaoHome'); // Estado para acompanhar a seção ativa
 
 
-  // Função para atualizar a seção ativa ao rolar a página
+  // // Função para atualizar a seção ativa ao rolar a página
   const updateActiveSection = () => {
-    //const SessaoHome = document.getElementById('SessaoHome');
-    const SessaoSobre = document.getElementById('SessaoSobre');
-    const SessaoProdutos = document.getElementById('SessaoProdutos');
-    const SessaoNoticias = document.getElementById('SessaoNoticias');
-    const SessaoTabelaCalibracao = document.getElementById('SessaoTabelaCalibracao');
-    const SessaoTestesStol = document.getElementById('SessaoTestesStol');
-    const SessaoContato = document.getElementById('SessaoContato');
-
-
-
-    if (SessaoContato && window.scrollY >= SessaoContato.offsetTop - 200) 
+    const sections = [
+      document.getElementById('SessaoHome'),
+      document.getElementById('SessaoSobre'),
+      document.getElementById('SessaoProdutos'),
+      document.getElementById('SessaoNoticias'),
+      document.getElementById('SessaoTabelaCalibracao'),
+      document.getElementById('SessaoTestesStol'),
+      document.getElementById('SessaoContato'),
+    ];
+    
+    const doc = document.querySelector('nav');
+    if(doc != null)
     {
-      setActiveSection('SessaoContato');
-    } 
-    else if (SessaoTestesStol && window.scrollY >= SessaoTestesStol.offsetTop - 200) 
-    {
-      setActiveSection('SessaoTestesStol');
-    } 
-    else if (SessaoTabelaCalibracao && window.scrollY >= SessaoTabelaCalibracao.offsetTop - 200) 
-    {
-      setActiveSection('SessaoTabelaCalibracao');
-    } 
-    else if (SessaoNoticias && window.scrollY >= SessaoNoticias.offsetTop - 200) 
-    {
-      setActiveSection('SessaoNoticias');
-    } 
-    else if (SessaoProdutos && window.scrollY >= SessaoProdutos.offsetTop - 200) 
-    {
-      setActiveSection('SessaoProdutos');
-    } 
-    else if (SessaoSobre && window.scrollY >= SessaoSobre.offsetTop - 200) 
-    {
-      setActiveSection('SessaoSobre');
-    } 
-    else 
-    {
-      setActiveSection('SessaoHome');
+      const navbarHeight = doc.offsetHeight;
+      const scrollPosition = window.scrollY + navbarHeight + 200;
+  
+      let active = 'SessaoHome';
+      for (const section of sections) {
+        if (section && scrollPosition >= section.offsetTop) {
+          active = section.id;
+        }
+      }
+      setActiveSection(active);
     }
   };
+  // const updateActiveSection = () => {
+  //   //const SessaoHome = document.getElementById('SessaoHome');
+  //   const SessaoSobre = document.getElementById('SessaoSobre');
+  //   const SessaoProdutos = document.getElementById('SessaoProdutos');
+  //   const SessaoNoticias = document.getElementById('SessaoNoticias');
+  //   const SessaoTabelaCalibracao = document.getElementById('SessaoTabelaCalibracao');
+  //   const SessaoTestesStol = document.getElementById('SessaoTestesStol');
+  //   const SessaoContato = document.getElementById('SessaoContato');
+
+
+
+  //   if (SessaoContato && window.scrollY >= SessaoContato.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoContato');
+  //   } 
+  //   else if (SessaoTestesStol && window.scrollY >= SessaoTestesStol.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoTestesStol');
+  //   } 
+  //   else if (SessaoTabelaCalibracao && window.scrollY >= SessaoTabelaCalibracao.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoTabelaCalibracao');
+  //   } 
+  //   else if (SessaoNoticias && window.scrollY >= SessaoNoticias.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoNoticias');
+  //   } 
+  //   else if (SessaoProdutos && window.scrollY >= SessaoProdutos.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoProdutos');
+  //   } 
+  //   else if (SessaoSobre && window.scrollY >= SessaoSobre.offsetTop - 200) 
+  //   {
+  //     setActiveSection('SessaoSobre');
+  //   } 
+  //   else 
+  //   {
+  //     setActiveSection('SessaoHome');
+  //   }
+  // };
 
   // Efeito para adicionar evento de scroll ao montar o componente
   useEffect(() => {
