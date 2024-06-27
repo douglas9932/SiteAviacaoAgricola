@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState('SessaoHome'); // Estado para acompanhar a seção ativa
 
 
-  // // Função para atualizar a seção ativa ao rolar a página
+  //Função para atualizar a seção ativa ao rolar a página
   const updateActiveSection = () => {
     const sections = [
       document.getElementById('SessaoHome'),
@@ -33,60 +33,38 @@ export const Navbar = () => {
           active = section.id;
         }
       }
-      setActiveSection(active);
+      setActiveSection(active);      
     }
   };
-  // const updateActiveSection = () => {
-  //   //const SessaoHome = document.getElementById('SessaoHome');
-  //   const SessaoSobre = document.getElementById('SessaoSobre');
-  //   const SessaoProdutos = document.getElementById('SessaoProdutos');
-  //   const SessaoNoticias = document.getElementById('SessaoNoticias');
-  //   const SessaoTabelaCalibracao = document.getElementById('SessaoTabelaCalibracao');
-  //   const SessaoTestesStol = document.getElementById('SessaoTestesStol');
-  //   const SessaoContato = document.getElementById('SessaoContato');
-
-
-
-  //   if (SessaoContato && window.scrollY >= SessaoContato.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoContato');
-  //   } 
-  //   else if (SessaoTestesStol && window.scrollY >= SessaoTestesStol.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoTestesStol');
-  //   } 
-  //   else if (SessaoTabelaCalibracao && window.scrollY >= SessaoTabelaCalibracao.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoTabelaCalibracao');
-  //   } 
-  //   else if (SessaoNoticias && window.scrollY >= SessaoNoticias.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoNoticias');
-  //   } 
-  //   else if (SessaoProdutos && window.scrollY >= SessaoProdutos.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoProdutos');
-  //   } 
-  //   else if (SessaoSobre && window.scrollY >= SessaoSobre.offsetTop - 200) 
-  //   {
-  //     setActiveSection('SessaoSobre');
-  //   } 
-  //   else 
-  //   {
-  //     setActiveSection('SessaoHome');
-  //   }
-  // };
+  const [screenSize, setScreenSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  
+  const updateScreenSize = () => {
+    setScreenSize({ width: window.innerWidth, height: window.innerHeight });
+  };
 
   // Efeito para adicionar evento de scroll ao montar o componente
   useEffect(() => {
     window.addEventListener('scroll', updateActiveSection);
     return () => {
       window.removeEventListener('scroll', updateActiveSection);
+      
+    };
+    
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateScreenSize);
+    return () => {
+      window.removeEventListener('resize', updateScreenSize);
     };
   }, []);
 
+
   //Evento para focar nas sessões desejadas
   const scrollToSection = (sectionId: string) => {
+
+    setMenuOpen(false);
+
     const section = document.getElementById(sectionId);
     if (section) {
       const navbarElement = document.querySelector('nav');
@@ -113,8 +91,8 @@ export const Navbar = () => {
        <div className="container">
         <div className="image-container">
         <Link to="/" className="title">
-          <img src={imageLogo} alt="Description" />
-        </Link>        
+          <img src={imageLogo} alt="Description" className= "responsive-image"  onClick={() => scrollToSection('SessaoHome')}/>
+        </Link>
         </div>
         <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>
@@ -180,6 +158,6 @@ export const Navbar = () => {
           </li>
         </ul>
       </div>
-    </nav>
+    </nav>    
   );
 };
