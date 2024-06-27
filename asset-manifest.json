@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/SiteAviacaoAgricola/static/css/main.46cbd055.css",
-    "main.js": "/SiteAviacaoAgricola/static/js/main.7e46ff28.js",
+    "main.css": "/SiteAviacaoAgricola/static/css/main.c95f30ca.css",
+    "main.js": "/SiteAviacaoAgricola/static/js/main.7a8ca011.js",
     "static/js/453.d19d173d.chunk.js": "/SiteAviacaoAgricola/static/js/453.d19d173d.chunk.js",
     "static/media/LogoStoll.png": "/SiteAviacaoAgricola/static/media/LogoStoll.66aa087059bba0ba3de2.png",
     "index.html": "/SiteAviacaoAgricola/index.html",
-    "main.46cbd055.css.map": "/SiteAviacaoAgricola/static/css/main.46cbd055.css.map",
-    "main.7e46ff28.js.map": "/SiteAviacaoAgricola/static/js/main.7e46ff28.js.map",
+    "main.c95f30ca.css.map": "/SiteAviacaoAgricola/static/css/main.c95f30ca.css.map",
+    "main.7a8ca011.js.map": "/SiteAviacaoAgricola/static/js/main.7a8ca011.js.map",
     "453.d19d173d.chunk.js.map": "/SiteAviacaoAgricola/static/js/453.d19d173d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.46cbd055.css",
-    "static/js/main.7e46ff28.js"
+    "static/css/main.c95f30ca.css",
+    "static/js/main.7a8ca011.js"
   ]
 }
