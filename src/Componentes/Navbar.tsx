@@ -36,12 +36,7 @@ export const Navbar = () => {
       setActiveSection(active);      
     }
   };
-  const [screenSize, setScreenSize] = useState({ width: window.innerWidth, height: window.innerHeight });
   
-  const updateScreenSize = () => {
-    setScreenSize({ width: window.innerWidth, height: window.innerHeight });
-  };
-
   // Efeito para adicionar evento de scroll ao montar o componente
   useEffect(() => {
     window.addEventListener('scroll', updateActiveSection);
@@ -52,15 +47,8 @@ export const Navbar = () => {
     
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('resize', updateScreenSize);
-    return () => {
-      window.removeEventListener('resize', updateScreenSize);
-    };
-  }, []);
 
 
-  //Evento para focar nas sessões desejadas
   const scrollToSection = (sectionId: string) => {
 
     setMenuOpen(false);
