@@ -1,4 +1,3 @@
-import { FunctionComponent, useState } from "react";
 import "./Foother.css";
 import { Link } from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
