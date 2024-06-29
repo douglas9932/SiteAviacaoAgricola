@@ -7,14 +7,8 @@ import imageWhats from '../Imagens/Contatos/Whatsapp.svg';
 import imageTelefone from '../Imagens/Contatos/Telefone.svg';
 
 
-export type FootherType = {
-  className?: string;
-};
-
-const Foother: FunctionComponent<FootherType> = ({ className = "" }) => {
+const Foother = () => {
     
-    const [activeSection, setActiveSection] = useState('SessaoHome'); // Estado para acompanhar a seção ativa
-
     const scrollToSection = (sectionId: string) => {
         const navbarElement = document.querySelector('nav') as HTMLElement;
         const focarElement = document.getElementById(sectionId);
