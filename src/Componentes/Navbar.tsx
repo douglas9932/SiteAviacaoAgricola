@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./Navbar.css";
 import {Link} from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
@@ -48,28 +48,19 @@ export const Navbar = () => {
   }, []);
 
 
-
   const scrollToSection = (sectionId: string) => {
 
     setMenuOpen(false);
 
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const navbarElement = document.querySelector('nav');
+    const navbarElement = document.querySelector('nav') as HTMLElement;
+    const focarElement = document.getElementById(sectionId);
+    if (focarElement) {
       if (navbarElement) {
         const navbarHeight = navbarElement.offsetHeight;
-        const heading = section.querySelector('h1');
-        if (heading) {
-          window.scrollTo({
-            top: heading.offsetTop - navbarHeight,
-            behavior: 'smooth',
-          });
-        } else {
-          window.scrollTo({
-            top: section.offsetTop - navbarHeight,
-            behavior: 'smooth',
-          });
-        }
+        window.scrollTo({
+          top: (focarElement.offsetTop - navbarHeight - 25),
+          behavior: 'smooth',
+        });
       }
     }
   };

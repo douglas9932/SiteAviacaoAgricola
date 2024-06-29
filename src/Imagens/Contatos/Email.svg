@@ -1,0 +1,32 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" rx="30" fill="url(#paint0_linear_207_703)"/>
+<g opacity="0.25" filter="url(#filter0_f_207_703)">
+<rect x="15.0654" y="50" width="68.1223" height="42.5764" rx="21.2882" fill="url(#paint1_linear_207_703)"/>
+</g>
+<path d="M13 43H87V48C87 68.4345 70.4345 85 50 85V85C29.5655 85 13 68.4345 13 48V43Z" fill="#09BDF5"/>
+<path d="M54.1202 23.1635C51.5404 21.8089 48.4596 21.8089 45.8798 23.1635L15.5639 39.0823C13.9874 39.9101 13 41.5438 13 43.3245V43.3245C13 45.213 14.1094 46.9254 15.8329 47.6974L46.6452 61.4974C48.7796 62.4534 51.2204 62.4534 53.3548 61.4974L84.1671 47.6974C85.8906 46.9254 87 45.213 87 43.3245V43.3245C87 41.5438 86.0126 39.9101 84.4361 39.0823L54.1202 23.1635Z" fill="url(#paint2_linear_207_703)"/>
+<path opacity="0.8" d="M28.5714 15C26.0467 15 24 17.0246 24 19.5221V51.3777L46.656 61.3005C48.7856 62.2332 51.2144 62.2332 53.344 61.3005L76 51.3777V19.5221C76 17.0246 73.9533 15 71.4286 15H28.5714Z" fill="#68EFF8"/>
+<rect x="31" y="23" width="18" height="5" rx="2.5" fill="#FEFEFE"/>
+<path opacity="0.9" d="M31 34.5C31 33.1193 32.1193 32 33.5 32H66.5C67.8807 32 69 33.1193 69 34.5V34.5C69 35.8807 67.8807 37 66.5 37H33.5C32.1193 37 31 35.8807 31 34.5V34.5Z" fill="#FEFEFE"/>
+<path opacity="0.8" d="M31 44.5C31 43.1193 32.1193 42 33.5 42H59.5C60.8807 42 62 43.1193 62 44.5V44.5C62 45.8807 60.8807 47 59.5 47H33.5C32.1193 47 31 45.8807 31 44.5V44.5Z" fill="#FEFEFE"/>
+<path opacity="0.6" d="M35.8824 57H51.8718C52.4949 57 53 56.5025 53 55.8889V53.1111C53 52.4975 52.4949 52 51.8718 52H32.1282C31.5051 52 31 52.4975 31 53.1111V54.8711L35.8824 57Z" fill="#FEFEFE"/>
+<defs>
+<filter id="filter0_f_207_703" x="9.60543" y="44.54" width="79.0423" height="53.4964" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="2.73" result="effect1_foregroundBlur_207_703"/>
+</filter>
+<linearGradient id="paint0_linear_207_703" x1="8.40611" y1="6.55022" x2="82.6419" y2="100" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FBFBFC"/>
+<stop offset="1" stop-color="#DBDDE8"/>
+</linearGradient>
+<linearGradient id="paint1_linear_207_703" x1="49.1266" y1="91.3324" x2="49.1266" y2="50" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0062E0"/>
+<stop offset="1" stop-color="#19AFFF"/>
+</linearGradient>
+<linearGradient id="paint2_linear_207_703" x1="50" y1="21" x2="50" y2="63" gradientUnits="userSpaceOnUse">
+<stop stop-color="#00B2FF"/>
+<stop offset="1" stop-color="#005ECC"/>
+</linearGradient>
+</defs>
+</svg>
