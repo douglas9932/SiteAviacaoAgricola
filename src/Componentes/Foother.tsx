@@ -57,11 +57,11 @@ const Foother = () => {
                     <label>Assis</label>
                     <div className="Infos">
                         <div>
-                            <img src={imageEmail}></img>
+                            <img src={imageEmail} alt="Email"></img>
                             <label>contato@exemplo.com</label>
                         </div>
                         <div>
-                            <img src={imageWhats}></img>
+                            <img src={imageWhats} alt="Whats"></img>
                             <label>(11) 1234-5678</label>
                         </div>
                     </div>
