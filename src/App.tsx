@@ -9,16 +9,17 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="Body">
-        <div style={{ height: '70vh', background: '#f0f0f0' }}>
+         <div>
           <Home/>
         </div>
-        <div className='SeparadorDeSessoes'></div>
+        <div className='SeparadorDeSessoes'></div> 
 
-        <div  style={{ height: '50vh', background: '#f0f0f0' }}>
+         <div  style={{ height: '50vh', background: '#f0f0f0' }}>
           <Focar id="SessaoSobre"/>
           <h1>Sobre</h1>
         </div>
         <div className='SeparadorDeSessoes'></div>
+
 
         <div  style={{ height: '100vh', background: '#f0f0f0' }}>
           <Focar id="SessaoProdutos"/>
@@ -44,13 +45,14 @@ function App() {
         </div>
         <div className='SeparadorDeSessoes'></div>
 
+
         <div style={{ height: '100vh', background: '#f0f0f0' }}>
           <Focar id="SessaoContato"/>
           <h1>Contato</h1>
         </div>
-        <div className='SeparadorDeSessoes'></div>
+        <div className='SeparadorDeSessoes'></div> 
 
-        <div style={{ height: '30vh', background: '#f0f0f0' }}>
+        <div style={{ height: '30%', background: '#f0f0f0' }}>
           <Focar id="Foother"/>
           <Foother></Foother>
         </div>

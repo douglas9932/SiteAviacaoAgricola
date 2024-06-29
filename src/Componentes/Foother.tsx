@@ -26,8 +26,8 @@ const Foother = () => {
         <footer className="footer">
           <div className="logo-container">
           <Link to="/" className="title">
-          <img src={imageLogo} alt="Description" className= "logo"  onClick={() => scrollToSection('SessaoHome')}/>
-        </Link>
+            <img src={imageLogo} alt="Description" className= "logo"  onClick={() => scrollToSection('SessaoHome')}/>
+          </Link>
           </div>
           <div className="footer-content">
             <div className="contacts">
@@ -53,7 +53,7 @@ const Foother = () => {
                     </div>
                 </div>
 
-                {/* <div className="Sede">
+                <div className="Sede">
                     <label>Assis</label>
                     <div className="Infos">
                         <div>
@@ -68,7 +68,7 @@ const Foother = () => {
                     <div className="cssEndereco">
                         <label>Endereço: Rua Exemplo, 123</label>
                     </div>
-                </div> */}
+                </div>
             </div>
 
             <div className="navigation">
@@ -82,7 +82,7 @@ const Foother = () => {
                     <button onClick={() => scrollToSection('SessaoTestesStol')}>Testes Stol</button>
                     <button onClick={() => scrollToSection('SessaoContato')}>Contato</button>
                 </div>
-            </div>
+            </div> 
           </div>
         </footer>
       );

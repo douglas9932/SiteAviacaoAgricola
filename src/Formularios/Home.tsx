@@ -4,7 +4,7 @@ import Carousel from "../Componentes/Carousel";
 export const Home = () => {
   
   return (
-    <div style={{ height: '100vh'}}>
+    <div className='SessaoHome'>
       <Focar id="SessaoHome"/>
           <div className='SessaoHomeCarousel'>
             <Carousel></Carousel>
