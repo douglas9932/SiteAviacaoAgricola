@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/SiteAviacaoAgricola/static/css/main.23991734.css",
-    "main.js": "/SiteAviacaoAgricola/static/js/main.f7dfa031.js",
+    "main.css": "/SiteAviacaoAgricola/static/css/main.1d899185.css",
+    "main.js": "/SiteAviacaoAgricola/static/js/main.dfc96263.js",
     "static/js/453.d19d173d.chunk.js": "/SiteAviacaoAgricola/static/js/453.d19d173d.chunk.js",
     "static/media/Imagem1.jpg": "/SiteAviacaoAgricola/static/media/Imagem1.116533807781fed5f265.jpg",
     "static/media/Imagem5.jpg": "/SiteAviacaoAgricola/static/media/Imagem5.d941096204cd1b469c9c.jpg",
@@ -16,12 +16,12 @@
     "static/media/Telefone.svg": "/SiteAviacaoAgricola/static/media/Telefone.26810937a32398c2a2fcd59615421aa8.svg",
     "static/media/Email.svg": "/SiteAviacaoAgricola/static/media/Email.3502c7b32ce565b758abdd1685d64ada.svg",
     "index.html": "/SiteAviacaoAgricola/index.html",
-    "main.23991734.css.map": "/SiteAviacaoAgricola/static/css/main.23991734.css.map",
-    "main.f7dfa031.js.map": "/SiteAviacaoAgricola/static/js/main.f7dfa031.js.map",
+    "main.1d899185.css.map": "/SiteAviacaoAgricola/static/css/main.1d899185.css.map",
+    "main.dfc96263.js.map": "/SiteAviacaoAgricola/static/js/main.dfc96263.js.map",
     "453.d19d173d.chunk.js.map": "/SiteAviacaoAgricola/static/js/453.d19d173d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.23991734.css",
-    "static/js/main.f7dfa031.js"
+    "static/css/main.1d899185.css",
+    "static/js/main.dfc96263.js"
   ]
 }
