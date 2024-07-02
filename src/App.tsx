@@ -1,6 +1,6 @@
 import './App.css';
 import Focar from './Componentes/Focar';
-import Foother from './Componentes/Foother';
+import FootherDesktop from './Componentes/FootherDesktop';
 import { Navbar } from './Componentes/Navbar';
 import { Home } from './Formularios/Home';
 
@@ -52,10 +52,14 @@ function App() {
         </div>
         <div className='SeparadorDeSessoes'></div> 
 
-        <div style={{ height: '30%', background: '#f0f0f0' }}>
+        <div className='FootherDesktop' style={{ height: '30vh', background: '#f0f0f0' }}>
           <Focar id="Foother"/>
-          <Foother></Foother>
+          <FootherDesktop></FootherDesktop>
         </div>
+        {/* <div className='FootherDesktop' style={{ height: '30vh', background: '#f0f0f0' }}>
+          <Focar id="Foother"/>
+          <FootherMobile></FootherMobile>
+        </div> */}
       </div>
     </div>
   );

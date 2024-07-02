@@ -1,4 +1,4 @@
-import "./Foother.css";
+import "./FootherDesktop.css";
 import { Link } from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
 import imageEmail from '../Imagens/Contatos/Email.svg';
@@ -54,7 +54,7 @@ const Foother = () => {
                 </div>
 
                 <div className="Sede">
-                    <label>Assis</label>
+                    <label>Toledo</label>
                     <div className="Infos">
                         <div>
                             <img src={imageEmail} alt="Email"></img>
@@ -69,6 +69,7 @@ const Foother = () => {
                         <label>Endereço: Rua Exemplo, 123</label>
                     </div>
                 </div>
+
             </div>
 
             <div className="navigation">
