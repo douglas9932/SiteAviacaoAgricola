@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Stoll Aviação Agrícola",
+  "name": "Stoll Aviação Agrícola",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "icone.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "LogoStoll.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "LogoStoll.png",
       "type": "image/png",
       "sizes": "512x512"
     }

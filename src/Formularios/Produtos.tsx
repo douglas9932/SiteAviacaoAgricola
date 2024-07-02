@@ -31,11 +31,12 @@ export const Produtos = () => {
         <div className='LinhaCards'>
             <CardProdutos Titulo="Atomizador de Alumínio" TextoComplementar="Texto Complementar" CaminhoImagem={Produto1} Botoes={botaoData1}/>
             <CardProdutos  Titulo="Caixa de Alijamento Ipanema 201 – 202 – 203" TextoComplementar="Texto Complementar" CaminhoImagem={Produto2} Botoes={botaoData2}/>
+            <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/>            
+            <CardProdutos Titulo="Atomizador de Alumínio" TextoComplementar="Texto Complementar" CaminhoImagem={Produto1} Botoes={botaoData1}/>
+            <CardProdutos  Titulo="Caixa de Alijamento Ipanema 201 – 202 – 203" TextoComplementar="Texto Complementar" CaminhoImagem={Produto2} Botoes={botaoData2}/>
+            <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/> 
         </div>
-        <div className='LinhaCards'>
-            <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/>
-            <CardProdutos  Titulo="Titulo" TextoComplementar="Texto Complementar" CaminhoImagem="./Imagens/Produtos/Produto1.png" Botoes={botaoData2}/>
-        </div>
+        
     </div>
   );  
 };

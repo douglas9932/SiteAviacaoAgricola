@@ -15,26 +15,27 @@ type CardsType = {
 }
 
 const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, TextoComplementar, Botoes}) => {
+
+  
   return (
-    <div className="CardProduto">
-      <div className="">
-        <img className='ImagemProduto' src={CaminhoImagem} alt=""></img>
-        <div className="Overlay"></div>
+    <div className="CardProduto">     
+        <div className='DivImagem'>
+          <img className='ImagemProduto' src={CaminhoImagem} alt=""></img>
+        </div>
+
         <div className="Textos">
           <label lang="en" className="Titulo">{Titulo}</label>
-          <p lang="pt" className="TextoComplementar">{TextoComplementar}</p>
-      
-          <div className="Botoes">
-          {Botoes.map((botao, index) => (
-              <BotoesCards 
-                key={index} 
-                LinkReferencia={botao.LinkReferencia} 
-                Texto={botao.Texto} 
-              />
-            ))}
-          </div>
+          <p lang="pt" className="TextoComplementar">{TextoComplementar}</p>      
         </div>
-      </div>
+        <div className="Botoes">
+        {Botoes.map((botao, index) => (
+            <BotoesCards 
+              key={index} 
+              LinkReferencia={botao.LinkReferencia} 
+              Texto={botao.Texto} 
+            />
+          ))}
+        </div>
     </div>
   );
 }
