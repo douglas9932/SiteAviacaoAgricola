@@ -18,7 +18,7 @@ const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, Text
   return (
     <div className="CardProduto">
       <div className="">
-        <img className='ImagemProduto' src={CaminhoImagem}></img>
+        <img className='ImagemProduto' src={CaminhoImagem} alt=""></img>
         <div className="Overlay"></div>
         <div className="Textos">
           <label lang="en" className="Titulo">{Titulo}</label>
