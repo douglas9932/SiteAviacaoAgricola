@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
+import './CardProdutos.css'
+import BotoesCards from './BotoesCards';
 
-const CardProdutos = () => {
+type ButtonType = {
+  LinkReferencia: string;
+  Texto: string;
+};
+
+type CardsType = {
+  CaminhoImagem: string;
+  Titulo : string;
+  TextoComplementar: string;
+  Botoes: ButtonType[];
+}
+
+const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, TextoComplementar, Botoes}) => {
   return (
-    <div className="grid">
-      <div className="c-card c-center c-bg-opacity-1 c-content-div-5 c-grid-div">
-        <h3 lang="pt" className="c-content-h3-left c-font-40 c-font-white c-font-bold c-font-uppercase c-font-white-title">LIGHTBAR</h3>
-        <p lang="pt" className="c-font-white c-font-18 paragraph c-font-white-title">Alta resolução e brilho ajustável para uso externo ou interno da aeronave.</p>
-        <div>
-          <a id="folderLightBar" lang="pt" href="assets/base/catalogos/catalogo_lightbar/PORTUGUÊS/lightbar_interno_e_externo_2021.pdf" className="c-action-btn btn btn-lg c-btn-square c-theme-btn c-btn-bold c-btn-uppercase" target="_blank">CATÁLOGO</a><span className="badge">Novo</span>
-          <a id="lightbarImg" lang="pt" className="c-action-btn btn btn-lg c-btn-square c-theme-btn c-btn-bold c-btn-uppercase" href="#prodLightbar">EXTERNO</a>
-          <a id="lightbarIntImg" lang="pt" className="c-action-btn btn btn-lg c-btn-square c-theme-btn c-btn-bold c-btn-uppercase" href="#prodLightbarInt">INTERNO</a>
+    <div className="CardProduto">
+      <div className="">
+        <img className='ImagemProduto' src={CaminhoImagem}></img>
+        <div className="Overlay"></div>
+        <div className="Textos">
+          <label lang="en" className="Titulo">{Titulo}</label>
+          <p lang="pt" className="TextoComplementar">{TextoComplementar}</p>
+      
+          <div className="Botoes">
+          {Botoes.map((botao, index) => (
+              <BotoesCards 
+                key={index} 
+                LinkReferencia={botao.LinkReferencia} 
+                Texto={botao.Texto} 
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import Focar from './Componentes/Focar';
 import FootherDesktop from './Componentes/FootherDesktop';
 import { Navbar } from './Componentes/Navbar';
 import { Home } from './Formularios/Home';
+import { Produtos } from './Formularios/Produtos';
 
 function App() {
   return (
@@ -20,10 +21,8 @@ function App() {
         </div>
         <div className='SeparadorDeSessoes'></div>
 
-
-        <div  style={{ height: '100vh', background: '#f0f0f0' }}>
-          <Focar id="SessaoProdutos"/>
-          <h1>Produtos</h1>
+        <div>
+          <Produtos/>
         </div>
         <div className='SeparadorDeSessoes'></div>
 
@@ -56,10 +55,6 @@ function App() {
           <Focar id="Foother"/>
           <FootherDesktop></FootherDesktop>
         </div>
-        {/* <div className='FootherDesktop' style={{ height: '30vh', background: '#f0f0f0' }}>
-          <Focar id="Foother"/>
-          <FootherMobile></FootherMobile>
-        </div> */}
       </div>
     </div>
   );
