@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Key } from 'react';
 import './Carousel.css';
 import images from '../Controllers/GetImages'
 
@@ -47,7 +47,7 @@ const Carousel = () => {
           className="carousel-images"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {images.map((image, index) => (
+          {images.map((image: any, index: Key | null | undefined) => (
             <div
               key={index}
               className={`carousel-image ${index === currentIndex ? 'active' : ''}`}
