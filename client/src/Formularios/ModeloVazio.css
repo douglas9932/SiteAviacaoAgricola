@@ -1,0 +1,13 @@
+.modelo-vazio {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  padding: 20px;
+  flex: 1;
+  background-color: #f4f4f4;
+  overflow: auto;
+  margin-left: 250px;
+}

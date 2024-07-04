@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import './FrmLogin.css'; // Assumindo que você vai criar um arquivo CSS para estilização
+import  { useState } from 'react';
+import './FrmLogin.css'; 
 import logo from '../../Imagens/LogoStoll.png'
-import { GetUsuarios } from '../../Controllers/Servicos/LoginController';
-
-
+import LoginController from '../../Controllers/Servicos/LoginController'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [invalidLoginMessage, setInvalidLoginMessage] = useState('');
-  const [data, setData] = useState<any[]>([]);
-
   
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setErrorMessage('');
     setInvalidLoginMessage('');
 
@@ -22,26 +20,16 @@ const Login = () => {
       return;
     }
 
-    if (username !== 'usuario' || password !== 'senha') {
+    if (!await LoginController.ValidarLogin(username, password)) {
       setInvalidLoginMessage('Login ou senha inválidos.');
       return;
     }
-
-    alert('Login realizado com sucesso!');
+    else{
+      //LOGOU COM SUCESSO
+      navigate('/Administracao/Home');
+    }
+    
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await GetUsuarios();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data', error);
-      }
-    };
-
-    fetchData();
-  }, []);
   
   return (
     <div className="login-background">

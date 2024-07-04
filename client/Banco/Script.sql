@@ -47,4 +47,3 @@ VALUES
 ('Admin', 'Admin123', 'admin@example.com', NOW(), NOW(), 1);
 
 select * from TBUSUARIOS
-

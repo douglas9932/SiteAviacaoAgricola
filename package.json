@@ -7,7 +7,7 @@
     "start-client": "cd client && npm start",
 
     "startDev": "concurrently \"npm run startDev-server\" \"npm run startDev-client\"",
-    "startDev-server": "cd server && npm run nodemon index.js",
+    "startDev-server": "cd server && npm run devStart",
     "startDev-client": "cd client && npm start"
   },
   "devDependencies": {

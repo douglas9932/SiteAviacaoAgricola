@@ -1,0 +1,113 @@
+  .MenuDiv {
+    align-self: stretch;
+    display: flex;
+    box-sizing: border-box;
+    position: fixed;
+    background-color: black;
+    width: 250px;
+    height: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    padding: 3vh 0 3vh 0;
+    text-align: left;
+    font-size: 20px;
+    color: white;
+    overflow: auto;
+    transition: transform 0.3s ease;
+  }
+
+.ImagemLogo {
+  position: relative;
+  margin: 0;
+  width:100%;
+  text-align: center;
+}
+
+.MenuBotoes {
+  position: relative;  
+  width: 100%;
+  height: auto;
+  padding: 0px 0px 0px 30px;
+}
+
+.ListaBotoes {
+  position: relative;
+  display: flex;
+  top: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;  
+  flex-direction: column;
+  gap: 20px;
+  /* background-color: aqua; */
+}
+
+.Botao {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  border: 0;
+  padding: 1vh 0vh 1vh 3vh;
+  background-color: black;
+  border-radius: 20px 0 0 20px;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.Botao:hover {
+  background-color: #212121;
+}
+.Botao:active {
+  background-color: #0f0f0f;
+}
+.Botao div{
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-inter);
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.BotaoSelecionado {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  border: 0;
+  padding: 1vh 0vh 1vh 3vh;
+  background-color: white;
+  border-radius: 20px 0 0 20px;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.BotaoSelecionado:hover {
+  background-color: #e4e4e4;
+}
+.BotaoSelecionado:active {
+  background-color: #f2f2f2;
+}
+.BotaoSelecionado div{
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-inter);
+    color: black;
+    text-align: left;
+}
+
+.DivBtnSair {
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  bottom: 10px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0vh 5vh 0vh 5vh;
+}
