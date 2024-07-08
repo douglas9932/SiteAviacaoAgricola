@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import "./Menu.css";
 import Logo from '../Imagens/LogoStoll.png'
 import { Link, useNavigate } from "react-router-dom";
@@ -16,27 +16,15 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
 
     const onButtonClick = (index: number) => {
       setSelectedButton(index);
+      localStorage.setItem("IndexMenuAtual", index.toString());
     };
-
-    const onLanarPontosTextClick = useCallback(() => {
-    // Please sync "TELA LANÇAR PONTOS - MENU EXPANDIDO" to the project
-    }, []);
-
-    const onResgatarPontosTextClick = useCallback(() => {
-        // Please sync "ADM_TELA_RESGATAR_PONTOS_MENU_EXPANDIDO" to the project
-    }, []);
-
-    const onCadastrarUsuriosTextClick = useCallback(() => {
-        // Please sync "ADM_TELA_CADASTRO_DE_USUARIOS_MENU_EXPANDIDO" to the project
-    }, []);
 
     const onSairClick = useCallback(() => {
         LoginController.FazerLogout(navigate);
     }, []);
 
-
     const ListaBotoes = [
-        { text: 'Informações da Empresa', onClick: onLanarPontosTextClick, path: '/Administracao/InfoEmpresa'},
+        { text: 'Informações da Empresa', onClick: ()=>{}, path: '/Administracao/InfoEmpresa'},
         // { text: 'Produtos Em Destaque', onClick: onResgatarPontosTextClick, path: '/Administracao/Home'},
         // { text: 'Consultar pontos', onClick: null },
         // { text: 'Cadastrar usuários', onClick: onCadastrarUsuriosTextClick },
@@ -44,6 +32,15 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
         // { text: 'Prêmios', onClick: onCadastrarUsuriosTextClick },
         // { text: 'Relatórios', onClick: onCadastrarUsuriosTextClick },
       ];
+
+    
+    useEffect(() => {
+        const minhaFuncao = async () => {
+            const indexSalvo = localStorage.getItem("IndexMenuAtual") ?? '0';
+            setSelectedButton(parseInt(indexSalvo, 0));
+          }
+            minhaFuncao();
+      }, [ListaBotoes]);
 
   return (
     <div className="MenuDiv">

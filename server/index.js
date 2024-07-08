@@ -214,8 +214,8 @@ const port = 3001;
                     return;
                   }
               
-                  if (results.length > 0) {    
-                    const insertedId = results.insertId;  
+                  if (results.changedRows > 0) {    
+                    const insertedId = results.changedRows;  
                     res.json({ ID: insertedId, });
                   } 
           

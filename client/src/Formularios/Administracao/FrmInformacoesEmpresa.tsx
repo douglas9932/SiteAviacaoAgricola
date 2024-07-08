@@ -43,7 +43,7 @@ const FrmInformacoesEmpresa = () => {
   }, [controller]);
   
   useEffect(() => {
-    // Atualize outros estados com base em objTBEMPRESA
+    
     if (objTBEMPRESA.IDEMPRESA > 0) {
       if(ImgLogo == null || ImgLogo == ''){
         setLogo(objTBEMPRESA.LOGO_236X67 || null);
@@ -279,7 +279,9 @@ const FrmInformacoesEmpresa = () => {
         if (success) {
           Swal.fire({
             text: "Registro Salvo com Sucesso!",
-            icon: "success"
+            icon: "success",
+            timer: 5000,
+            timerProgressBar: true,
           });
         }
         
@@ -287,17 +289,7 @@ const FrmInformacoesEmpresa = () => {
         
       }).catch((error) => {
         console.error("Erro ao salvar:", error);
-        // Handle the error appropriately here
-      });
-
-      // if(await controller.Salvar()){
-      //   Swal.fire({
-      //     text: "Registro Salvo com Sucesso",
-      //     icon: "success"
-      //   });
-      // }
-  
-      // setAcaoAtualTela(EAcoesDaTela.Nenhuma);    
+      });   
     }
   }
 
