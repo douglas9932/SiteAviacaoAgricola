@@ -1,10 +1,7 @@
-import Axios from 'axios';
 import { Component } from 'react';
 import Ambiente from '../../Classes/Ambiente';
+import API from '../../Classes/API';
 
-const api = Axios.create({
-  baseURL: 'http://localhost:3001', // Altere para a URL do seu servidor
-});
 
 class LoginController extends Component{
     
@@ -12,7 +9,7 @@ class LoginController extends Component{
     static ValidarLogin = async (parLogin: any, parSenha: any) => {
       try {
 
-        const response = await api.post('/ValidarLogin', {          
+        const response = await API.api.post('/ValidarLogin', {          
             parLogin: parLogin,
             parSenha: parSenha          
         });      

@@ -19,7 +19,11 @@ class Ambiente {
     private _UsuarioLogado: boolean = false;    
 
     public get UsuarioLogado(): boolean {
+      try{
       return JSON.parse(localStorage.getItem('UsuarioLogado') || 'false');
+    }catch{
+      return false;
+    }
     }  
     public set UsuarioLogado(value: boolean) {
       this._UsuarioLogado = value;
@@ -29,7 +33,11 @@ class Ambiente {
     
     private _TokenUsuario: string = "";
     public get TokenUsuario(): string {
-      return JSON.parse(localStorage.getItem('TokenUsuario') || '');
+      try{
+        return JSON.parse(localStorage.getItem('TokenUsuario') || '');
+      }catch{
+        return "";
+      }
     }  
     public set TokenUsuario(value: string) {
       this._TokenUsuario = value;

@@ -1,0 +1,183 @@
+
+    .Formulario{
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+        flex: 1;
+        background-color: #f4f4f4;
+        overflow: auto;
+    }
+
+    .Cabecalho {
+        flex-direction: row;
+        padding: 15px 0 0vh 25px;
+        color: #0000;
+        position: sticky;
+        box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .Cabecalho,
+    .CorpoPagina{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .CorpoPagina {
+        flex-direction: column;
+        padding: 0px 0 0;
+        gap: 25px;
+        display: flex;
+        padding: 20px;
+        flex: 1;
+        background-color: #f4f4f4;
+        overflow: auto;
+    }  
+
+    .Titulo {
+        font-family: initial;
+        font-size: 30px;
+        font-weight: 800;
+        align-self: stretch;
+        position: relative;
+        color: black;
+    }
+
+
+    .CssInputs,
+    .TextLabel {
+        align-self: stretch;
+        position: relative;
+    }
+
+    .CssInputs {
+        border: 0;    
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+        border-radius: 5px;
+        background-color: transparent;
+        height: 35px;
+    }
+
+    .CssInputs:read-only{
+        background-color: rgba(133, 133, 133, 0.377);
+    }
+
+    .CssInputs:focus {
+        border-color: orange;
+    }
+
+    .CampoTextbox,
+    .TextBox {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .CampoTextbox {
+        align-self: stretch;
+        display: flex;
+        justify-content: center;
+        padding: 0px 0 0;
+    }
+    .TextBox {
+        flex: 1;
+        justify-content: flex-start;
+        padding: 0 25px 0 0;
+    }
+    .DivLinha,
+    .TextBox {
+        align-self: stretch;
+        display: flex;
+    }
+
+    .DivLinha {
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        justify-content: start;
+        padding: 0 0 0px;
+    }
+
+
+    .DivImagens{
+        display: flex;
+        flex-direction: column;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10px;
+        border-color: black;
+        gap: 10px;
+        padding: 10px;
+        min-width: 350px;
+        min-height: 170px;
+        max-width: 350px;
+        max-height: 170px;
+    }
+
+    .DivBotoesImagem{
+        display: flex ;
+        flex-direction: row;
+        padding: 10px 0px 0px 0px;
+        margin: 0px;
+        align-items:center;
+        gap: 10px;
+    }
+    .BtnCarregarImagem{
+        background: rgb(0, 194, 0);
+        height: 25px;
+        min-width: 150px;
+        display: block;
+        align-content: center;
+        padding: 0
+    }
+    .BtnCarregarImagem:disabled{
+        background: rgba(0, 194, 0, 0.377);
+    }
+
+    .BtnRemoverImagem{
+        background: rgb(247, 20, 20);
+        height: 25px;
+        min-width: 150px;
+        display: block;
+        align-content: center;
+        padding: 0
+    }
+
+    .BtnRemoverImagem:disabled{
+        background: rgb(247, 20, 20, 0.377);
+    }
+
+    .Foother{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: end;
+        padding: 0px 20px 20px 0px;
+    }
+
+    .BotaoConteudo {
+        cursor: pointer;
+        width: 150px;
+        border: 0;
+        padding: 10px 40px;
+        background-color: #000000;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    .BotaoConteudo:hover {
+        background-color: #303030;
+    }
+
+    .TextoBotao {
+        position: relative;
+        font-size: 20px;
+        font-family: 'Inter';
+        color: #FFFF;
+        text-align: center;
+    }

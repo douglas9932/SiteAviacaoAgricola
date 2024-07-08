@@ -5,12 +5,14 @@
     "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
     "start-server": "cd server && npm start",
     "start-client": "cd client && npm start",
-
     "startDev": "concurrently \"npm run startDev-server\" \"npm run startDev-client\"",
     "startDev-server": "cd server && npm run devStart",
     "startDev-client": "cd client && npm start"
   },
   "devDependencies": {
     "concurrently": "^x.x.x"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.12.2"
   }
 }
