@@ -1,5 +1,5 @@
 import  { useEffect, useState } from "react";
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 import {Link} from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
 
@@ -67,13 +67,13 @@ export const Navbar = () => {
   
   return (
     <nav>
-       <div className="container">
-        <div className="image-container">
-        <Link to="/" className="title">
+       <div className={styles.container}>
+        <div className={styles.imagecontainer}>
+        <Link to="/" className={styles.title}>
           <img src={imageLogo} alt="Description" className= "responsive-image"  onClick={() => scrollToSection('SessaoHome')}/>
         </Link>
         </div>
-        <div className="menu" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className={styles.menu} onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>
           <span></span>
           <span></span>
@@ -81,7 +81,7 @@ export const Navbar = () => {
         <ul className={menuOpen ? "open" : ""}>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoHome' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoHome' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoHome')}
             >
               Home
@@ -89,7 +89,7 @@ export const Navbar = () => {
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoSobre' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoSobre' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoSobre')}
             >
               Sobre
@@ -97,7 +97,7 @@ export const Navbar = () => {
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoProdutos' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoProdutos' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoProdutos')}
             >
               Produtos
@@ -105,7 +105,7 @@ export const Navbar = () => {
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoNoticias' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoNoticias' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoNoticias')}
             >
               Noticias
@@ -113,15 +113,15 @@ export const Navbar = () => {
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoTabelaCalibracao' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoTabelaCalibracao' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoTabelaCalibracao')}
             >
-              Tabela De Calibracao
+              Tabela De Calibração
             </button>
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoTestesStol' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoTestesStol' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoTestesStol')}
             >
               Testes Stol
@@ -129,7 +129,7 @@ export const Navbar = () => {
           </li>
           <li>
             <button
-              className={`ButtonMenu ${activeSection === 'SessaoContato' ? 'active' : ''}`}
+              className={`${styles.ButtonMenu} ${activeSection === 'SessaoContato' ? 'active' : ''}`}
               onClick={() => scrollToSection('SessaoContato')}
             >
               Contato

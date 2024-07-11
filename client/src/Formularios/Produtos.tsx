@@ -1,7 +1,7 @@
 import React from 'react';
 import CardProdutos from "../Componentes/CardProdutos";
 import Focar from "../Componentes/Focar";
-import './Produtos.css'
+import styles from './Produtos.module.css';
 
 import Produto1 from '../Imagens/Produtos/Produto1.png';
 import Produto2 from '../Imagens/Produtos/Produto2.jpg';
@@ -22,13 +22,13 @@ const botaoData2 = [
 
 export const Produtos = () => {
   return (
-    <div className='SessaoProdutos'>
+    <div className={styles.SessaoProdutos}>
         <Focar id="SessaoProdutos"/>
-        <div className="TituloSessao">
+        <div className={styles.TituloSessao}>
             <label >Produtos</label>
             <div></div>
         </div>
-        <div className='LinhaCards'>
+        <div className={styles.LinhaCards}>
             <CardProdutos Titulo="Atomizador de Alumínio" TextoComplementar="Texto Complementar" CaminhoImagem={Produto1} Botoes={botaoData1}/>
             <CardProdutos  Titulo="Caixa de Alijamento Ipanema 201 – 202 – 203" TextoComplementar="Texto Complementar" CaminhoImagem={Produto2} Botoes={botaoData2}/>
             <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/>            

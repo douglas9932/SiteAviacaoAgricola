@@ -1,4 +1,4 @@
-.login-background {
+.login_background {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@
     backdrop-filter: blur(50%); 
   }
   
-.blur-overlay {
+.blur_overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +21,7 @@
     align-items: center;
   }
   
-  .login-container {
+  .login_container {
     width: 300px;
     padding: 20px;
     border-radius: 8px;
@@ -36,7 +36,7 @@
     margin-bottom: 20px;
   }
   
-  .input-container {
+  .input_container {
     margin-bottom: 15px;
   }
   

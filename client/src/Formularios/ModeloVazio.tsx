@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import './ModeloVazio.css';
+import styles from './ModeloVazio.module.css';
 import Menu from '../Componentes/Menu';
 
 
@@ -9,9 +9,9 @@ type ButtonsType = {
 
 const ModeloVazio: FunctionComponent<ButtonsType> = ({children}) => {
   return (
-    <div className="modelo-vazio">
+    <div className={styles.modelo_vazio}>
       <Menu />
-      <div className="content">
+      <div className={styles.content}>
         {children}
       </div>
     </div>

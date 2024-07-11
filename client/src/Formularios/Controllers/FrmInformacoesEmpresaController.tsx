@@ -179,18 +179,16 @@ export class FrmInformacoesEmpresaController{
     }
 
     this.ObjTBEMPRESA.EXTENSAO_LOGO_236X67 =parEXTENSAO_LOGO_236X67 ?? "" ;
-    this.ObjTBEMPRESA.LOGO_236X67 =parLOGO_236X67 ?? "" ;
-    this.ObjTBEMPRESA.EXTENSAO_ICONE =parEXTENSAO_ICONE ?? "";
-    this.ObjTBEMPRESA.ICONE =parICONE ?? "";
+    this.ObjTBEMPRESA.LOGO_236X67 = btoa(unescape(encodeURIComponent(parLOGO_236X67 ?? ""))) ?? "" ;
+    this.ObjTBEMPRESA.EXTENSAO_ICONE = parEXTENSAO_ICONE ?? "";
+    this.ObjTBEMPRESA.ICONE = btoa(unescape(encodeURIComponent(parICONE ?? ""))) ?? "";
     
   }
 
   public async Salvar(){
     try {
 
-      const response = await API.api.post('/SalvarInfoEmpresas', {        
-          parObjTBEMPRESA: this.ObjTBEMPRESA
-      }); 
+      const response = await API.api.post('/SalvarInfoEmpresas', {parObjTBEMPRESA: btoa(unescape(encodeURIComponent(JSON.stringify(this.ObjTBEMPRESA, null, 2)))) ?? ""}); 
 
       return response.data.ID > 0;
 

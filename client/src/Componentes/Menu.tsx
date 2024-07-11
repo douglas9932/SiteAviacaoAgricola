@@ -1,5 +1,5 @@
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
-import "./Menu.css";
+import styles from "./Menu.module.css";
 import Logo from '../Imagens/LogoStoll.png'
 import { Link, useNavigate } from "react-router-dom";
 import LoginController from "../Controllers/Servicos/LoginController";
@@ -25,7 +25,7 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
 
     const ListaBotoes = [
         { text: 'Informações da Empresa', onClick: ()=>{}, path: '/Administracao/InfoEmpresa'},
-        // { text: 'Produtos Em Destaque', onClick: onResgatarPontosTextClick, path: '/Administracao/Home'},
+         { text: 'Imagens Carousel', onClick: ()=>{}, path: '/Administracao/ImagensCarousel'},
         // { text: 'Consultar pontos', onClick: null },
         // { text: 'Cadastrar usuários', onClick: onCadastrarUsuriosTextClick },
         // { text: 'Gerenciador de Blog', onClick: onCadastrarUsuriosTextClick },
@@ -43,18 +43,18 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
       }, [ListaBotoes]);
 
   return (
-    <div className="MenuDiv">
-        <p className="ImagemLogo">
+    <div className={styles.MenuDiv}>
+        <p className={styles.ImagemLogo}>
             <Link to='/Administracao/Home' style={{ textDecoration: 'none' }}>
                 <img src={Logo}/>
             </Link>
         </p>
-        <div className="MenuBotoes">
-            <div className="ListaBotoes">
+        <div className={styles.MenuBotoes}>
+            <div className={styles.ListaBotoes}>
             {ListaBotoes.map((button, index) => (
                 <button
                         key={index}
-                        className={selectedButton === index ? 'BotaoSelecionado' : 'Botao'}
+                        className={selectedButton === index ? styles.BotaoSelecionado : styles.Botao}
                         onClick={() => {
                             onButtonClick(index);
                             if (button.onClick) {
@@ -69,8 +69,8 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
             ))}
             </div>        
         </div>
-        <div className="DivBtnSair">
-            <button className="BtnSair" onClick={onSairClick}>
+        <div className={styles.DivBtnSair}>
+            <button className={styles.BtnSair} onClick={onSairClick}>
                 Sair
             </button>
         </div>

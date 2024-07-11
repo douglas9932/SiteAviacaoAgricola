@@ -1,4 +1,4 @@
-import './Css/FrmInformacoesEmpresa.css';
+import styles from './Css/FrmInformacoesEmpresa.module.css';
 import ValidarAcessoPaginas from '../Controllers/ValidarAcessoPaginas';
 import { useEffect, useMemo,  useState } from 'react';
 import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
@@ -33,12 +33,12 @@ const FrmInformacoesEmpresa = () => {
   
   useEffect(() => {
     
-    const minhaFuncao = async () => {
+    const BuscarDadosEmpresa = async () => {
 
       await controller.GetInformacoesDaEmpresa(setObject);    
       setObject(controller.ObjTBEMPRESA);
     }
-      minhaFuncao();
+    BuscarDadosEmpresa();
 
   }, [controller]);
   
@@ -283,6 +283,11 @@ const FrmInformacoesEmpresa = () => {
             timer: 5000,
             timerProgressBar: true,
           });
+        }else{
+          Swal.fire({
+            text: "Ocorreu algum problema ao Salvar os dados!",
+            icon: "error",
+          });
         }
         
         setAcaoAtualTela(EAcoesDaTela.Nenhuma);
@@ -322,22 +327,22 @@ const FrmInformacoesEmpresa = () => {
   };
   
   return (    
-    <div className='Formulario'>
-      <div className='Cabecalho'>
-          <label className='Titulo'>
+    <div className={styles.Formulario}>
+      <div className={styles.Cabecalho}>
+          <label className={styles.Titulo}>
             Informações da Empresa
           </label>
       </div>
-      <div className='CorpoPagina'>
-            <div className='DivLinha'>
-                <div className='TextBox'>
-                  <label className='TextLabel'>
+      <div className={styles.CorpoPagina}>
+            <div className={styles.DivLinha}>
+                <div className={styles.TextBox}>
+                  <label className={styles.TextLabel}>
                     Nome Fantasia*
                   </label>
-                  <div className='CampoTextbox'>
+                  <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.NOMEFANTASIA}
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       onChange={handleChange('NOMEFANTASIA')}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
@@ -345,13 +350,13 @@ const FrmInformacoesEmpresa = () => {
                 </div>
             </div>
 
-            <div className='DivLinha'>
-              <div className='TextBox'>
-                <label className='TextLabel'>Razão Social*</label>
-                <div className='CampoTextbox'>
+            <div className={styles.DivLinha}>
+              <div className={styles.TextBox}>
+                <label className={styles.TextLabel}>Razão Social*</label>
+                <div className={styles.CampoTextbox}>
                   <input
                     value={objTBEMPRESA.RAZAOSOCIAL}
-                    className='CssInputs'
+                    className={styles.CssInputs}
                     onChange={handleChange('RAZAOSOCIAL')}
                     readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                   />
@@ -359,85 +364,85 @@ const FrmInformacoesEmpresa = () => {
               </div>
             </div>
          
-            <div className='DivLinha'>
+            <div className={styles.DivLinha}>
 
-              <div className='TextBox' style={{maxWidth: '200px'}}>
-                <label className='TextLabel'>CNPJ*</label>
-                <div className='CampoTextbox'>
+              <div className={styles.TextBox} style={{maxWidth: '200px'}}>
+                <label className={styles.TextLabel}>CNPJ*</label>
+                <div className={styles.CampoTextbox}>
                   <input value={objTBEMPRESA.CNPJ}
                     maxLength={18}
                     onChange={handleChange('CNPJ')}
                     placeholder='00.000.000/0000-00'
-                    className='CssInputs'
+                    className={styles.CssInputs}
                     readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                   />
                 </div>
               </div>
 
-              <div className='TextBox' style={{maxWidth: '200px'}}>
-                <label className='TextLabel'>Inscricao Estadual*</label>
-                <div className='CampoTextbox'>
+              <div className={styles.TextBox} style={{maxWidth: '200px'}}>
+                <label className={styles.TextLabel}>Inscricao Estadual*</label>
+                <div className={styles.CampoTextbox}>
                   <input
                     value={objTBEMPRESA.INSCRICAOESTADUAL}
                     maxLength={15}
                     onChange={handleChange('INSCRICAOESTADUAL')}
                     placeholder='000.000.000.000'
-                    className='CssInputs'
+                    className={styles.CssInputs}
                     readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                   />
                 </div>
               </div>
 
-              <div className='TextBox' style={{maxWidth: '170px'}}>
-                  <label className='TextLabel'>Telefone</label>
-                  <div className='CampoTextbox'>
+              <div className={styles.TextBox} style={{maxWidth: '170px'}}>
+                  <label className={styles.TextLabel}>Telefone</label>
+                  <div className={styles.CampoTextbox}>
                     <input
                     value={objTBEMPRESA.TELEFONE}
                     maxLength={14}
                     onChange={handleChange('TELEFONE')}
                     placeholder='(00) 0000-0000'
-                    className='CssInputs'
+                    className={styles.CssInputs}
                     readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>
 
-                <div className='TextBox' style={{maxWidth: '170px'}}>
-                  <label className='TextLabel'>Celular</label>
-                  <div className='CampoTextbox'>
+                <div className={styles.TextBox} style={{maxWidth: '170px'}}>
+                  <label className={styles.TextLabel}>Celular</label>
+                  <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.CELULAR}
                       maxLength={15}
                       onChange={handleChange('CELULAR')}
                       placeholder='(00)0 0000-0000'
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>
 
-                <div className='TextBox' style={{maxWidth: '200px'}}>
-                  <label className='TextLabel'>Data de Abertura*</label>
-                  <div className='CampoTextbox'>
+                <div className={styles.TextBox} style={{maxWidth: '200px'}}>
+                  <label className={styles.TextLabel}>Data de Abertura*</label>
+                  <div className={styles.CampoTextbox}>
                     <input type='date'
                       value={objTBEMPRESA.DATAABERTURA}
                       onChange={handleChange('DATAABERTURA')}
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>
             </div>
          
-            <div className='DivLinha'>
-                <div className='TextBox'>
-                  <label className='TextLabel'>
+            <div className={styles.DivLinha}>
+                <div className={styles.TextBox}>
+                  <label className={styles.TextLabel}>
                     Endereço*
                   </label>
-                  <div className='CampoTextbox'>
+                  <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.ENDERECO}
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       onChange={handleChange('ENDERECO')}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
@@ -445,55 +450,55 @@ const FrmInformacoesEmpresa = () => {
                 </div>                
             </div>
 
-            <div className='DivLinha'>
-                <div className='TextBox'>
-                  <label className='TextLabel'>
+            <div className={styles.DivLinha}>
+                <div className={styles.TextBox}>
+                  <label className={styles.TextLabel}>
                     Seguimento/Atividade
                   </label>
-                  <div className='CampoTextbox'>
+                  <div className={styles.CampoTextbox}>
                     <input
                     value={objTBEMPRESA.SEGMENTO}
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       onChange={(e) => objTBEMPRESA.SEGMENTO = (e.target.value)}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>
-                <div className='TextBox'>
-                  <label className='TextLabel'>Responsavel*</label>
-                  <div className='CampoTextbox'>
+                <div className={styles.TextBox}>
+                  <label className={styles.TextLabel}>Responsavel*</label>
+                  <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.RESPONSAVEL}
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>
-                <div className='TextBox' style={{maxWidth: '200px'}}>
-                  <label className='TextLabel'>CPF do Responsavel*</label>
-                  <div className='CampoTextbox'>
+                <div className={styles.TextBox} style={{maxWidth: '200px'}}>
+                  <label className={styles.TextLabel}>CPF do Responsavel*</label>
+                  <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.CPFRESPONSAVEL}
                       maxLength={14}
                       onChange={handleChange('CPFRESPONSAVEL')}
                       placeholder='000.000.000-00'
-                      className='CssInputs'
+                      className={styles.CssInputs}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
                 </div>                
             </div>
 
-            <div className='DivLinha' style={{gap: 20, justifyContent: 'start'}}>
-              <div className='DivImagens'>
-                  <label className='TextLabel'>Logo*</label>
-                  <div className='DivBotoesImagem'>
-                    <button className='BtnCarregarImagem' 
+            <div className={styles.DivLinha} style={{gap: 20, justifyContent: 'start'}}>
+              <div className={styles.DivImagens}>
+                  <label className={styles.TextLabel}>Logo*</label>
+                  <div className={styles.DivBotoesImagem}>
+                    <button className={styles.BtnCarregarImagem} 
                     onClick={() => (controller.CarregarImagens(true, setExtLogo, setLogo, setErrorLogo))} 
                     disabled = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     >Carregar Logo</button>
                     {ImgLogo && (
-                    <button className='BtnRemoverImagem' 
+                    <button className={styles.BtnRemoverImagem}
                     onClick={()=>(controller.RemoverImagens(setLogo, setExtLogo))} 
                     disabled = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     >Remover Imagem</button>
@@ -507,15 +512,15 @@ const FrmInformacoesEmpresa = () => {
                   )}
               </div>
 
-              <div className='DivImagens'>
-                  <label className='TextLabel'>Icone*</label>
-                  <div className='DivBotoesImagem'>
-                    <button className='BtnCarregarImagem' 
+              <div className={styles.DivImagens}>
+                  <label className={styles.TextLabel}>Icone*</label>
+                  <div className={styles.DivBotoesImagem}>
+                    <button className={styles.BtnCarregarImagem} 
                     onClick={() => (controller.CarregarImagens(false, setExtIcone, setIcone, setErrorIcon))} 
                     disabled = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     >Carregar Icone</button>
                     {ImgIcone && (
-                    <button  className='BtnRemoverImagem' 
+                    <button  className={styles.BtnRemoverImagem} 
                     onClick={()=>(controller.RemoverImagens(setIcone, setExtIcone))}
                     disabled = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     >Remover Imagem</button>
@@ -532,20 +537,20 @@ const FrmInformacoesEmpresa = () => {
             </div>
 
       </div>
-      <div className='Foother'>
+      <div className={styles.Foother}>
             {AcaoAtualTela === EAcoesDaTela.Editando &&(
               <div style={{display: 'flex', flexDirection:'row', gap:'20px',}}>
-                <button className='BotaoConteudo' onClick={BtnSalvarClick}>
-                  <div className='TextoBotao'>Salvar</div>
+                <button className={styles.BotaoConteudo} onClick={BtnSalvarClick}>
+                  <div className={styles.TextoBotao}>Salvar</div>
                 </button>
-                <button className='BotaoConteudo' onClick={BtnCancelarClick}>
-                  <div className='TextoBotao'>Cancelar</div>
+                <button className={styles.BotaoConteudo} onClick={BtnCancelarClick}>
+                  <div className={styles.TextoBotao}>Cancelar</div>
                 </button>
               </div>
             )}
             {AcaoAtualTela === EAcoesDaTela.Nenhuma && (
-              <button className='BotaoConteudo' onClick={BtnEditarClick}>
-                <div className='TextoBotao'>Editar</div>
+              <button className={styles.BotaoConteudo} onClick={BtnEditarClick}>
+                <div className={styles.TextoBotao}>Editar</div>
               </button>
             )}
       </div>

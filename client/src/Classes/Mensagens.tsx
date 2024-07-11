@@ -15,4 +15,9 @@ export class Mensagens{
         return retorno;
     };
 
+    public static ConexaoOffline = () => {        
+        const retorno = `Não foi possivel Conectar ao banco de dados!`;
+        return retorno;
+    };
+
 }

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import './BotoesCards.css'
+import styles from './BotoesCards.module.css'
 
 type ButtonsType = {
     LinkReferencia : string;
@@ -9,8 +9,8 @@ const BotoesCards: FunctionComponent<ButtonsType> = ({LinkReferencia, Texto}) =>
 
 
     return (
-        <div className="BotoesCards">            
-            <a href={LinkReferencia} className="Texto" target="">{Texto}</a>
+        <div className={styles.BotoesCards}>            
+            <a href={LinkReferencia} className={styles.Texto} target="">{Texto}</a>
         </div>
     )}
 

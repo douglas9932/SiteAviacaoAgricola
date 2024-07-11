@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import './CardProdutos.css'
+import styles from './CardProdutos.module.css'
 import BotoesCards from './BotoesCards';
 
 type ButtonType = {
@@ -18,16 +18,16 @@ const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, Text
 
   
   return (
-    <div className="CardProduto">     
-        <div className='DivImagem'>
-          <img className='ImagemProduto' src={CaminhoImagem} alt=""></img>
+    <div className={styles.CardProduto}>     
+        <div className={styles.DivImagem}>
+          <img className={styles.ImagemProduto} src={CaminhoImagem} alt=""></img>
         </div>
 
-        <div className="Textos">
-          <label lang="en" className="Titulo">{Titulo}</label>
-          <p lang="pt" className="TextoComplementar">{TextoComplementar}</p>      
+        <div className={styles.Textos}>
+          <label lang="en" className={styles.Titulo}>{Titulo}</label>
+          <p lang="pt" className={styles.TextoComplementar}>{TextoComplementar}</p>      
         </div>
-        <div className="Botoes">
+        <div className={styles.Botoes}>
         {Botoes.map((botao, index) => (
             <BotoesCards 
               key={index} 

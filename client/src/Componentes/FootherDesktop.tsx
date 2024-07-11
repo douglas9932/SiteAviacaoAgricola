@@ -1,4 +1,4 @@
-import "./FootherDesktop.css";
+import styles from "./FootherDesktop.module.css";
 import { Link } from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
 import imageEmail from '../Imagens/Contatos/Email.svg';
@@ -23,18 +23,18 @@ const Foother = () => {
       };
 
       return (
-        <footer className="footer">
-          <div className="logo-container">
-          <Link to="/" className="title">
+        <footer className={styles.footer}>
+          <div className={styles.logocontainer}>
+          <Link to="/" className={styles.title}>
             <img src={imageLogo} alt="Description" className= "logo"  onClick={() => scrollToSection('SessaoHome')}/>
           </Link>
           </div>
-          <div className="footer-content">
-            <div className="contacts">
+          <div className={styles.footercontent}>
+            <div className={styles.contacts}>
               <h2>Contatos</h2>
-                <div className="Sede">
+                <div className={styles.Sede}>
                     <label>Palotina</label>
-                    <div className="Infos">
+                    <div className={styles.Infos}>
                         <div>
                             <img src={imageEmail} alt="Email"></img>
                             <label>contato@exemplo.com</label>
@@ -48,14 +48,14 @@ const Foother = () => {
                             <label>(11) 3649-5678</label>
                         </div>
                     </div>
-                    <div className="cssEndereco">
+                    <div className={styles.cssEndereco}>
                         <label>Endereço: Rua Exemplo, 123</label>
                     </div>
                 </div>
 
-                <div className="Sede">
+                <div className={styles.Sede}>
                     <label>Toledo</label>
-                    <div className="Infos">
+                    <div className={styles.Infos}>
                         <div>
                             <img src={imageEmail} alt="Email"></img>
                             <label>contato@exemplo.com</label>
@@ -65,16 +65,16 @@ const Foother = () => {
                             <label>(11) 1234-5678</label>
                         </div>
                     </div>
-                    <div className="cssEndereco">
+                    <div className={styles.cssEndereco}>
                         <label>Endereço: Rua Exemplo, 123</label>
                     </div>
                 </div>
 
             </div>
 
-            <div className="navigation">
+            <div className={styles.navigation}>
                 <h2>Navegação</h2>
-                <div className="BotoesNavegacao">
+                <div className={styles.BotoesNavegacao}>
                     <button onClick={() => scrollToSection('SessaoHome')}>Home</button>
                     <button onClick={() => scrollToSection('SessaoSobre')}>Sobre</button>
                     <button onClick={() => scrollToSection('SessaoProdutos')}>Produtos</button>

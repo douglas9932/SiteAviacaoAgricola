@@ -1,8 +1,10 @@
-import  { useState } from 'react';
-import './Css/FrmLogin.css'; 
+import  { useEffect, useState } from 'react';
+import styles from './Css/FrmLogin.module.css'; 
 import logo from '../../Imagens/LogoStoll.png'
 import LoginController from '../../Controllers/Servicos/LoginController'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { Mensagens } from '../../Classes/Mensagens';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,16 +30,39 @@ const Login = () => {
       //LOGOU COM SUCESSO
       navigate('/Administracao/Home');
     }
-    
   };
   
+  useEffect(() => {
+    
+    const minhaFuncao = async () => {
+
+      if(! await LoginController.VerificarConexao()){
+        Swal.fire({
+          text: Mensagens.ConexaoOffline(),
+          icon: "error",
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            window.location.reload();
+          } else if (result.isDenied) {
+            
+          }
+        });
+        
+
+      }
+    }
+      minhaFuncao();
+
+  }, []);
+  
   return (
-    <div className="login-background">
-      <div className="blur-overlay">
-      <div className="login-container">
-        <img src={logo} alt="Logo" className="logo" /> 
+    <div className={styles.login_background}>
+      <div className={styles.blur_overlay}>
+      <div className={styles.login_container}>
+        <img src={logo} alt="Logo" className={styles.logo} /> 
         <h2>Login</h2>
-        <div className="input-container">
+        <div className={styles.input_container}>
           <input
             type="text"
             placeholder="Nome de Usuário"
@@ -45,10 +70,10 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
           {errorMessage && !username && (
-            <p className="error-message">O campo de nome de usuário é obrigatório.</p>
+            <p className={styles.error_message}>O campo de nome de usuário é obrigatório.</p>
           )}
         </div>
-        <div className="input-container">
+        <div className={styles.input_container}>
           <input
             type="password"
             placeholder="Senha"
@@ -56,12 +81,12 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {errorMessage && !password && (
-            <p className="error-message">O campo de senha é obrigatório.</p>
+            <p className={styles.error_message}>O campo de senha é obrigatório.</p>
           )}
         </div>
         <button onClick={handleLogin}>Entrar</button>
         {invalidLoginMessage && (
-          <p className="error-message">{invalidLoginMessage}</p>
+          <p className={styles.error_message}>{invalidLoginMessage}</p>
         )}
       </div>
       </div>

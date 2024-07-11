@@ -4,18 +4,53 @@ const mysql = require('mysql2');
 const cors = require("cors");
 const app = express();
 const jwt = require('jsonwebtoken');
-const port = 3001;
+const port = 32322;
 
 
-  app.use(express.json());
+  // app.use(express.json());
   app.use(cors());
+  app.use(express.json({ limit: '50mb' })); // Aumente o limite conforme necessário
+  app.use(express.urlencoded({ limit: '50mb', extended: true })); // Para dados de formulários
 
-  const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'TescaroSoft',
-    database: 'db_stoll'
-  });
+  let connection
+
+  const AbrirConexao = ()=>{
+
+    if(!connection || connection?._closing)
+    {
+      connection = mysql.createConnection({
+        // host: 'localhost',
+        // user: 'root',
+        // password: 'TescaroSoft',
+        // database: 'db_stoll',
+        
+        
+        host: '193.203.175.85',
+        user: 'u156150556_root',
+        password: 'Root_Stoll12345',
+        database: 'u156150556_DB_STOLL',
+    
+        keepAliveInitialDelay: 10000, // 0 by default.
+        enableKeepAlive: true, // false by default
+        waitForConnections: true,
+    
+        // connectionLimit: 50,
+        // queueLimit: 0  
+      });
+    }
+
+
+  }
+  
+  const FecharConexao= () =>{
+    
+    if(connection)
+    {
+      connection.end();
+    }
+  }
+
+  AbrirConexao();
 
   connection.connect((err) => {
     if (err) {
@@ -23,75 +58,121 @@ const port = 3001;
       return;
     }
     console.log('Conectado ao banco de dados.');
+    
+    return;
   });
 
   app.get('/TestarConexaoComBanco', (req, res) => {
-    connection.query('SELECT 1 + 1 AS TESTE', (error, results) => {
-      if (error) {
-        res.status(500).json({ error: 'Erro ao buscar usuários' });
-        return;
-      }
-      res.json(results);
-    });
+    try{
+
+      AbrirConexao();
+      connection.query('SELECT 1 + 1 AS TESTE', (error, results) => {
+      
+        if (error) {
+          res.status(500).json({ error: 'Erro ao buscar usuários', mensagem: error});
+          return;
+        }
+
+        if (results.length > 0) 
+        { 
+          res.json({ data: true });
+          return;
+        } else {
+          res.json({ data: false });
+          return;
+        }
+      });
+
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
+    }
   });
 
   app.post('/ValidarLogin', (req, res) => {
+    try {
+      AbrirConexao();
 
-    const { parLogin, parSenha } = req.body;
-
-    const query = 'SELECT * FROM TBUSUARIOS WHERE NMLOGIN = ? AND SENHA = ?';
-
-    connection.query(query, [parLogin, parSenha], (error, results) => {
-
-    if (error) {
-      res.status(500).json({ error: 'Erro ao Validar Usuário ' + parLogin + " - "+ parSenha});
-      return;
-    }
-
-    if (results.length > 0) {
-      const SECRET_KEY = 'your_secret_key';
-      const token = jwt.sign({ parLogin, parSenha }, SECRET_KEY, { expiresIn: '24h' });
-
-      res.json({ valid: true, message: 'Login válido!', userToken: token  });
-    } else {
-      res.json({ valid: false, message: 'Nome ou senha inválidos.' });
-    }
+      const { parLogin, parSenha } = req.body;
       
-    });
+      const query = 'SELECT * FROM TBUSUARIOS WHERE NMLOGIN = ? AND SENHA = ?';
+      
+      connection.query(query, [parLogin, parSenha], (error, results) => {
+        
+        if (error) {
+          res.status(500).json({ error: 'Erro ao Validar Usuário ' + parLogin + " - "+ parSenha});
+          return;
+        }
+        
+        if (results.length > 0) {
+          const SECRET_KEY = 'your_secret_key';
+          const token = jwt.sign({ parLogin, parSenha }, SECRET_KEY, { expiresIn: '24h' });
+          res.json({ valid: true, message: 'Login válido!', userToken: token  });
+          return;
+          
+        } else {
+          res.json({ valid: false, message: 'Nome ou senha inválidos.' });
+          return;
+        }
+        
+      });
+    }catch (erro)
+    {
+      console.log("Erro: "+ erro);
+      throw erro;
+    }finally{
+      FecharConexao()
+    }
   });
 
-
-
   app.get('/GetInfoEmpresa', (req, res) => {
-
-    const query = 'SELECT * FROM TBEMPRESA';
-
-    connection.query(query, (error, results) => {
-
-    if (error) {
-      res.status(500).json({ error: 'Erro ao Buscar Informações da empresa '});
-      return;
+    try {
+      AbrirConexao();
+      const query = 'SELECT * FROM TBEMPRESA';
+  
+      connection.query(query, (error, results) => {
+      
+      if (error) {
+        res.status(500).json({ error: 'Erro ao Buscar Informações da empresa '});
+        return;
+      }
+  
+      if (results.length > 0) 
+      { 
+        res.json({ data: results });
+        return;
+      } else {
+        res.json({ data: results });
+        return;
+      }      
+      });   
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
     }
-
-    if (results.length > 0) 
-    { 
-      res.json({ data: results });
-    } else {
-      res.json({ data: results });
-    }      
-    });
   });
 
   app.post('/SalvarInfoEmpresas', (req, res) => {
 
     try {
+      AbrirConexao();
 
-      const { parObjTBEMPRESA } = req.body;
+      let { parObjTBEMPRESA } = req.body;
 
       if (!parObjTBEMPRESA) {
         return res.status(400).json({ error: 'parObjTBEMPRESA is required' });
       }
+      else{
+        parObjTBEMPRESA = JSON.parse(decodeURIComponent(escape(atob(parObjTBEMPRESA))));
+      }
 
+      
       var query = ``;
 
       if(parObjTBEMPRESA.IDEMPRESA == undefined || parObjTBEMPRESA.IDEMPRESA == 0)
@@ -150,11 +231,11 @@ const port = 3001;
             parObjTBEMPRESA.RESPONSAVEL,
             parObjTBEMPRESA.CPFRESPONSAVEL.replace(/[^a-zA-Z0-9]/g, ''),
             parObjTBEMPRESA.EXTENSAO_LOGO_236X67,
-            parObjTBEMPRESA.LOGO_236X67,
+            decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? "",
             parObjTBEMPRESA.EXTENSAO_ICONE,
-            parObjTBEMPRESA.ICONE]
+            decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? ""]
           , (error, results) => {   
-
+          
               if (error) {
                 res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
                 return;
@@ -163,6 +244,7 @@ const port = 3001;
               if (results.length > 0) {    
                 const insertedId = results.insertId;  
                 res.json({ ID: insertedId, });
+                return;
               } 
           
         });
@@ -203,12 +285,12 @@ const port = 3001;
                   parObjTBEMPRESA.RESPONSAVEL,
                   parObjTBEMPRESA.CPFRESPONSAVEL.replace(/[^a-zA-Z0-9]/g, ''),
                   parObjTBEMPRESA.EXTENSAO_LOGO_236X67,
-                  parObjTBEMPRESA.LOGO_236X67,
+                  decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? "",
                   parObjTBEMPRESA.EXTENSAO_ICONE,
-                  parObjTBEMPRESA.ICONE,                
+                  decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? "",                
                   parObjTBEMPRESA.IDEMPRESA]
                 , (error, results) => {
-          
+
                   if (error) {
                     res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
                     return;
@@ -217,18 +299,49 @@ const port = 3001;
                   if (results.changedRows > 0) {    
                     const insertedId = results.changedRows;  
                     res.json({ ID: insertedId, });
-                  } 
-          
+                    return;
+                  }           
               });
       }
     }catch (erro)
     {
         console.log("Erro: "+ erro);
         throw erro;
+    }finally{
+      FecharConexao()
     }
   });
   
 
+  app.get('/GetImagensCarousel', (req, res) => {
+    try {
+      AbrirConexao();
+      const query = 'SELECT * FROM TBIMAGENSCAROUSEL';
+  
+      connection.query(query, (error, results) => {
+      
+      if (error) {
+        res.status(500).json({ error: 'Erro ao Buscar Imagens '});
+        return;
+      }
+  
+      if (results.length > 0) 
+      { 
+        res.json({ data: results });
+        return;
+      } else {
+        res.json({ data: results });
+        return;
+      }      
+      });   
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
+    }
+  });
 
 
 

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Focar from './Componentes/Focar';
 import FootherDesktop from './Componentes/FootherDesktop';
 import { Navbar } from './Componentes/Navbar';
 import { Home } from './Formularios/Home';
 import { Produtos } from './Formularios/Produtos';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
 
@@ -25,58 +26,58 @@ function App() {
   }, []);
   
   
-
-  // const Evento=()=>{
-    
-  // }
+  const navigate = useNavigate();
+  const Evento=()=>{
+    navigate("/Administracao/Home")
+  }
   return (
     
-      <div className="App">
+      <div className={styles.App}>
         <Navbar />
-        <div className="Body">
+        <div className={styles.Body}>
           <div>
             <Home/>
-            {/* <button onClick={Evento}></button> */}
+            <button onClick={Evento}></button>
           </div>
-          <div className='SeparadorDeSessoes'></div> 
+          <div className={styles.SeparadorDeSessoes}></div> 
 
           <div  style={{ height: '50vh', background: '#f0f0f0' }}>
             <Focar id="SessaoSobre"/>
             <h1>Sobre</h1>
           </div>
-          <div className='SeparadorDeSessoes'></div>
+          <div className={styles.SeparadorDeSessoes}></div>
 
           <div>
             <Produtos/>
           </div>
-          <div className='SeparadorDeSessoes'></div>
+          <div className={styles.SeparadorDeSessoes}></div>
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoNoticias"/>
             <h1>Noticias</h1>
           </div>
-          <div className='SeparadorDeSessoes'></div>
+          <div className={styles.SeparadorDeSessoes}></div>
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoTabelaCalibracao"/>
             <h1>Tabela de Calibração</h1>
           </div>
-          <div className='SeparadorDeSessoes'></div>
+          <div className={styles.SeparadorDeSessoes}></div>
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoTestesStol"/>
             <h1>Testes Stol</h1>
           </div>
-          <div className='SeparadorDeSessoes'></div>
+          <div className={styles.SeparadorDeSessoes}></div>
 
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoContato"/>
             <h1>Contato</h1>
           </div>
-          <div className='SeparadorDeSessoes'></div> 
+          <div className={styles.SeparadorDeSessoes}></div> 
 
-          <div className='FootherDesktop' style={{ height: '30vh', background: '#f0f0f0' }}>
+          <div className={styles.FootherDesktop} style={{ height: '30vh', background: '#f0f0f0' }}>
             <Focar id="Foother"/>
             <FootherDesktop></FootherDesktop>
           </div>
