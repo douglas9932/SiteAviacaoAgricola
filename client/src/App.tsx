@@ -8,8 +8,11 @@ import { Produtos } from './Formularios/Produtos';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
+
 function App() {
 
+
+  
   useEffect(() => {
     // Função para limpar o localStorage
     const handleBeforeUnload = () => {
@@ -54,6 +57,8 @@ function App() {
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoNoticias"/>
+            <div style={{ height: 400, width: '100%' }}>              
+            </div>
             <h1>Noticias</h1>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>

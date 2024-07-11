@@ -4,19 +4,12 @@ import ValidarAcessoPaginas from "../Controllers/ValidarAcessoPaginas";
 import Carousel from "../../Componentes/Carousel";
 import styles from './Css/FrmImagensCarousel.module.css'
 import { TBIMAGENSCAROUSEL } from "../../Classes/Tabelas/TBIMAGENSCAROUSEL";
-import DataGrid from "../../Componentes/DataGrid";
+
 import React from "react";
 
+import { DataGrid } from '@mui/x-data-grid';
+import { Button } from '@mui/material';
 
-interface Data {
-  name: string;
-  age: number;
-  city: string;
-}
-type ColumnType<T> = {
-  Header: string;
-  accessor: keyof T;
-};
 
 
 const FrmImagensCarousel = () => {
@@ -35,42 +28,61 @@ const FrmImagensCarousel = () => {
   
     }, [controller]);
 
+    let rows = ImagensDoBanco?.map((image) => ({
+        id: image.IDIMAGEM,
+        name: image.NOMEIMAGEM,
+        date: image.DTCADASTRO,
+        description : "TESTE",
+      }));
+        
+    const handleEdit = (id: any) => {
+      
+      const item = ImagensDoBanco?.find(image => image.IDIMAGEM === id);
+    if (item) {
+      // setSelectedImage(item); // Armazene o item no estado ou passe para um componente/modal
+      console.log(`Edit row with id: ${id}`, item);
+    } else {
+      console.error(`Item with id ${id} not found`);
+    }
+    };
     
-
-    const data: Data[] = React.useMemo(
-      () => [
-        { name: 'John', age: 28, city: 'New York' },
-        { name: 'Jane', age: 34, city: 'Los Angeles' },
-        { name: 'Mike', age: 45, city: 'Chicago' },
-      ],
-      []
-    );
-  
-    const handleEdit = (row: Data) => {
-      console.log('Edit:', row);
+    const handleDelete = (id: any) => {
+      console.log(`Delete row with id: ${id}`);
     };
-  
-    const handleDelete = (row: Data) => {
-      console.log('Delete:', row);
-    };
-  
-    const renderActions = (row: Data) => (
-      <>
-        <button className={styles.buttonEditar} onClick={() => handleEdit(row)}>Editar</button>
-        <button className={styles.buttonExcluir} onClick={() => handleDelete(row)}>Excluir</button>
-      </>
-    );
+    
+    const columns = [
+      { field: 'name', headerName: 'Nome da Imagem', flex:1, width: 150 },
+      { field: 'date', headerName: 'Data de Cadastro', width: 180 },
+      {
+        field: 'actions',
+        headerName: 'Ações',
+        width: 330,
+        renderCell: (params: { row: { id: any; }; }) => (
+          <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>
+            <button
+              style={{width: "80px",height: "40px",  backgroundColor: "blue"}}
+              onClick={() => handleEdit(params.row.id)}>
+              Vizualizar
+            </button>
+            <button
+              color="secondary"
+              onClick={() => handleDelete(params.row.id)}
+              style={{width: "80px",height: "40px", marginLeft: 8 , backgroundColor: "black"}}
+            >
+              Edit
+            </button>
 
-    const columnWidths = ['200px', '100px', '150px', '100px']; // Exemplo de tamanhos de colunas
-    const columns: Array<ColumnType<Data>> = React.useMemo(
-      () => [
-        { Header: 'Nome', accessor: 'name' },
-        { Header: 'Idade', accessor: 'age' },
-        { Header: 'Cidade', accessor: 'city' },
-      ],
-      []
-    );
-
+            <button
+              color="secondary"
+              onClick={() => handleDelete(params.row.id)}
+              style={{width: "80px",height: "40px", marginLeft: 8, backgroundColor: "red"}}
+            >
+              Delete
+            </button>
+          </div>
+        ),
+      },
+    ];
 
     return (    
         <div className={styles.Formulario}>
@@ -87,7 +99,7 @@ const FrmImagensCarousel = () => {
                 </div>
     
                 <div className={styles.DivLinha}>    
-                  <DataGrid columns={columns} data={data} actions={renderActions} columnWidths={columnWidths}/>
+                  <DataGrid rows={rows} columns={columns} hideFooter />
                 </div>
              
                 <div className={styles.DivLinha}>    
