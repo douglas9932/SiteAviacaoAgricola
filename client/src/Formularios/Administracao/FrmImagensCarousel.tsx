@@ -4,12 +4,10 @@ import ValidarAcessoPaginas from "../Controllers/ValidarAcessoPaginas";
 import Carousel from "../../Componentes/Carousel";
 import styles from './Css/FrmImagensCarousel.module.css'
 import { TBIMAGENSCAROUSEL } from "../../Classes/Tabelas/TBIMAGENSCAROUSEL";
-
-import React from "react";
-
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
-
+import ImagemVizualizar  from '../../Imagens/Icones/ImgVizualizar.svg';
+import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
+import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
 
 
 const FrmImagensCarousel = () => {
@@ -60,24 +58,27 @@ const FrmImagensCarousel = () => {
         renderCell: (params: { row: { id: any; }; }) => (
           <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>
             <button
-              style={{width: "80px",height: "40px",  backgroundColor: "blue"}}
+              className='buttonVizualizar'
               onClick={() => handleEdit(params.row.id)}>
-              Vizualizar
+                <img src={ImagemVizualizar}></img>
+                <label>Show</label>
             </button>
             <button
+            className="buttonEditar"
               color="secondary"
               onClick={() => handleDelete(params.row.id)}
-              style={{width: "80px",height: "40px", marginLeft: 8 , backgroundColor: "black"}}
             >
-              Edit
+              <img src={ImagemEditar}></img>
+              <label>Edit</label>
             </button>
 
             <button
+              className="buttonExcluir"
               color="secondary"
               onClick={() => handleDelete(params.row.id)}
-              style={{width: "80px",height: "40px", marginLeft: 8, backgroundColor: "red"}}
             >
-              Delete
+              <img src={ImagemDeletar}></img>
+              <label>Deletar</label>
             </button>
           </div>
         ),

@@ -1,0 +1,80 @@
+
+button img{
+    background-color: transparent;
+    cursor: pointer;
+  }     
+  button label   {
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+
+
+  .buttonVizualizar {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    width: 80px;
+    height: 40px;
+    background-Color: #ffffff00;
+    color: #0004ff ;
+    justify-Content: center;
+    align-Items: center ;
+  }
+
+  
+  .buttonVizualizar:hover {
+    background-color: #001aff2a;
+  }
+
+
+
+ 
+ 
+ 
+ .buttonExcluir {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    width: 80px;
+    height: 40px;
+    background-Color: #ffffff00;
+    color: #ff0000 ;
+    justify-Content: center;
+    align-Items: center ;
+  }
+  
+  .buttonExcluir:hover {
+    background-color: #b3000021;
+  }
+  
+  .buttonEditar {
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    display: flex;
+    width: 80px;
+    height: 40px;
+    background-Color: #ffffff00;
+    color: #116600 ;
+    justify-Content: center;
+    align-Items: center ;
+  }
+  
+  .buttonEditar:hover {
+    background-color: #007c0025;
+  }
