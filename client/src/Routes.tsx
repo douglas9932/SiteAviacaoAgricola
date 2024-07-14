@@ -6,16 +6,26 @@ import ModeloVazio from './Formularios/ModeloVazio';
 import HomeAdm from './Formularios/Administracao/FrmHomeAdm';
 import FrmInformacoesEmpresa from './Formularios/Administracao/FrmInformacoesEmpresa';
 import FrmImagensCarousel from './Formularios/Administracao/FrmImagensCarousel';
+import NotFoundPage from './Formularios/NotFoundPage'; // Página 404
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/SiteAviacaoAgricola" element={<Home />} />
-      <Route  path="/login" element={<Login />} />
-      <Route  path="/Administracao/Home" element={<ModeloVazio><HomeAdm /></ModeloVazio>} />
-      <Route  path="/Administracao/InfoEmpresa" element={<ModeloVazio><FrmInformacoesEmpresa /></ModeloVazio>} />
-      <Route  path="/Administracao/ImagensCarousel" element={<ModeloVazio><FrmImagensCarousel /></ModeloVazio>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/Administracao/Home" element={<ModeloVazio><HomeAdm /></ModeloVazio>} />
+      <Route path="/Administracao/InfoEmpresa" element={<ModeloVazio><FrmInformacoesEmpresa /></ModeloVazio>} />
+      <Route path="/Administracao/ImagensCarousel" element={<ModeloVazio><FrmImagensCarousel /></ModeloVazio>} />
+
+
+
+
+
+
+      
+      <Route element={<NotFoundPage />} />
+
     </Routes>
   );
 };

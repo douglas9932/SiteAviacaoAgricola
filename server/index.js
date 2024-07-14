@@ -36,6 +36,7 @@ const port = 32322;
     
         // connectionLimit: 50,
         // queueLimit: 0  
+        connectTimeout: 10000
       });
     }
 
@@ -316,7 +317,7 @@ const port = 32322;
   app.get('/GetImagensCarousel', (req, res) => {
     try {
       AbrirConexao();
-      const query = 'SELECT * FROM TBIMAGENSCAROUSEL';
+      const query = 'SELECT * FROM TBIMAGENSCAROUSEL WHERE IDSTATUSIMAGEM <> 18'; //18 Situação Deletado!
   
       connection.query(query, (error, results) => {
       
@@ -344,10 +345,171 @@ const port = 32322;
   });
 
 
+  app.post('/ValidarSeNomeImagemCarouselExist', (req, res) => {
+    try {
+      AbrirConexao();
 
+      const { parNomeImagem, parIDIMAGEM } = req.body;
 
+      const query = 'SELECT COUNT(NOMEIMAGEM) AS Existe FROM TBIMAGENSCAROUSEL WHERE NOMEIMAGEM = ? AND IDIMAGEM <> ? AND IDSTATUSIMAGEM <> 18 '; //18 Situação Deletado!
+  
+      connection.query(query, [parNomeImagem, parIDIMAGEM], (error, results) => {
+      
+      if (error) {
+        res.status(500).json({ error: 'Erro ao Buscar Imagens '});
+        return;
+      }
+  
+      if (results.length > 0) 
+      { 
+        res.json({ data: results.Existe > 0 });
+        return;
+      } else {
+        res.json({ data: false });
+        return;
+      }      
+      });   
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
+    }
+  });
 
+  app.post('/SalvarImagemCarousel', (req, res) => {
 
+    try {
+      AbrirConexao();
+
+      let { parObjTBIMAGENSCAROUSEL } = req.body;
+
+      if (!parObjTBIMAGENSCAROUSEL) {
+        return res.status(400).json({ error: 'parObjTBIMAGENSCAROUSEL is required' });
+      }
+      else{
+        parObjTBIMAGENSCAROUSEL = JSON.parse(decodeURIComponent(escape(atob(parObjTBIMAGENSCAROUSEL))));
+      }
+      
+      var query = ``;
+
+      if(parObjTBIMAGENSCAROUSEL.IDIMAGEM == undefined || parObjTBIMAGENSCAROUSEL.IDIMAGEM == 0)
+      {
+        query = `INSERT INTO TBIMAGENSCAROUSEL
+                    (
+                    NOMEIMAGEM,
+                    SCRIMAGEM,
+                    DTCADASTRO,
+                    DTALTERACAO,
+                    IDSTATUSIMAGEM)
+                    VALUES
+                    (
+                    ?,
+                    ?,
+                    NOW(),
+                    NOW(),
+                    1)`;
+
+            connection.query(query,
+            [ parObjTBIMAGENSCAROUSEL.NOMEIMAGEM,
+              decodeURIComponent(escape(atob(parObjTBIMAGENSCAROUSEL.SCRIMAGEM ?? ""))) ?? ""]
+          , (error, results) => {   
+          
+              if (error) {
+                res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+                return;
+              }
+          
+              if (results){    
+                const insertedId = results.insertId;  
+                res.json({ ID: insertedId, });
+                return;
+              } 
+          
+        });
+
+      }else
+      {
+        query = `UPDATE TBIMAGENSCAROUSEL
+                    SET
+                    NOMEIMAGEM = ?,
+                    SCRIMAGEM = ?,
+                    DTALTERACAO = NOW()
+                    WHERE IDIMAGEM = ?`;
+    
+    
+              connection.query(query,
+                [parObjTBIMAGENSCAROUSEL.NOMEIMAGEM,                 
+                 decodeURIComponent(escape(atob(parObjTBIMAGENSCAROUSEL.SCRIMAGEM ?? ""))) ?? "",
+                 parObjTBIMAGENSCAROUSEL.IDIMAGEM]
+                , (error, results) => {
+
+                  if (error) {
+                    res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+                    return;
+                  }
+              
+                  if (results.changedRows > 0) {    
+                    const insertedId = results.changedRows;  
+                    res.json({ ID: insertedId, });
+                    return;
+                  }           
+              });
+      }
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
+    }
+  });
+
+  app.post('/DeletarImagemCarousel', (req, res) => {
+
+    try {
+      AbrirConexao();
+
+      let { parID } = req.body;
+
+      if (!parID) {
+        return res.status(400).json({ error: 'parID is required' });
+      }
+      
+      var query = ``;
+        query = `UPDATE TBIMAGENSCAROUSEL
+                    SET
+                    IDSTATUSIMAGEM = ?
+                    WHERE IDIMAGEM = ?`;
+    
+    
+              connection.query(query,
+                 [ 18, //Código da Situação Deletado!
+                  parID
+                 ]
+                , (error, results) => {
+
+                  if (error) {
+                    res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+                    return;
+                  }
+              
+                  if (results.changedRows > 0) {    
+                    const insertedId = results.changedRows;  
+                    res.json({ ID: insertedId, });
+                    return;
+                  }           
+              });
+      
+    }catch (erro)
+    {
+        console.log("Erro: "+ erro);
+        throw erro;
+    }finally{
+      FecharConexao()
+    }
+  });
 
 
 

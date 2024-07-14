@@ -8,12 +8,20 @@ import { DataGrid } from '@mui/x-data-grid';
 import ImagemVizualizar  from '../../Imagens/Icones/ImgVizualizar.svg';
 import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
 import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
+import ModalImagem from "../../Componentes/ModalImagem";
+import FrmCadImagemCarousel from "./FrmCadImagemCarousel";
+import { EAcoesDaTela } from "../../Classes/Enums/EAcoesDaTela";
+import Swal from "sweetalert2";
 
 
 const FrmImagensCarousel = () => {
 
     const controller = useMemo(() => new FrmImagensCarouselController(), []);
     const [ImagensDoBanco, setImagensBanco ] = useState<TBIMAGENSCAROUSEL[] | []>();
+    const [showModal, setShowModal] = useState(false);
+    const [showModalEdit, setShowModalEdit] = useState(false);
+    const [DadosEdit, setDadosEdit] = useState<TBIMAGENSCAROUSEL | null>(null);
+    const [selectedImage, setSelectedImage] = useState<string>('');
 
     useEffect(() => {
     
@@ -33,21 +41,89 @@ const FrmImagensCarousel = () => {
         description : "TESTE",
       }));
         
-    const handleEdit = (id: any) => {
+
+      const refreshPage = () => {
+        window.location.reload();
+      };
+
+
+    const BtnGridShow = (id: any) => {    
+      try{
+        const item = ImagensDoBanco?.find(image => image.IDIMAGEM === id);
+        setSelectedImage(item?.SCRIMAGEM ?? ''); // Assumindo que a URL da imagem está em item.URLIMAGEM
+        setShowModal(true);
+      }catch (erro){
+        Swal.fire({
+          text: `${erro}`,
+          icon: "error",
+          customClass: {
+            popup: 'swal2-custom-zindex'
+          }
+        }); 
+      }
+    };
+
+    const BtnGridEdit = (id: any) => {
+      try{
+        if(ImagensDoBanco?.find(image => image.IDIMAGEM === id) == null){
+          return;
+        }else{
+          setDadosEdit(ImagensDoBanco?.find(image => image.IDIMAGEM === id) ?? null);
+          setShowModalEdit(true);
+        }
+      }catch (erro){
+        Swal.fire({
+          text: `${erro}`,
+          icon: "error",
+          customClass: {
+            popup: 'swal2-custom-zindex'
+          }
+        }); 
+      }
+    };
+    
+    const BtnGridDelete = (id: any) => {
       
-      const item = ImagensDoBanco?.find(image => image.IDIMAGEM === id);
-    if (item) {
-      // setSelectedImage(item); // Armazene o item no estado ou passe para um componente/modal
-      console.log(`Edit row with id: ${id}`, item);
-    } else {
-      console.error(`Item with id ${id} not found`);
+      try{
+        
+        controller.DeletarImagemCarousel(id);
+
+        Swal.fire({
+          text: "Registro Deletado com Sucesso!",
+          icon: "success",
+          timer: 5000,
+          timerProgressBar: true,
+          customClass: {
+            popup: 'swal2-custom-zindex'
+          }
+        }).then(() => {
+            refreshPage();
+        });
+      }catch (erro){
+        Swal.fire({
+          text: `${erro}`,
+          icon: "error",
+          customClass: {
+            popup: 'swal2-custom-zindex'
+          }
+        }); 
+      }    
+    };
+    
+    const BtnNovoClick =()=>{
+      try{
+        setShowModalEdit(true);
+      }catch (erro){
+        Swal.fire({
+          text: `${erro}`,
+          icon: "error",
+          customClass: {
+            popup: 'swal2-custom-zindex'
+          }
+        }); 
+      }
     }
-    };
-    
-    const handleDelete = (id: any) => {
-      console.log(`Delete row with id: ${id}`);
-    };
-    
+
     const columns = [
       { field: 'name', headerName: 'Nome da Imagem', flex:1, width: 150 },
       { field: 'date', headerName: 'Data de Cadastro', width: 180 },
@@ -59,14 +135,14 @@ const FrmImagensCarousel = () => {
           <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>
             <button
               className='buttonVizualizar'
-              onClick={() => handleEdit(params.row.id)}>
+              onClick={() => BtnGridShow(params.row.id)}>
                 <img src={ImagemVizualizar}></img>
                 <label>Show</label>
             </button>
             <button
             className="buttonEditar"
               color="secondary"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => BtnGridEdit(params.row.id)}
             >
               <img src={ImagemEditar}></img>
               <label>Edit</label>
@@ -75,7 +151,7 @@ const FrmImagensCarousel = () => {
             <button
               className="buttonExcluir"
               color="secondary"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => BtnGridDelete(params.row.id)}
             >
               <img src={ImagemDeletar}></img>
               <label>Deletar</label>
@@ -99,12 +175,16 @@ const FrmImagensCarousel = () => {
                     </div>                  
                 </div>
     
+                <div className={styles.DivLinha} style={{justifyContent: 'end'}}>    
+                  <button className={styles.BotaoNovo} onClick={BtnNovoClick}>
+                    <div className={styles.TextoBotao}>Adicionar Imagem</div>
+                  </button>
+                </div>
+
                 <div className={styles.DivLinha}>    
                   <DataGrid rows={rows} columns={columns} hideFooter />
                 </div>
              
-                <div className={styles.DivLinha}>    
-                </div>
              
                 <div className={styles.DivLinha}>                                
                 </div>
@@ -130,6 +210,8 @@ const FrmImagensCarousel = () => {
                   </button>
                 )} */}
           </div>
+          <ModalImagem show={showModal} onClose={() => setShowModal(false)} srcImage={selectedImage} />
+          <FrmCadImagemCarousel show={showModalEdit} onClose={() => setShowModalEdit(false)} parDados={DadosEdit} refreshPage = {refreshPage}/>
         </div>
       );
     };

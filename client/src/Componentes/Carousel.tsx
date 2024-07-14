@@ -69,7 +69,8 @@ const Carousel = ({parUsaImagensLocal, parImages }: CarouselProps ) => {
         <img
           src={image.SCRIMAGEM} // Ajuste conforme os detalhes do tipo TBIMAGENSCAROUSEL
           alt={`Slide ${image.IDIMAGEM}`}
-          style={{ width: '100%', height: 'auto' }}
+          // style={{ width: '100%', height: 'auto' }}
+          className={`${styles.carouselimage} ${image.IDIMAGEM === currentIndex ? 'active' : ''}`}
         />
         ))
     }   

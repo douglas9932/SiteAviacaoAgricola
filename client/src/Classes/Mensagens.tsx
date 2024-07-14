@@ -20,4 +20,8 @@ export class Mensagens{
         return retorno;
     };
 
+    public static JaCadastrado = (value: string) => {        
+        const retorno = `${value} já cadastrado(a)!`;
+        return retorno;
+    };
 }

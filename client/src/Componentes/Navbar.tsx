@@ -69,9 +69,9 @@ export const Navbar = () => {
     <nav>
        <div className={styles.container}>
         <div className={styles.imagecontainer}>
-        <Link to="/" className={styles.title}>
-          <img src={imageLogo} alt="Description" className= "responsive-image"  onClick={() => scrollToSection('SessaoHome')}/>
-        </Link>
+          <Link to="/" className={styles.title}>
+            <img src={imageLogo} alt="Description" className= {styles.responsiveimage}  onClick={() => scrollToSection('SessaoHome')}/>
+          </Link>
         </div>
         <div className={styles.menu} onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>

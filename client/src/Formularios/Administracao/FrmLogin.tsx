@@ -5,6 +5,7 @@ import LoginController from '../../Controllers/Servicos/LoginController'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Mensagens } from '../../Classes/Mensagens';
+import ValidarConexaoComBanco from '../ValidarConexaoComBanco';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,21 +37,20 @@ const Login = () => {
     
     const minhaFuncao = async () => {
 
-      if(! await LoginController.VerificarConexao()){
-        Swal.fire({
-          text: Mensagens.ConexaoOffline(),
-          icon: "error",
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            window.location.reload();
-          } else if (result.isDenied) {
+      // if(! await LoginController.VerificarConexao()){
+      //   Swal.fire({
+      //     text: Mensagens.ConexaoOffline(),
+      //     icon: "error",
+      //   }).then((result) => {
+      //     if (result.isConfirmed) {
+      //       window.location.reload();
+      //     } else if (result.isDenied) {
             
-          }
-        });
+      //     }
+      //   });
         
 
-      }
+      // }
     }
       minhaFuncao();
 
@@ -94,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ValidarConexaoComBanco(Login);

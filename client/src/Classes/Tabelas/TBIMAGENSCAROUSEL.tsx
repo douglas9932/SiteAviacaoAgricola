@@ -2,11 +2,18 @@ export class TBIMAGENSCAROUSEL{
 
     public IDIMAGEM: number = 0;
     public DTCADASTRO: string = '';
-    public SCRIMAGEM: string = '';
+    public _SCRIMAGEM: string = '';
     public NOMEIMAGEM: string = '';
     public IDSTATUSIMAGEM: number = 0;
 
+    get SCRIMAGEM(): string {
+        return this._SCRIMAGEM;
+      }
     
+    set SCRIMAGEM(value: string) {
+    this._SCRIMAGEM = value;
+    }
+
     public TBIMAGENSCAROUSEL (
         parIDIMAGEM:number,
         parDTCADASTRO:string,
