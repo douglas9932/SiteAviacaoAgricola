@@ -3,7 +3,6 @@ import styles from "./Menu.module.css";
 import Logo from '../Imagens/LogoStoll.png'
 import { Link, useNavigate } from "react-router-dom";
 import LoginController from "../Controllers/Servicos/LoginController";
-import Ambiente from "../Classes/Ambiente";
 
 export type MenuType = {
   className?: string;
@@ -26,6 +25,7 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
     const ListaBotoes = [
         { text: 'Informações da Empresa', onClick: ()=>{}, path: '/Administracao/InfoEmpresa'},
          { text: 'Imagens Carousel', onClick: ()=>{}, path: '/Administracao/ImagensCarousel'},
+         { text: 'Contatos', onClick: ()=>{}, path: '/Administracao/Contatos'},
         // { text: 'Consultar pontos', onClick: null },
         // { text: 'Cadastrar usuários', onClick: onCadastrarUsuriosTextClick },
         // { text: 'Gerenciador de Blog', onClick: onCadastrarUsuriosTextClick },

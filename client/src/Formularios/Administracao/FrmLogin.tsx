@@ -3,9 +3,6 @@ import styles from './Css/FrmLogin.module.css';
 import logo from '../../Imagens/LogoStoll.png'
 import LoginController from '../../Controllers/Servicos/LoginController'
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { Mensagens } from '../../Classes/Mensagens';
-import ValidarConexaoComBanco from '../ValidarConexaoComBanco';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,24 +32,24 @@ const Login = () => {
   
   useEffect(() => {
     
-    const minhaFuncao = async () => {
+    // const minhaFuncao = async () => {
 
-      // if(! await LoginController.VerificarConexao()){
-      //   Swal.fire({
-      //     text: Mensagens.ConexaoOffline(),
-      //     icon: "error",
-      //   }).then((result) => {
-      //     if (result.isConfirmed) {
-      //       window.location.reload();
-      //     } else if (result.isDenied) {
+    //   // if(! await LoginController.VerificarConexao()){
+    //   //   Swal.fire({
+    //   //     text: Mensagens.ConexaoOffline(),
+    //   //     icon: "error",
+    //   //   }).then((result) => {
+    //   //     if (result.isConfirmed) {
+    //   //       window.location.reload();
+    //   //     } else if (result.isDenied) {
             
-      //     }
-      //   });
+    //   //     }
+    //   //   });
         
 
-      // }
-    }
-      minhaFuncao();
+    //   // }
+    // }
+    //   minhaFuncao();
 
   }, []);
   
@@ -94,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default ValidarConexaoComBanco(Login);
+export default Login;

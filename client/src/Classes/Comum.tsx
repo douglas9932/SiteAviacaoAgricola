@@ -160,7 +160,7 @@ export class Comum{
         return regex.test(telefone);
       };
 
-      public static formatCelular(value: string): string {
+    public static formatCelular(value: string): string {
         const onlyNums = value.replace(/\D/g, '');
         // Implementa uma lógica de formatação genérica
         if (onlyNums.length <= 12) {

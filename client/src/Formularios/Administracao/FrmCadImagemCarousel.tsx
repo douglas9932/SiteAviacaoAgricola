@@ -17,7 +17,7 @@ const FrmCadImagemCarousel:FunctionComponent<ModalProps> = ({ show, onClose, par
   const controller = useMemo(() => new FrmImagensCarouselController(), []);
 
   const [Imagem, SetImagem] = useState<string | null>(null);
-  const [errorLogo, setErrorLogo] = useState<string | null>(null);
+  const [errorImagem, setErrorImagem] = useState<string | null>(null);
 
   const [objTBIMAGENSCAROUSEL, setObject] = useState<TBIMAGENSCAROUSEL>(new TBIMAGENSCAROUSEL);
   
@@ -106,11 +106,10 @@ const FrmCadImagemCarousel:FunctionComponent<ModalProps> = ({ show, onClose, par
       objTBIMAGENSCAROUSEL.SCRIMAGEM = Imagem;
       return true;
 
-
     }catch{
 
     }
-    
+  
 
   }
 
@@ -153,11 +152,10 @@ const FrmCadImagemCarousel:FunctionComponent<ModalProps> = ({ show, onClose, par
   
   const BtnCancelarClick= () => {
     onClose();
-    if(refreshPage){
-      refreshPage();
-    }
+    // if(refreshPage){
+    //   refreshPage();
+    // }
   }
-
 
   return (
     <div className={styles.modalBackdrop}>
@@ -182,18 +180,18 @@ const FrmCadImagemCarousel:FunctionComponent<ModalProps> = ({ show, onClose, par
           
             <div className={styles.DivLinha} style={{gap: 20, justifyContent: 'start'}}>
               <div className={styles.DivImagens}>
-                  <label className={styles.TextLabel}>Logo*</label>
+                  <label className={styles.TextLabel}>Imagem*</label>
                   <div className={styles.DivBotoesImagem}>
                     <button className={styles.BtnCarregarImagem} 
-                    onClick={() => (controller.CarregarImagens(true, SetImagem, setErrorLogo))} 
-                    >Carregar Logo</button>
+                    onClick={() => (controller.CarregarImagens(true, SetImagem, setErrorImagem))} 
+                    >Carregar Imagem</button>
                     {Imagem && (
                     <button className={styles.BtnRemoverImagem}
                     onClick={()=>(controller.RemoverImagens(SetImagem))} 
                     >Remover Imagem</button>
                     )}                  
                   </div>
-                  {errorLogo && <p style={{ color: 'red', fontSize: '12px' }}>{errorLogo}</p>}
+                  {errorImagem && <p style={{ color: 'red', fontSize: '12px' }}>{errorImagem}</p>}
                   {Imagem && (
                     <div className={styles.DivDaImagem}>
                       <img src={Imagem} alt="Preview" className={styles.Imagem}/>

@@ -5,30 +5,27 @@ import Swal from 'sweetalert2';
 import { Mensagens } from '../Classes/Mensagens';
 
 
-
 const ValidarConexaoComBanco = (WrappedComponent: ComponentType) => {
   const AuthHOC = (props: any) => {
     const navigate = useNavigate();
     
     useEffect(() => {
          
-        const minhaFuncao = async () => {
-    
-          if(! await LoginController.VerificarConexao()){
-            Swal.fire({
-              text: Mensagens.ConexaoOffline(),
-              icon: "error",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.reload();
-              } else if (result.isDenied) {
-                
-              }
-            });    
-          }
+      const minhaFuncao = async () => {
+          
+        if(! await LoginController.VerificarConexao()){
+          Swal.fire({
+            text: Mensagens.ConexaoOffline(),
+            icon: "error",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            } else if (result.isDenied) {
+              
+            }
+          });    
         }
-
-      minhaFuncao();
+      }
     
     }, []);
     return <WrappedComponent {...props} />;

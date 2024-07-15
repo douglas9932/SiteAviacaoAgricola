@@ -42,10 +42,9 @@ const FrmImagensCarousel = () => {
       }));
         
 
-      const refreshPage = () => {
-        window.location.reload();
-      };
-
+    const refreshPage = () => {
+      window.location.reload();
+    };
 
     const BtnGridShow = (id: any) => {    
       try{
@@ -86,19 +85,41 @@ const FrmImagensCarousel = () => {
       
       try{
         
-        controller.DeletarImagemCarousel(id);
-
         Swal.fire({
-          text: "Registro Deletado com Sucesso!",
-          icon: "success",
-          timer: 5000,
-          timerProgressBar: true,
+          text: "Deseja realmente Deletar Esta Imagem?",
+          icon: "question",
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar',
+          confirmButtonText: 'Confirmar',
+          reverseButtons: true,
           customClass: {
             popup: 'swal2-custom-zindex'
           }
-        }).then(() => {
-            refreshPage();
+        }).then((result) => {
+          if (result.isConfirmed) {
+
+            controller.DeletarImagemCarousel(id);
+
+            Swal.fire({
+              text: "Registro Deletado com Sucesso!",
+              icon: "success",
+              timer: 5000,
+              timerProgressBar: true,
+              customClass: {
+                popup: 'swal2-custom-zindex'
+              }
+            }).then(() => {
+                refreshPage();
+            });
+          } else if (
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+          }
         });
+
+       
+
+        
       }catch (erro){
         Swal.fire({
           text: `${erro}`,
