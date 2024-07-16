@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import styles from './Css/FrmCadContatos.module.css';
 import { TBCONTATOS } from '../../Classes/Tabelas/TBCONTATOS';
 import { FrmContatosController } from '../Controllers/FrmContatosController';
-import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
 import { Mensagens } from '../../Classes/Mensagens';
 import Swal from 'sweetalert2';
 import { Comum } from '../../Classes/Comum';

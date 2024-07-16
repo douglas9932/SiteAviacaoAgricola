@@ -1,30 +1,29 @@
 export class Comum{
 
+    public static ValidarData = (data: string) => {
 
-  public static ValidarData = (data: string) => {
+      const regex = /^\d{4}\-\d{2}\-\d{2}$/;
+      
+      if (!regex.test(data)) {
+        return false; 
+      }
+    
+      const [ano, mes, dia] = data.split('-').map(Number);
+    
+      if (ano < 1000 || ano > 9999) {
+        return false;
+      }
 
-  const regex = /^\d{4}\-\d{2}\-\d{2}$/;
-  
-  if (!regex.test(data)) {
-    return false; 
-  }
-  
-  const [ano, mes, dia] = data.split('-').map(Number);
-  
-  if (ano < 1000 || ano > 9999) {
-    return false;
-  }
+      if (mes < 1 || mes > 12) {
+        return false;
+      }
 
-  if (mes < 1 || mes > 12) {
-    return false;
-  }
+      const dataObj = new Date(ano, mes - 1, dia);
 
-  const dataObj = new Date(ano, mes - 1, dia);
-
-  return dataObj.getFullYear() === ano && 
-         dataObj.getMonth() === mes - 1 && 
-         dataObj.getDate() === dia;
-  };
+      return dataObj.getFullYear() === ano && 
+          dataObj.getMonth() === mes - 1 && 
+          dataObj.getDate() === dia;
+    };
 
     public static formatCpf = (value: string) => {
         // Remove tudo que não é número

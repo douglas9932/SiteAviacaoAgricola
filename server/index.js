@@ -551,7 +551,6 @@ const port = 32322;
       if (results.length > 0) 
       { 
         results.forEach(contato => {
-        
           contato.TELEFONE = formatTelefone(contato.TELEFONE);
           contato.CELULAR = formatCelular(contato.CELULAR);
         });
@@ -714,13 +713,339 @@ const port = 32322;
 /*--------------------------------------FIM Contatos--------------------------------------*/
 
 
+/*--------------------------------------INICIO Produtos--------------------------------------*/
+app.get('/GetProdutos', (req, res) => {
+  try {
+    const query = 'SELECT * FROM TBPRODUTOS WHERE IDSTATUSPRODUTO <> 18'; //18 Situação Deletado!
+    
+    executarConsulta(query, (error, results) => {
+    
+    if (error) {
+      res.status(500).json({ error: 'Erro ao Buscar Produtos '});
+      return;
+    }
+
+    if (results.length > 0) 
+    { 
+      res.json({ data: results });
+      return;
+    } else {
+      res.json({ data: results });
+      return;
+    }      
+    });   
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
 
 
+app.post('/SalvarProduto', (req, res) => {
 
+  try {
+    
+    let { parObjTBPRODUTOS } = req.body;
+    
+    if (!parObjTBPRODUTOS) {
+      return res.status(400).json({ error: 'parObjTBPRODUTOS is required' });
+    }
+    else{
+      parObjTBPRODUTOS = JSON.parse(decodeURIComponent(escape(atob(parObjTBPRODUTOS))));
+    }
+    
+    var query = ``;
+    
+    if(parObjTBPRODUTOS.IDPRODUTO == undefined || parObjTBPRODUTOS.IDPRODUTO == 0)
+      {
+        query = `INSERT INTO TBPRODUTOS
+                  (
+                  NOMEPRODUTO,
+                  DESCRICAOPRODUTO,
+                  IMAGEMCAPA,
+                  IMAGEMPRODUTOEXPANDIDO,
+                  DTCADASTRO,
+                  DTALTERACAO,
+                  IDSTATUSPRODUTO)
+                  VALUES
+                  (
+                  ?,
+                  ?,
+                  ?,
+                  ?,
+                  NOW(),
+                  NOW(),
+                  1)`;
+            
+        executarConsulta(query,
+        [ parObjTBPRODUTOS.NOMEPRODUTO,
+          parObjTBPRODUTOS.DESCRICAOPRODUTO,
+          decodeURIComponent(escape(atob(parObjTBPRODUTOS.IMAGEMCAPA ?? ""))) ?? "",
+          decodeURIComponent(escape(atob(parObjTBPRODUTOS.IMAGEMPRODUTOEXPANDIDO ?? ""))) ?? "",
+          ]
+          , (error, results) => {   
+            
+            if (error) {
+              res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+              return;
+            }
+            
+            if (results){    
+              const insertedId = results.insertId;  
+              res.json({ ID: insertedId, });
+              return;
+            } 
+      
+      });
 
+    }else
+    {
+      query = `UPDATE TBPRODUTOS
+              SET
+              NOMEPRODUTO = ?,
+              DESCRICAOPRODUTO = ?,
+              IMAGEMCAPA = ?,
+              IMAGEMPRODUTOEXPANDIDO = ?,
+              DTALTERACAO = NOW()
+              WHERE IDPRODUTO = ?`;
+  
+            executarConsulta(query,
+              [parObjTBPRODUTOS.NOMEPRODUTO,
+               parObjTBPRODUTOS.DESCRICAOPRODUTO,
+               decodeURIComponent(escape(atob(parObjTBPRODUTOS.IMAGEMCAPA ?? ""))) ?? "",
+               decodeURIComponent(escape(atob(parObjTBPRODUTOS.IMAGEMPRODUTOEXPANDIDO ?? ""))) ?? "",
+               parObjTBPRODUTOS.IDPRODUTO]
+              , (error, results) => {
 
+                if (error) {
+                  res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+                  return;
+                }
+            
+                if (results.changedRows > 0) {    
+                  const insertedId = results.changedRows;  
+                  res.json({ ID: insertedId, });
+                  return;
+                }           
+            });
+    }
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
 
+app.post('/DeletarProduto', (req, res) => {
 
+  try {
+    
+    let { parID } = req.body;
+    
+    if (!parID) {
+      return res.status(400).json({ error: 'parID is required' });
+    }
+    
+    var query = ``;
+
+    query = `UPDATE TBPRODUTOS
+              SET
+              IDSTATUSPRODUTO = ?
+              WHERE IDPRODUTO = ? `;
+    
+    
+    executarConsulta(query,
+        [ 18, //Código da Situação Deletado!
+        parID
+        ] , (error, results) => {
+
+        if (error) {
+          res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+          return;
+        }
+    
+        if (results.changedRows > 0) {    
+          const insertedId = results.changedRows;  
+          res.json({ ID: insertedId, });
+          return;
+        }           
+    });
+    
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
+/*--------------------------------------FIM Produtos--------------------------------------*/
+
+/*--------------------------------------INICIO Partes Produtos--------------------------------------*/
+app.post('/GetPartesProduto', (req, res) => {
+  try {
+
+    let { parIDPRODUTO } = req.body;
+
+    const query = 'SELECT * FROM TBPARTESPRODUTOS WHERE IDPRODUTO = ? AND IDSTATUSPARTE <> 18'; //18 Situação Deletado!
+    
+    executarConsulta(query, [parIDPRODUTO], (error, results) => {
+    
+    if (error) {
+      res.status(500).json({ error: 'Erro ao Buscar Produtos '});
+      return;
+    }
+
+    if (results.length > 0) 
+    { 
+      res.json({ data: results });
+      return;
+    } else {
+      res.json({ data: results });
+      return;
+    }      
+    });   
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
+
+app.post('/SalvarPartesProduto', (req, res) => {
+
+  try {
+    
+    let { parObjTBPARTESPRODUTOS } = req.body;
+    
+    if (!parObjTBPARTESPRODUTOS) {
+      return res.status(400).json({ error: 'parObjTBPARTESPRODUTOS is required' });
+    }
+    else{
+      parObjTBPARTESPRODUTOS = JSON.parse(decodeURIComponent(escape(atob(parObjTBPARTESPRODUTOS))));
+    }
+    
+    var query = ``;
+    
+    if(parObjTBPARTESPRODUTOS.IDPARTE == undefined || parObjTBPARTESPRODUTOS.IDPARTE == 0)
+      {
+        query = `INSERT INTO TBPARTESPRODUTOS
+                  (NUMEROPARTE,
+                  DESCRICAOPARTE,
+                  IDPRODUTO,
+                  DTCADASTRO,
+                  DTALTERACAO,
+                  IDSTATUSPARTE)
+                  VALUES
+                  (
+                  ?,
+                  ?,
+                  ?,
+                  NOW(),
+                  NOW(),
+                  1)`;
+            
+        executarConsulta(query,
+          [ parObjTBPARTESPRODUTOS.NUMEROPARTE,
+            parObjTBPARTESPRODUTOS.DESCRICAOPARTE,
+            parObjTBPARTESPRODUTOS.IDPRODUTO,
+          ]
+          , (error, results) => {   
+            
+            if (error) {
+              res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+              return;
+            }
+            
+            if (results){    
+              const insertedId = results.insertId;  
+              res.json({ ID: insertedId, });
+              return;
+            } 
+      
+      });
+
+    }else
+    {
+      query = `UPDATE TBPARTESPRODUTOS
+                SET
+                NUMEROPARTE = ?,
+                DESCRICAOPARTE = ?,
+                DTALTERACAO = NOW()
+                WHERE IDPARTE = ?`;
+  
+            executarConsulta(query,
+              [parObjTBPARTESPRODUTOS.NUMEROPARTE,
+                parObjTBPARTESPRODUTOS.DESCRICAOPARTE,
+               parObjTBPARTESPRODUTOS.IDPARTE]
+              , (error, results) => {
+
+                if (error) {
+                  res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+                  return;
+                }
+            
+                if (results.changedRows > 0) {    
+                  const insertedId = results.changedRows;  
+                  res.json({ ID: insertedId, });
+                  return;
+                }           
+            });
+    }
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
+
+app.post('/DeletarParteProduto', (req, res) => {
+
+  try {
+    
+    let { parID } = req.body;
+    
+    if (!parID) {
+      return res.status(400).json({ error: 'parID is required' });
+    }
+    
+    var query = ``;
+
+    query = `UPDATE TBPARTESPRODUTOS
+              SET
+              IDSTATUSPARTE = ?
+              WHERE IDPARTE = ? `;
+    
+    
+    executarConsulta(query,
+        [ 18, //Código da Situação Deletado!
+        parID
+        ] , (error, results) => {
+
+        if (error) {
+          res.status(500).json({ error: 'Erro ao Salvar Informações ', error});
+          return;
+        }
+    
+        if (results.changedRows > 0) {    
+          const insertedId = results.changedRows;  
+          res.json({ ID: insertedId, });
+          return;
+        }           
+    });
+    
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
+/*--------------------------------------FIM Partes Produtos--------------------------------------*/
 
 
 

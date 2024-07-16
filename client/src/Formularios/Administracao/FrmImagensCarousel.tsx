@@ -10,7 +10,6 @@ import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
 import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
 import ModalImagem from "../../Componentes/ModalImagem";
 import FrmCadImagemCarousel from "./FrmCadImagemCarousel";
-import { EAcoesDaTela } from "../../Classes/Enums/EAcoesDaTela";
 import Swal from "sweetalert2";
 
 
@@ -25,12 +24,12 @@ const FrmImagensCarousel = () => {
 
     useEffect(() => {
     
-      const BuscarDadosEmpresa = async () => {
+      const BuscarDadosCarousel = async () => {
   
         await controller.GetImagensCarousel(setImagensBanco);    
         setImagensBanco(controller.ObjTBIMAGENSCAROUSEL);
       }
-      BuscarDadosEmpresa();
+      BuscarDadosCarousel();
   
     }, [controller]);
 

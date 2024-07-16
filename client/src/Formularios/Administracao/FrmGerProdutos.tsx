@@ -1,61 +1,66 @@
 import { useEffect, useMemo, useState } from "react";
-import {FrmContatosController}  from '../Controllers/FrmContatosController';
+import {FrmProdutosController}  from '../Controllers/FrmProdutosController';
 import ValidarAcessoPaginas from "../Controllers/ValidarAcessoPaginas";
-import styles from './Css/FrmGerContatos.module.css'
-import { TBCONTATOS } from "../../Classes/Tabelas/TBCONTATOS";
+import styles from './Css/FrmGerProdutos.module.css'
+import { TBPRODUTOS } from "../../Classes/Tabelas/TBPRODUTOS";
 import { DataGrid } from '@mui/x-data-grid';
+import ImagemVizualizar  from '../../Imagens/Icones/ImgVizualizar.svg';
 import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
 import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
 import Swal from "sweetalert2";
-import FrmCadContatos from "./FrmCadContatos";
+import FrmCadProdutos from "./FrmCadProdutos";
 
 
-const FrmGerContatos = () => {
+const FrmGerProdutos = () => {
 
-    const controller = useMemo(() => new FrmContatosController(), []);
-    const [ObjLstContatos, setObjLstContatos ] = useState<TBCONTATOS[] | []>();
+    const controller = useMemo(() => new FrmProdutosController(), []);
+    const [ObjLstProdutos, setObjLstProdutos ] = useState<TBPRODUTOS[] | []>();
     const [showModalSaveAndEdit, setShowModalSaveAndEdit] = useState(false);
-    const [DadosEdit, setDadosEdit] = useState<TBCONTATOS | null>(null);
+    const [somenteVizualizar, setSomenteVizualizar] = useState(false);
+    const [DadosEdit, setDadosEdit] = useState<TBPRODUTOS | null>(null);
 
     useEffect(() => {
     
-      const BuscarDadosEmpresa = async () => {
+      const BuscarDadosProdutos = async () => {
   
-        await controller.GetContatos();    
-        setObjLstContatos(controller.ObjLstContatos);
+        await controller.GetProdutos();    
+        setObjLstProdutos(controller.ObjLstProdutos);
       }
-      BuscarDadosEmpresa();
+      BuscarDadosProdutos();
   
     }, [controller]);
 
-    let rows = ObjLstContatos?.map((Contato) => ({
-        id: Contato.IDCONTATO,
-        name: Contato.NMCIDADECONTATO,
-        email: Contato.EMAILCONTATO,
-        telefone: Contato.TELEFONE,
-        celular: Contato.CELULAR,
-        description: Contato.ENDERECO,
+    let rows = ObjLstProdutos?.map((Produto) => ({
+        id: Produto.IDPRODUTO,
+        name: Produto.NOMEPRODUTO,
+        description: Produto.DESCRICAOPRODUTO,
+        date: Produto.DTCADASTRO,
       }));
     
     const columns = [
-    { field: 'name', headerName: 'Cidade', flex:1, width: 150 },
-    { field: 'email', headerName: 'Email', flex:1,width: 180 },
-    { field: 'telefone', headerName: 'Telefone', width: 180 },
-    { field: 'celular', headerName: 'Celular', width: 180 },
-    { field: 'description', headerName: 'Endereço',flex:1, width: 180 },
+    { field: 'name', headerName: 'Nome do produto', flex:1, width: 150 },
+    { field: 'description', headerName: 'Descrição',flex:1, width: 180 },
+    { field: 'date', headerName: 'Data de Cadastro', width: 180 },
     {
         field: 'actions',
         headerName: 'Ações',
-        width: 230,
+        width: 300,
         renderCell: (params: { row: { id: any; }; }) => (
-        <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>            
+        <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>                        
+            <button
+              className='buttonVizualizar'
+              onClick={() => BtnGridShow(params.row.id)}>
+                <img src={ImagemVizualizar}></img>
+                <label>Show</label>
+            </button>
+
             <button
             className="buttonEditar"
             color="secondary"
             onClick={() => BtnGridEdit(params.row.id)}
             >
-            <img src={ImagemEditar}></img>
-            <label>Edit</label>
+                <img src={ImagemEditar}></img>
+                <label>Edit</label>
             </button>
 
             <button
@@ -75,12 +80,27 @@ const FrmGerContatos = () => {
       window.location.reload();
     };
     
+    const BtnGridShow = (id: any) => {    
+        try{
+          setSomenteVizualizar(true);
+          setShowModalSaveAndEdit(true);
+        }catch (erro){
+          Swal.fire({
+            text: `${erro}`,
+            icon: "error",
+            customClass: {
+              popup: 'swal2-custom-zindex'
+            }
+          }); 
+        }
+      };
+
     const BtnGridEdit = (id: any) => {
       try{
-        if(ObjLstContatos?.find(Contato => Contato.IDCONTATO === id) == null){
+        if(ObjLstProdutos?.find(Produto => Produto.IDPRODUTO === id) == null){
           return;
         }else{
-          setDadosEdit(ObjLstContatos?.find(Contato => Contato.IDCONTATO === id) ?? null);
+          setDadosEdit(ObjLstProdutos?.find(Produto => Produto.IDPRODUTO === id) ?? null);
           setShowModalSaveAndEdit(true);
         }
       }catch (erro){
@@ -111,7 +131,7 @@ const FrmGerContatos = () => {
         }).then((result) => {
           if (result.isConfirmed) {
 
-            controller.DeletarContato(id);
+            controller.DeletarProduto(id);
 
             Swal.fire({
               text: "Registro Deletado com Sucesso!",
@@ -143,21 +163,8 @@ const FrmGerContatos = () => {
     
     const BtnNovoClick =()=>{
       try{
-        if((ObjLstContatos?.length ?? 0) >= 2){
-           Swal.fire({
-              text: "Permitido Cadastrar no máximo 2(Dois) Contatos!",
-              icon: "info",
-              timer: 5000,
-              timerProgressBar: true,
-              customClass: {
-                popup: 'swal2-custom-zindex'
-              }
-            }).then(() => {
-                return;
-            });
-        }else{
-            setShowModalSaveAndEdit(true);
-        }
+        setDadosEdit(new TBPRODUTOS);
+        setShowModalSaveAndEdit(true);
       }catch (erro){
         Swal.fire({
           text: `${erro}`,
@@ -173,14 +180,14 @@ const FrmGerContatos = () => {
         <div className={styles.Formulario}>
           <div className={styles.Cabecalho}>
               <label className={styles.Titulo}>
-                Contatos
+                Produtos
               </label>
           </div>
           <div className={styles.CorpoPagina}>
                 <div className={styles.DivLinha} style={{justifyContent: 'end'}}>    
                   <button className={styles.BotaoNovo} 
                   onClick={BtnNovoClick}>
-                    <div className={styles.TextoBotao}>Adicionar Contato</div>
+                    <div className={styles.TextoBotao}>Adicionar Produto</div>
                   </button>
                 </div>
     
@@ -199,10 +206,10 @@ const FrmGerContatos = () => {
           </div>
           <div className={styles.Foother}>
           </div>          
-          <FrmCadContatos show={showModalSaveAndEdit} onClose={() => setShowModalSaveAndEdit(false)} parDados={DadosEdit} refreshPage = {refreshPage}/>
+          <FrmCadProdutos SomenteVizualizar={somenteVizualizar} show={showModalSaveAndEdit} onClose={() => setShowModalSaveAndEdit(false)} parDados={DadosEdit} refreshPage = {refreshPage}/>
         </div>
       );
     };
     
-    export default ValidarAcessoPaginas(FrmGerContatos);
+    export default ValidarAcessoPaginas(FrmGerProdutos);
     

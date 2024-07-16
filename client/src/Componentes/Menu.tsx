@@ -26,6 +26,7 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
         { text: 'Informações da Empresa', onClick: ()=>{}, path: '/Administracao/InfoEmpresa'},
          { text: 'Imagens Carousel', onClick: ()=>{}, path: '/Administracao/ImagensCarousel'},
          { text: 'Contatos', onClick: ()=>{}, path: '/Administracao/Contatos'},
+         { text: 'Produtos', onClick: ()=>{}, path: '/Administracao/Produtos'},
         // { text: 'Consultar pontos', onClick: null },
         // { text: 'Cadastrar usuários', onClick: onCadastrarUsuriosTextClick },
         // { text: 'Gerenciador de Blog', onClick: onCadastrarUsuriosTextClick },
