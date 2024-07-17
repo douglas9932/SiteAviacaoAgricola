@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CardProdutos from "../Componentes/CardProdutos";
 import Focar from "../Componentes/Focar";
 import styles from './Produtos.module.css';
-
-import Produto1 from '../Imagens/Produtos/Produto1.png';
-import Produto2 from '../Imagens/Produtos/Produto2.jpg';
-import Produto3 from '../Imagens/Produtos/Produto3.jpeg';
-
-
-const botaoData1 = [
-  { LinkReferencia: 'https://www.google.com.br/?hl=pt-BR', Texto: 'CATÁLOGO' },
-  { LinkReferencia: '/pdfs/catalogos/arquivo.pdf', Texto: 'Botao 2' },
-  { LinkReferencia: '/botao3', Texto: 'Botao 3' }
-];
-
-const botaoData2 = [
-  { LinkReferencia: '/catalogo', Texto: 'CATÁLOGO' },
-  { LinkReferencia: '/botao4', Texto: 'Botao 4' },
-  { LinkReferencia: '/botao5', Texto: 'Botao 5' }
-];
+import { TBPRODUTOS } from '../Classes/Tabelas/TBPRODUTOS';
+import { FrmProdutosController } from './Controllers/FrmProdutosController';
+import { useNavigate } from 'react-router-dom';
 
 export const Produtos = () => {
+  const navigate = useNavigate();
+  
+  const controller = useMemo(() => new FrmProdutosController(), []);
+  const [ObjLstProdutos, setObjLstProdutos ] = useState<TBPRODUTOS[] | []>();
+
+  const BtnDetalharProdutoClick= (IDPRODUTO: number) => {
+
+    try{
+
+      sessionStorage.setItem('DetalharProdutoID', IDPRODUTO.toString());
+      navigate("/DetalharProduto");  
+    }catch{
+
+    }
+  }
+
+  useEffect(() => {
+    
+    const BuscarDadosProdutos = async () => {
+
+      await controller.GetProdutos();    
+      setObjLstProdutos(controller.ObjLstProdutos);
+    }
+    BuscarDadosProdutos();
+
+  }, [controller]);
+
+
   return (
     <div className={styles.SessaoProdutos}>
         <Focar id="SessaoProdutos"/>
@@ -28,13 +42,11 @@ export const Produtos = () => {
             <label >Produtos</label>
             <div></div>
         </div>
-        <div className={styles.LinhaCards}>
-            <CardProdutos Titulo="Atomizador de Alumínio" TextoComplementar="Texto Complementar" CaminhoImagem={Produto1} Botoes={botaoData1}/>
-            <CardProdutos  Titulo="Caixa de Alijamento Ipanema 201 – 202 – 203" TextoComplementar="Texto Complementar" CaminhoImagem={Produto2} Botoes={botaoData2}/>
-            <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/>            
-            <CardProdutos Titulo="Atomizador de Alumínio" TextoComplementar="Texto Complementar" CaminhoImagem={Produto1} Botoes={botaoData1}/>
-            <CardProdutos  Titulo="Caixa de Alijamento Ipanema 201 – 202 – 203" TextoComplementar="Texto Complementar" CaminhoImagem={Produto2} Botoes={botaoData2}/>
-            <CardProdutos Titulo="Rebocador de Aeronaves" TextoComplementar="Texto Complementar" CaminhoImagem={Produto3} Botoes={botaoData1}/> 
+        <div className={styles.LinhaCards}>        
+
+        {ObjLstProdutos?.map((produto) => (
+          <CardProdutos IDPRODUTO={produto.IDPRODUTO} Titulo={produto.NOMEPRODUTO} TextoComplementar={produto.DESCRICAOPRODUTO} srcImagem={produto.IMAGEMCAPA} onClickBotao={()=>BtnDetalharProdutoClick(produto.IDPRODUTO)}/>
+        ))}
         </div>
         
     </div>

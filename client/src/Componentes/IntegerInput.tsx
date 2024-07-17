@@ -9,9 +9,10 @@ interface IntegerInputProps {
   placeholder?: string;
   className?: string;
   style?: {};
+  disabled?: boolean;
 }
 
-const IntegerInput: FC<IntegerInputProps> = ({ value, onChange, max, min, placeholder, className, style }) => {
+const IntegerInput: FC<IntegerInputProps> = ({ value, onChange, max, min, placeholder, className, style, disabled }) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (/^\d*$/.test(value)) { // Regular expression to allow only digits
@@ -22,8 +23,13 @@ const IntegerInput: FC<IntegerInputProps> = ({ value, onChange, max, min, placeh
     }
   };
 
+  if(!disabled){
+    disabled = true;
+  }
+
   return (
     <input
+      disabled={disabled}
       type="text"
       value={value}
       onChange={handleInputChange}

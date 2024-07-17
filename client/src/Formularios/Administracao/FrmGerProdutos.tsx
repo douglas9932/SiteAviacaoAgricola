@@ -80,8 +80,9 @@ const FrmGerProdutos = () => {
       window.location.reload();
     };
     
-    const BtnGridShow = (id: any) => {    
+    const BtnGridShow = (id: any) => {
         try{
+          setDadosEdit(ObjLstProdutos?.find(Produto => Produto.IDPRODUTO === id) ?? null);
           setSomenteVizualizar(true);
           setShowModalSaveAndEdit(true);
         }catch (erro){
@@ -93,7 +94,7 @@ const FrmGerProdutos = () => {
             }
           }); 
         }
-      };
+    };
 
     const BtnGridEdit = (id: any) => {
       try{
@@ -101,6 +102,7 @@ const FrmGerProdutos = () => {
           return;
         }else{
           setDadosEdit(ObjLstProdutos?.find(Produto => Produto.IDPRODUTO === id) ?? null);
+          setSomenteVizualizar(false);
           setShowModalSaveAndEdit(true);
         }
       }catch (erro){
@@ -164,6 +166,7 @@ const FrmGerProdutos = () => {
     const BtnNovoClick =()=>{
       try{
         setDadosEdit(new TBPRODUTOS);
+        setSomenteVizualizar(false);
         setShowModalSaveAndEdit(true);
       }catch (erro){
         Swal.fire({

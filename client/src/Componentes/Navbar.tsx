@@ -1,11 +1,11 @@
 import  { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('SessaoHome'); // Estado para acompanhar a seção ativa
 
 
@@ -37,12 +37,17 @@ export const Navbar = () => {
     }
   };
   
-  // Efeito para adicionar evento de scroll ao montar o componente
   useEffect(() => {
+
+    if(localStorage.getItem('focarElement')){
+      let id = localStorage.getItem('focarElement');
+      localStorage.removeItem('focarElement');
+      scrollToSection(id ?? '');
+    }
+
     window.addEventListener('scroll', updateActiveSection);
     return () => {
-      window.removeEventListener('scroll', updateActiveSection);
-      
+      window.removeEventListener('scroll', updateActiveSection);      
     };
     
   }, []);
@@ -62,6 +67,9 @@ export const Navbar = () => {
           behavior: 'smooth',
         });
       }
+    }else{      
+      localStorage.setItem('focarElement', sectionId)
+      navigate("/");      
     }
   };
   

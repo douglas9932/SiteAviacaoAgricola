@@ -4,10 +4,28 @@ import imageLogo from '../Imagens/LogoStoll.png';
 import imageEmail from '../Imagens/Contatos/Email.svg';
 import imageWhats from '../Imagens/Contatos/Whatsapp.svg';
 import imageTelefone from '../Imagens/Contatos/Telefone.svg';
+import { useEffect, useMemo, useState } from "react";
+import { FrmContatosController } from "../Formularios/Controllers/FrmContatosController";
+import { TBCONTATOS } from "../Classes/Tabelas/TBCONTATOS";
 
 
 const Foother = () => {
     
+
+  const controller = useMemo(() => new FrmContatosController(), []);
+  const [ObjLstContatos, setObjLstContatos ] = useState<TBCONTATOS[] | []>();
+
+  useEffect(() => {
+    
+    const BuscarDadosContatos = async () => {
+
+      await controller.GetContatos();    
+      setObjLstContatos(controller.ObjLstContatos);
+    }
+    BuscarDadosContatos();
+
+  }, [controller]);
+  
     const scrollToSection = (sectionId: string) => {
         const navbarElement = document.querySelector('nav') as HTMLElement;
         const focarElement = document.getElementById(sectionId);
@@ -32,28 +50,30 @@ const Foother = () => {
           <div className={styles.footercontent}>
             <div className={styles.contacts}>
               <h2>Contatos</h2>
+              {ObjLstContatos?.map((contato) => (          
                 <div className={styles.Sede}>
-                    <label>Palotina</label>
+                    <label>{contato.NMCIDADECONTATO}</label>
                     <div className={styles.Infos}>
                         <div>
                             <img src={imageEmail} alt="Email"></img>
-                            <label>contato@exemplo.com</label>
+                            <label>{contato.EMAILCONTATO}</label>
                         </div>
                         <div>
                             <img src={imageWhats} alt="Whatsapp"></img>
-                            <label>(11) 1234-5678</label>
+                            <label>{contato.CELULAR}</label>
                         </div>
                         <div>
                             <img src={imageTelefone} alt="Telefone"></img>
-                            <label>(11) 3649-5678</label>
+                            <label>{contato.TELEFONE}</label>
                         </div>
                     </div>
                     <div className={styles.cssEndereco}>
-                        <label>Endereço: Rua Exemplo, 123</label>
+                        <label>Endereço: {contato.ENDERECO}</label>
                     </div>
                 </div>
+              ))}
 
-                <div className={styles.Sede}>
+                {/* <div className={styles.Sede}>
                     <label>Toledo</label>
                     <div className={styles.Infos}>
                         <div>
@@ -68,7 +88,7 @@ const Foother = () => {
                     <div className={styles.cssEndereco}>
                         <label>Endereço: Rua Exemplo, 123</label>
                     </div>
-                </div>
+                </div> */}
 
             </div>
 

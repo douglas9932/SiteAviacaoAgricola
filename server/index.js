@@ -742,6 +742,35 @@ app.get('/GetProdutos', (req, res) => {
   }
 });
 
+app.post('/GetProdutoByID', (req, res) => {
+  try {
+
+    let { parID } = req.body;
+    const query = 'SELECT TOP 1 FROM TBPRODUTOS WHERE IDPRODUTO = ?'; //18 Situação Deletado!
+    
+    executarConsulta(query, [parID], (error, results) => {
+    
+    if (error) {
+      res.status(500).json({ error: 'Erro ao Buscar Produtos '});
+      return;
+    }
+
+    if (results.length > 0) 
+    { 
+      res.json({ data: results });
+      return;
+    } else {
+      res.json({ data: results });
+      return;
+    }      
+    });   
+  }catch (erro)
+  {
+      console.log("Erro: "+ erro);
+      throw erro;
+  }finally{
+  }
+});
 
 app.post('/SalvarProduto', (req, res) => {
 
@@ -889,7 +918,7 @@ app.post('/GetPartesProduto', (req, res) => {
 
     let { parIDPRODUTO } = req.body;
 
-    const query = 'SELECT * FROM TBPARTESPRODUTOS WHERE IDPRODUTO = ? AND IDSTATUSPARTE <> 18'; //18 Situação Deletado!
+    const query = 'SELECT * FROM TBPARTESPRODUTOS WHERE IDPRODUTO = ? AND IDSTATUSPARTE <> 18 ORDER BY NUMEROPARTE ASC'; //18 Situação Deletado!
     
     executarConsulta(query, [parIDPRODUTO], (error, results) => {
     
@@ -1046,6 +1075,20 @@ app.post('/DeletarParteProduto', (req, res) => {
   }
 });
 /*--------------------------------------FIM Partes Produtos--------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

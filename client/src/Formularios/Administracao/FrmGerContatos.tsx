@@ -19,12 +19,12 @@ const FrmGerContatos = () => {
 
     useEffect(() => {
     
-      const BuscarDadosEmpresa = async () => {
+      const BuscarDadosContatos = async () => {
   
         await controller.GetContatos();    
         setObjLstContatos(controller.ObjLstContatos);
       }
-      BuscarDadosEmpresa();
+      BuscarDadosContatos();
   
     }, [controller]);
 

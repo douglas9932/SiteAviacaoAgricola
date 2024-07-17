@@ -4,16 +4,13 @@ import { TBPRODUTOS } from '../../Classes/Tabelas/TBPRODUTOS';
 import { FrmProdutosController } from '../Controllers/FrmProdutosController';
 import { Mensagens } from '../../Classes/Mensagens';
 import Swal from 'sweetalert2';
-import { Comum } from '../../Classes/Comum';
 import { DataGrid } from '@mui/x-data-grid';
-import ImagemVizualizar  from '../../Imagens/Icones/ImgVizualizar.svg';
 import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
 import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
 import { TBPARTESPRODUTOS } from '../../Classes/Tabelas/TBPARTESPRODUTOS';
-import { Description } from '@mui/icons-material';
 import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
 import IntegerInput from '../../Componentes/IntegerInput';
-import { maxWidth } from '@mui/system';
+import { ClassNames } from '@emotion/react';
 
 interface ModalProps {
     show: boolean;
@@ -156,51 +153,52 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
 
       if(await ValidarSalvar()){
 
-         await controller.Salvar(objTBPRODUTOS, SetIDPRODUTOInserido).then((success: any) => {
-          if (success) {
-            Swal.fire({
-              text: "Registro Salvo com Sucesso!",
-              icon: "success",
-              timer: 5000,
-              timerProgressBar: true,
-              customClass: {
-                popup: 'swal2-custom-zindex'
-              }
-            }).then(() => {
+        await controller.Salvar(objTBPRODUTOS, SetIDPRODUTOInserido).then((success: any) => {
+        if (success) {
+          Swal.fire({
+            text: "Registro Salvo com Sucesso!",
+            icon: "success",
+            timer: 5000,
+            timerProgressBar: true,
+            customClass: {
+              popup: 'swal2-custom-zindex'
+            }
+          }).then(() => {
 
-              
-
-              // onClose();
-              // if(refreshPage){
-              //   refreshPage();
-              // }
-
-            });
-          }else{
-            Swal.fire({
-              text: "Ocorreu algum problema ao Salvar os dados!",
-              icon: "error",
-              customClass: {
-                popup: 'swal2-custom-zindex'
-              }
-            });
-          }
+          });
+        }else{
+          Swal.fire({
+            text: "Ocorreu algum problema ao Salvar os dados!",
+            icon: "error",
+            customClass: {
+              popup: 'swal2-custom-zindex'
+            }
+          });
+        }
         }).catch((error: any) => {
           console.error("Erro ao salvar:", error);
-      });
-    }
+        });
+      }
     }
 
-    const BtnCancelarClick= () => {
+    const BtnFecharClick= () => {
       onClose();
+
+      if(!SomenteVizualizar){
+        if(refreshPage){
+          refreshPage();
+        }
+      }
     }
+
+
 
     let rows = ObjLstItens?.map((Itens) => ({
       id: Itens.IDPARTE,
       description: Itens.NUMEROPARTE,
       name: Itens.DESCRICAOPARTE,
     }));
-
+    
     const columns = [
       { field: 'description', headerName: 'Número',width: 100 },
       { field: 'name', headerName: 'Descrição', flex:1, width: 150 },
@@ -211,26 +209,29 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
         renderCell: (params: { row: { id: any; }; }) => (
         <div style={{display: "flex", width: "100%", height: "100%", justifyContent: 'center', alignItems: "center" }}>                                  
             <button
+            disabled={SomenteVizualizar}
             className="buttonEditar"
             color="secondary"
             onClick={() => BtnGridEditItem(params.row.id)}
             >
-                <img src={ImagemEditar}></img>
-                <label>Edit</label>
+              <img src={ImagemEditar}></img>
+              <label>Edit</label>
             </button>
 
             <button
+            disabled={SomenteVizualizar}
             className="buttonExcluir"
             color="secondary"
             onClick={() => BtnGridDeleteItem(params.row.id)}
             >
-            <img src={ImagemDeletar}></img>
-            <label>Deletar</label>
+              <img src={ImagemDeletar}></img>
+              <label>Deletar</label>
             </button>
         </div>
-      ), },
+      ),}
     ];
 
+    
 
     const BtnNovoClick =()=>{
       try{
@@ -382,26 +383,23 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
   
       }
     }
-
   
+    const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
 
+      // Verifica se o valor é uma string vazia
+      if (value.trim() === '') {
+        SetNUMEROPARTE(0); // Define como 0 quando o campo estiver vazio
+      } else {
+        // Tenta converter para número
+        const intValue = parseInt(value, 10);
 
+        // Define como 0 se a conversão falhar
+        SetNUMEROPARTE(isNaN(intValue) ? 0 : intValue);
+      }
+    };
 
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    // Verifica se o valor é uma string vazia
-    if (value.trim() === '') {
-      SetNUMEROPARTE(0); // Define como 0 quando o campo estiver vazio
-    } else {
-      // Tenta converter para número
-      const intValue = parseInt(value, 10);
-
-      // Define como 0 se a conversão falhar
-      SetNUMEROPARTE(isNaN(intValue) ? 0 : intValue);
-    }
-  };
-
+    
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -415,9 +413,11 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                   </label>
                   <div className={styles.CampoTextbox}>
                     <input
+                      disabled={SomenteVizualizar}
                       value={objTBPRODUTOS?.NOMEPRODUTO}
                       className={styles.CssInputs}
                       onChange={handleChange('NOMEPRODUTO')}
+                      
                     />
                   </div>
                 </div>
@@ -430,6 +430,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                   </label>
                   <div className={styles.CampoTextbox}>
                     <textarea
+                      disabled={SomenteVizualizar}
                       value={objTBPRODUTOS?.DESCRICAOPRODUTO}
                       className={styles.CssInputs}
                       onChange={handleTextareaChange('DESCRICAOPRODUTO')}
@@ -444,10 +445,12 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                   <label className={styles.TextLabel}>Imagem Capa*</label>
                   <div className={styles.DivBotoesImagem}>
                     <button className={styles.BtnCarregarImagem}
+                    disabled={SomenteVizualizar}
                     onClick={() => (controller.CarregarImagens(true, SetImagemCapa, setErrorImagemCapa))}
                     >Carregar Imagem</button>
                     {ImagemCapa && (
                     <button className={styles.BtnRemoverImagem}
+                    disabled={SomenteVizualizar}
                     onClick={()=>(controller.RemoverImagens(SetImagemCapa))}
                     >Remover Imagem</button>
                     )}
@@ -464,10 +467,12 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                   <label className={styles.TextLabel}>Imagem Produto Expandido*</label>
                   <div className={styles.DivBotoesImagem}>
                     <button className={styles.BtnCarregarImagem}
+                    disabled={SomenteVizualizar}
                     onClick={() => (controller.CarregarImagens(true, SetImagemExp, setErrorImagemExp))}
                     >Carregar Imagem</button>
                     {ImagemExp && (
                     <button className={styles.BtnRemoverImagem}
+                    disabled={SomenteVizualizar}
                     onClick={()=>(controller.RemoverImagens(SetImagemExp))}
                     >Remover Imagem</button>
                     )}
@@ -484,6 +489,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
             <div className={styles.DivLinha} style={{justifyContent: 'end'}}>    
             {AcaoAtualTela === EAcoesDaTela.Nenhuma && (
               <button className={styles.BotaoNovo} 
+                disabled={SomenteVizualizar}
                 onClick={BtnNovoClick}>
                 <div className={styles.TextoBotao}>Adicionar Parte</div>
               </button>)}
@@ -498,6 +504,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                     </label>
                     <div className={styles.CampoTextbox}>
                       <IntegerInput
+                        disabled={SomenteVizualizar}
                         value={(NUMEROPARTE?.toString())}
                         className={styles.CssInputs}
                         onChange={handleNumberChange}
@@ -511,6 +518,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                     </label>
                     <div className={styles.CampoTextbox}>
                       <textarea
+                        disabled={SomenteVizualizar}
                         value={DESCRICAOPARTE}
                         className={styles.CssInputs}
                         onChange={(e) => SetDESCRICAOPARTE(e.target.value)}
@@ -534,20 +542,20 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
               </div>
             )}
 
-
-
             <div className={styles.DivLinha}>    
-              <DataGrid rows={rows} columns={columns} hideFooter/>
+              <DataGrid rows={rows} columns={columns} hideFooter disableVirtualization={SomenteVizualizar}/>
             </div>
         </div>
 
         <div className={styles.Foother}>
           {AcaoAtualTela === EAcoesDaTela.Nenhuma && (
               <div style={{display: 'flex', flexDirection:'row', gap:'20px',}}>
-                <button className={styles.BotaoSalvar} onClick={BtnSalvarClick}>
-                  <div className={styles.TextoBotao}>Salvar</div>
-                </button>
-                <button className={styles.BotaoCancelar} onClick={BtnCancelarClick}>
+                {!SomenteVizualizar && (
+                  <button className={styles.BotaoSalvar} onClick={BtnSalvarClick}>
+                    <div className={styles.TextoBotao}>Salvar</div>
+                  </button>
+                )}
+                <button className={styles.BotaoCancelar} onClick={BtnFecharClick}>
                   <div className={styles.TextoBotao}>Fechar</div>
                 </button>
               </div>

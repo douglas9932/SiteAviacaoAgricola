@@ -2,25 +2,22 @@ import React, { FunctionComponent } from 'react';
 import styles from './CardProdutos.module.css'
 import BotoesCards from './BotoesCards';
 
-type ButtonType = {
-  LinkReferencia: string;
-  Texto: string;
-};
-
 type CardsType = {
-  CaminhoImagem: string;
+  IDPRODUTO: number;  
+  srcImagem: string;
   Titulo : string;
   TextoComplementar: string;
-  Botoes: ButtonType[];
+  onClickBotao: () => void;
 }
 
-const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, TextoComplementar, Botoes}) => {
+const CardProdutos: FunctionComponent<CardsType> = ({srcImagem, Titulo, TextoComplementar, onClickBotao}) => {
+
 
   
   return (
     <div className={styles.CardProduto}>     
         <div className={styles.DivImagem}>
-          <img className={styles.ImagemProduto} src={CaminhoImagem} alt=""></img>
+          <img className={styles.ImagemProduto} src={srcImagem} alt=""></img>
         </div>
 
         <div className={styles.Textos}>
@@ -28,13 +25,10 @@ const CardProdutos: FunctionComponent<CardsType> = ({CaminhoImagem, Titulo, Text
           <p lang="pt" className={styles.TextoComplementar}>{TextoComplementar}</p>      
         </div>
         <div className={styles.Botoes}>
-        {Botoes.map((botao, index) => (
-            <BotoesCards 
-              key={index} 
-              LinkReferencia={botao.LinkReferencia} 
-              Texto={botao.Texto} 
+        <BotoesCards  
+              onClick={onClickBotao}
+              Texto='Detalhar Produto' 
             />
-          ))}
         </div>
     </div>
   );

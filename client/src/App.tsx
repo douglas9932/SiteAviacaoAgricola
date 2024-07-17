@@ -7,13 +7,31 @@ import { Home } from './Formularios/Home';
 import { Produtos } from './Formularios/Produtos';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import LoginController from './Controllers/Servicos/LoginController';
+import { Mensagens } from './Classes/Mensagens';
 
 
 function App() {
-
-
   
   useEffect(() => {
+        
+    const minhaFuncao = async () => {
+
+      if(! await LoginController.VerificarConexao()){
+        Swal.fire({
+          text: Mensagens.ConexaoOffline(),
+          icon: "error",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          } else if (result.isDenied) {
+            
+          }
+        });
+      }
+    }
+      minhaFuncao();
+
     // Função para limpar o localStorage
     const handleBeforeUnload = () => {
       localStorage.clear();

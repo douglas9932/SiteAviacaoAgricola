@@ -8,6 +8,7 @@ import FrmInformacoesEmpresa from './Formularios/Administracao/FrmInformacoesEmp
 import FrmImagensCarousel from './Formularios/Administracao/FrmImagensCarousel';
 import FrmGerContatos from './Formularios/Administracao/FrmGerContatos';
 import FrmGerProdutos from './Formularios/Administracao/FrmGerProdutos';
+import FrmDetalharProduto from './Formularios/FrmDetalharProduto';
 import NotFoundPage from './Formularios/NotFoundPage'; // Página 404
 
 const AppRoutes: React.FC = () => {
@@ -21,7 +22,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/Administracao/ImagensCarousel" element={<ModeloVazio><FrmImagensCarousel /></ModeloVazio>} />
       <Route path="/Administracao/Contatos" element={<ModeloVazio><FrmGerContatos /></ModeloVazio>} />
       <Route path="/Administracao/Produtos" element={<ModeloVazio><FrmGerProdutos /></ModeloVazio>} />
-
+      <Route path="/DetalharProduto" element={<FrmDetalharProduto />} />
 
 
 
