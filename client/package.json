@@ -26,6 +26,7 @@
     "axios": "^1.7.2",
     "babel-plugin": "^1.0.7",
     "browserify-fs": "^1.0.0",
+    "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
@@ -35,6 +36,7 @@
     "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-html-parser": "^2.0.2",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.0",
     "react-scripts": "^5.0.1",
@@ -68,6 +70,7 @@
   },
   "devDependencies": {
     "@types/luxon": "^3.4.2",
+    "@types/react-html-parser": "^2.0.6",
     "@types/react-modal": "^3.16.3",
     "@types/react-table": "^7.7.20",
     "concurrently": "^8.2.2",

@@ -11,6 +11,7 @@ import { TBPARTESPRODUTOS } from '../../Classes/Tabelas/TBPARTESPRODUTOS';
 import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
 import IntegerInput from '../../Componentes/IntegerInput';
 import { ClassNames } from '@emotion/react';
+import NumericInput from '../../Componentes/NumericInput';
 
 interface ModalProps {
     show: boolean;
@@ -34,7 +35,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
     const [errorImagemExp, setErrorImagemExp] = useState<string | null>(null);
 
     const [ObjEdit, SetObjEdit] = useState<TBPARTESPRODUTOS| null>();
-    const [NUMEROPARTE, SetNUMEROPARTE] = useState<number>();
+    const [NUMEROPARTE, SetNUMEROPARTE] = useState<string>();
     const [DESCRICAOPARTE, SetDESCRICAOPARTE] = useState<string>('');
 
     useEffect(() => {
@@ -67,7 +68,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
 
     const LimparCamposItens = ()=>{
       SetObjEdit(null);
-      SetNUMEROPARTE(0);
+      SetNUMEROPARTE("0");
       SetDESCRICAOPARTE('');
     }
     if (!show) return null;
@@ -265,7 +266,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
         }else{
           const obj = ObjLstItens?.find(Item => Item.IDPARTE === id);
           SetObjEdit(obj);
-          SetNUMEROPARTE(obj?.NUMEROPARTE ?? 0);
+          SetNUMEROPARTE(obj?.NUMEROPARTE ?? "0");
           SetDESCRICAOPARTE(obj?.DESCRICAOPARTE ?? '');
           setAcaoAtualTela(EAcoesDaTela.Novo);
         }
@@ -335,10 +336,10 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
             objNew = new TBPARTESPRODUTOS();
             objNew.IDPARTE = 0;
             objNew.IDPRODUTO = parDados?.IDPRODUTO ?? 0;
-            objNew.NUMEROPARTE = NUMEROPARTE ?? 0;
+            objNew.NUMEROPARTE = NUMEROPARTE ?? '0';
             objNew.DESCRICAOPARTE = DESCRICAOPARTE;            
           }else{
-            objNew.NUMEROPARTE = NUMEROPARTE ?? 0;
+            objNew.NUMEROPARTE = NUMEROPARTE ?? '0';
             objNew.DESCRICAOPARTE = DESCRICAOPARTE; 
           }
             await controller.SalvarParteProduto(objNew).then((success: any) => {
@@ -383,23 +384,7 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
   
       }
     }
-  
-    const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-
-      // Verifica se o valor é uma string vazia
-      if (value.trim() === '') {
-        SetNUMEROPARTE(0); // Define como 0 quando o campo estiver vazio
-      } else {
-        // Tenta converter para número
-        const intValue = parseInt(value, 10);
-
-        // Define como 0 se a conversão falhar
-        SetNUMEROPARTE(isNaN(intValue) ? 0 : intValue);
-      }
-    };
-
-    
+      
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -498,21 +483,21 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
 
             {AcaoAtualTela === EAcoesDaTela.Novo && (
               <div className={styles.DivLinha}>
-                  <div className={styles.TextBox} style={{maxWidth: '10%'}}>
+                  <div className={styles.TextBox} style={{maxWidth: '15%'}}>
                     <label className={styles.TextLabel}>
                       Número*
                     </label>
                     <div className={styles.CampoTextbox}>
-                      <IntegerInput
+                      <NumericInput 
                         disabled={SomenteVizualizar}
-                        value={(NUMEROPARTE?.toString())}
+                        value={(NUMEROPARTE ?? "0")}
                         className={styles.CssInputs}
-                        onChange={handleNumberChange}
+                        setValue={SetNUMEROPARTE}
                       />
                     </div>
                   </div>
 
-                  <div className={styles.TextBox} style={{maxWidth: '90%'}}>
+                  <div className={styles.TextBox} style={{maxWidth: '85%'}}>
                     <label className={styles.TextLabel}>
                       Descrição Item*
                     </label>

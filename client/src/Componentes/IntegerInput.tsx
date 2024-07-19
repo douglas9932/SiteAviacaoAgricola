@@ -13,6 +13,7 @@ interface IntegerInputProps {
 }
 
 const IntegerInput: FC<IntegerInputProps> = ({ value, onChange, max, min, placeholder, className, style, disabled }) => {
+  
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (/^\d*$/.test(value)) { // Regular expression to allow only digits

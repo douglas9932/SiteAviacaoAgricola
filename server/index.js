@@ -746,7 +746,7 @@ app.post('/GetProdutoByID', (req, res) => {
   try {
 
     let { parID } = req.body;
-    const query = 'SELECT TOP 1 FROM TBPRODUTOS WHERE IDPRODUTO = ?'; //18 Situação Deletado!
+    const query = 'SELECT * FROM TBPRODUTOS WHERE IDPRODUTO = ? LIMIT 1 '; //18 Situação Deletado!
     
     executarConsulta(query, [parID], (error, results) => {
     
