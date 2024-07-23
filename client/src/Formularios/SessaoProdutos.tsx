@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import CardProdutos from "../Componentes/CardProdutos";
 import Focar from "../Componentes/Focar";
-import styles from './Produtos.module.css';
+import styles from './SessaoProdutos.module.css';
 import { TBPRODUTOS } from '../Classes/Tabelas/TBPRODUTOS';
 import { FrmProdutosController } from './Controllers/FrmProdutosController';
 import { useNavigate } from 'react-router-dom';
 
-export const Produtos = () => {
+export const SessaoProdutos = () => {
   const navigate = useNavigate();
   
   const controller = useMemo(() => new FrmProdutosController(), []);
@@ -15,7 +15,6 @@ export const Produtos = () => {
   const BtnDetalharProdutoClick= (IDPRODUTO: number) => {
 
     try{
-
       sessionStorage.setItem('DetalharProdutoID', IDPRODUTO.toString());
       navigate("/DetalharProduto");  
     }catch{

@@ -1,0 +1,247 @@
+
+.modalBackdrop {
+    position: fixed;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modalContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 85%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+
+  .Header{
+    display: flex;
+    align-self: flex-end;
+  }
+
+
+
+    .closeButton {
+        position: relative;
+        display: flex;
+        color: gray;
+        justify-content: center;
+        align-items: center;
+        top: 0px;
+        background: none;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        border-width: 1px;
+        border-style: solid;
+        font-size: 12px;
+        cursor: pointer;
+    }
+  
+  .image {
+    max-width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+  }
+
+
+  
+  .Body{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+     padding: 0px 0 0;
+    gap: 25px;
+    padding: 20px;
+    flex: 1; 
+    background-color: #f4f4f4;
+    overflow: auto; 
+    flex-direction: column;
+}
+
+  .CampoTextbox,
+  .TextBox {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .CampoTextbox {
+      align-self: stretch;
+      display: flex;
+      justify-content: center;
+      padding: 0px 0 0;
+  }
+  .TextBox {
+      flex: 1;
+      justify-content: flex-start;
+      padding: 0 25px 0 0;
+  }
+  .DivLinha,
+  .TextBox {
+      align-self: stretch;
+      display: flex;
+  }
+
+    .DivLinha {
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        justify-content: start;
+        padding: 0 0 0px;
+    }
+
+    .DivPDF{
+      display: flex;
+      flex-direction: column;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 10px;
+      border-color: black;
+      gap: 10px;
+      padding: 10px;
+      min-width: 350px;
+      min-height: 150px;
+      max-width: 49%;
+      max-height: 150px;
+  }
+  
+  .DivBotoesPDF{
+    display: flex ;
+    flex-direction: row;
+    padding: 10px 0px 0px 0px;
+    margin: 0px;
+    align-items:center;
+    gap: 10px;
+  }
+  .BtnCarregarPDF{
+      background: rgb(0, 194, 0);
+      height: 25px;
+      min-width: 150px;
+      display: block;
+      align-content: center;
+      padding: 0
+  }
+  .BtnCarregarPDF:disabled{
+      background: rgba(0, 194, 0, 0.377);
+  }
+
+  .BtnRemoverPDF{
+      background: rgb(247, 20, 20);
+      height: 25px;
+      min-width: 150px;
+      display: block;
+      align-content: center;
+      padding: 0
+  }
+
+  .BtnRemoverPDF:disabled{
+      background: rgb(247, 20, 20, 0.377);
+  }
+
+  .DivDaPDF {
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  
+    width: 100%; 
+    height: 100%; 
+    position: relative;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .PDF {
+    /*
+    */
+    
+    max-width: 100%;
+    max-height: 15vw;
+    
+
+    object-fit: contain;
+    object-position: center;  
+}
+
+.Foother{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: end;
+}
+
+.TextoBotao {
+  position: relative;
+  font-size: 20px;
+  font-family: 'Inter';
+  color: #FFFF;
+  text-align: center;
+}
+
+  .BotaoCancelar{
+    cursor: pointer;
+    width: 150px;
+    border: 0;
+    padding: 10px 40px;
+    background-color: #000000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .BotaoCancelar:hover{
+    background-color: #00000085;
+  }
+
+  .BotaoSalvar{
+    cursor: pointer;
+    width: 150px;
+    border: 0;
+    padding: 10px 40px;
+    background-color: #0c6b00;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .BotaoNovo{
+    cursor: pointer;
+    width: 180px;
+    border: 0;
+    padding: 10px 10px;
+    background-color: #0c6b00;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .BotaoNovo:disabled{
+    background: rgb(41, 41, 41);
+    cursor: initial;
+}
+
+  .TextoBotao {
+    position: relative;
+    font-size: 15px;
+    font-family: 'Inter';
+    color: #FFFF;
+    text-align: center;
+}

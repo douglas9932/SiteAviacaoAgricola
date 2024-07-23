@@ -4,11 +4,13 @@ import Focar from './Componentes/Focar';
 import FootherDesktop from './Componentes/FootherDesktop';
 import { Navbar } from './Componentes/Navbar';
 import { Home } from './Formularios/Home';
-import { Produtos } from './Formularios/Produtos';
+import { SessaoProdutos } from './Formularios/SessaoProdutos';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import LoginController from './Controllers/Servicos/LoginController';
 import { Mensagens } from './Classes/Mensagens';
+import { SessaoNoticias } from './Formularios/SessaoNoticias';
+import { SessaoTestes } from './Formularios/SessaoTestes';
 
 
 function App() {
@@ -69,15 +71,12 @@ function App() {
           <div className={styles.SeparadorDeSessoes}></div>
 
           <div>
-            <Produtos/>
+            <SessaoProdutos/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
-            <Focar id="SessaoNoticias"/>
-            <div style={{ height: 400, width: '100%' }}>              
-            </div>
-            <h1>Noticias</h1>
+            <SessaoNoticias/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
 
@@ -88,8 +87,7 @@ function App() {
           <div className={styles.SeparadorDeSessoes}></div>
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
-            <Focar id="SessaoTestesStol"/>
-            <h1>Testes Stol</h1>
+            <SessaoTestes/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
 

@@ -27,11 +27,8 @@ const Menu: FunctionComponent<MenuType> = ({ className = "" }) => {
          { text: 'Imagens Carousel', onClick: ()=>{}, path: '/Administracao/ImagensCarousel'},
          { text: 'Contatos', onClick: ()=>{}, path: '/Administracao/Contatos'},
          { text: 'Produtos', onClick: ()=>{}, path: '/Administracao/Produtos'},
-        // { text: 'Consultar pontos', onClick: null },
-        // { text: 'Cadastrar usuários', onClick: onCadastrarUsuriosTextClick },
-        // { text: 'Gerenciador de Blog', onClick: onCadastrarUsuriosTextClick },
-        // { text: 'Prêmios', onClick: onCadastrarUsuriosTextClick },
-        // { text: 'Relatórios', onClick: onCadastrarUsuriosTextClick },
+         { text: 'Notícias', onClick: ()=>{}, path: '/Administracao/Noticias'},
+         { text: 'Testes', onClick: ()=>{}, path: '/Administracao/Testes'},
       ];
 
     

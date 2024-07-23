@@ -9,8 +9,6 @@ import ImagemEditar  from '../../Imagens/Icones/ImgEditar.svg';
 import ImagemDeletar  from '../../Imagens/Icones/ImgLixeira.svg';
 import { TBPARTESPRODUTOS } from '../../Classes/Tabelas/TBPARTESPRODUTOS';
 import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
-import IntegerInput from '../../Componentes/IntegerInput';
-import { ClassNames } from '@emotion/react';
 import NumericInput from '../../Componentes/NumericInput';
 
 interface ModalProps {
@@ -541,7 +539,12 @@ const FrmCadProdutos:FunctionComponent<ModalProps> = ({ show, onClose, parDados,
                   </button>
                 )}
                 <button className={styles.BotaoCancelar} onClick={BtnFecharClick}>
-                  <div className={styles.TextoBotao}>Fechar</div>
+                {SomenteVizualizar && (
+                    <div className={styles.TextoBotao}>Fechar</div>
+                )}
+                {!SomenteVizualizar && (
+                    <div className={styles.TextoBotao}>Cancelar</div>
+                )}
                 </button>
               </div>
           )}

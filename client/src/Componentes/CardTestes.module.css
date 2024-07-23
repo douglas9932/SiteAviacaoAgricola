@@ -1,0 +1,32 @@
+.CardTeste {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    cursor: pointer; 
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s; 
+  }
+  
+  .Imagem {
+    cursor: pointer; 
+    width: 40px; 
+    height: 40px;
+    margin-right: 10px; 
+  }
+  
+  .Informacoes {
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+  }
+  
+  .Titulo {
+    cursor: pointer; 
+    color: #333;
+    font-size: 16px; 
+    transition: color 0.3s; 
+  }
+  
+  .CardTeste:hover .Titulo {
+    color: #ff9900;
+  }

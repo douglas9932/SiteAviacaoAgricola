@@ -22,7 +22,7 @@ const CardProdutos: FunctionComponent<CardsType> = ({srcImagem, Titulo, TextoCom
 
         <div className={styles.Textos}>
           <label lang="en" className={styles.Titulo}>{Titulo}</label>
-          <p lang="pt" className={styles.TextoComplementar}>{TextoComplementar}</p>      
+          <p lang="pt" className={styles.TextoComplementar} dangerouslySetInnerHTML={{ __html: TextoComplementar.replace(/\n/g, '<br/>') ?? '' }} />      
         </div>
         <div className={styles.Botoes}>
         <BotoesCards  

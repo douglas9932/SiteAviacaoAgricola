@@ -34,6 +34,7 @@
     "luxon": "^3.4.4",
     "mysql2": "^3.10.2",
     "path-browserify": "^1.0.1",
+    "pdfjs-dist": "^4.4.168",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-html-parser": "^2.0.2",
