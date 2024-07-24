@@ -14,46 +14,58 @@ type CardsType = {
 
 const CardTestes: FunctionComponent<CardsType> = ({arquivoBase64, Titulo, Extensao}) => {
     
-    const onClick= ()=>{
-        // Identificar o tipo MIME do arquivo Base64
-        if (arquivoBase64.startsWith('data:application/pdf')) {
-            // Se for um PDF, abra em uma nova aba
-            const pdfWindow = window.open();
-            if (pdfWindow) {
+  const base64ToBlob = (base64: string, mimeType: string) => {
+    const byteChars = atob(base64.split(',')[1]);
+    const byteNumbers = new Array(byteChars.length);
 
-                if (pdfWindow) {
-                    pdfWindow.document.open();
-                    pdfWindow.document.write(`
-                      <html>
-                        <head>
-                          <title>${Titulo}</title>
-                          <style>
-                            body {
-                              margin: 0;
-                              padding: 0;
-                              overflow: hidden;
-                            }
-                            iframe {
-                              width: 100vw;
-                              height: 100vh;
-                              border: none;
-                            }
-                          </style>
-                        </head>
-                        <body>
-                          <iframe src="${arquivoBase64}" title="${Titulo}"></iframe>
-                        </body>
-                      </html>
-                    `);
-                    pdfWindow.document.close();
-                  }
-            }
+    for (let i = 0; i < byteChars.length; i++) {
+      byteNumbers[i] = byteChars.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: mimeType });
+  };
+
+    const onClick= ()=>{
+      
+      if (arquivoBase64.startsWith('data:application/pdf')) {
+          
+        const pdfBlob = base64ToBlob(arquivoBase64, 'application/pdf');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        const htmlContent = `
+          <html>
+            <head>
+              <title>${Titulo}</title>
+              <style>
+                body {
+                  margin: 0;
+                  padding: 0;
+                  overflow: hidden;
+                }
+                iframe {
+                  width: 100vw;
+                  height: 100vh;
+                  border: none;
+                }
+              </style>
+            </head>
+            <body>
+              <iframe src="${pdfUrl}" title="${Titulo}"></iframe>
+            </body>
+          </html>
+        `;
+
+        const htmlBlob = new Blob([htmlContent], { type: 'text/html' });
+        const htmlUrl = URL.createObjectURL(htmlBlob);
+        window.open(htmlUrl, '_blank');
+          
         } else if (arquivoBase64.startsWith('data:application/msword') ||
                     arquivoBase64.startsWith('data:application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
-            //Se for um arquivo Word, faça o download
+            
             const link = document.createElement('a');
             link.href = arquivoBase64;
-            // O nome do arquivo pode ser ajustado conforme necessário
+            
             link.download = Titulo + Extensao; 
             link.click();
         } else {
@@ -65,7 +77,7 @@ const CardTestes: FunctionComponent<CardsType> = ({arquivoBase64, Titulo, Extens
     <div className={styles.CardTeste} onClick={onClick}>
       <img src={IconDownLoad} alt={Titulo} className={styles.Imagem} />
       <div className={styles.Informacoes}>
-        <label lang="en" className={styles.Titulo}>{Titulo}</label>
+        <label lang="pt" className={styles.Titulo}>{Titulo}</label>
       </div>
     </div>
   );

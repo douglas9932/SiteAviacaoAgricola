@@ -24,7 +24,7 @@ export const SessaoTestes = () => {
 
   return (
     <div className={styles.SessaoTestes}>
-        <Focar id="SessaoTestes"/>
+        <Focar id="SessaoTestesStol"/>
         <div className={styles.TituloSessao}>
             <label >Testes</label>
             <div></div>

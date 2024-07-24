@@ -36,3 +36,16 @@
     height: 2px;
     width: 110%;
   }
+
+
+  @media (max-width: 940px) {
+    .LinhaCards{
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 450px) {
+   .LinhaCards{
+    width: 95%;
+    }
+  }
