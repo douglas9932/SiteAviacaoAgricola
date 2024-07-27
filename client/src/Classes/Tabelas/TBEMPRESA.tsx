@@ -1,4 +1,4 @@
-export class TBEMPRESAS{
+export class TBEMPRESA{
 
     public IDEMPRESA: number = 0;
     public NOMEFANTASIA: string = '';
@@ -16,10 +16,14 @@ export class TBEMPRESAS{
     public LOGO_236X67: string = '';
     public EXTENSAO_ICONE: string = '';
     public ICONE: string = '';
+    public DESCRICAOSOBRENOS: string = '';
+    public HISTORICOSOBRENOS: string = '';
+    public OBJETIVOSOBRENOS: string = '';
+    public IMAGEMSOBRENOS: string = '';
     public IDSTATUSEMPRESA: number = 0;
 
     
-    public TBEMPRESAS (parIDEMPRESA: number ,
+    public TBEMPRESA (parIDEMPRESA: number ,
         parNOMEFANTASIA: string,
         parRAZAOSOCIAL: string,
         parCNPJ: string,
@@ -35,6 +39,10 @@ export class TBEMPRESAS{
         parLOGO_236X67: string ,
         parEXTENSAO_ICONE: string,
         parICONE: string,
+        parDESCRICAOSOBRENOS: string,
+        parHISTORICOSOBRENOS: string,
+        parOBJETIVOSOBRENOS: string,
+        parIMAGEMSOBRENOS: string,
         parIDSTATUSEMPRESA: number 
         )
     {
@@ -54,6 +62,10 @@ export class TBEMPRESAS{
         this.LOGO_236X67 = parLOGO_236X67;
         this.EXTENSAO_ICONE = parEXTENSAO_ICONE;
         this.ICONE = parICONE;
+        this.DESCRICAOSOBRENOS = parDESCRICAOSOBRENOS;
+        this.HISTORICOSOBRENOS = parHISTORICOSOBRENOS;
+        this.OBJETIVOSOBRENOS = parOBJETIVOSOBRENOS;
+        this.IMAGEMSOBRENOS = parIMAGEMSOBRENOS;
         this.IDSTATUSEMPRESA = parIDSTATUSEMPRESA;
 
         return this;

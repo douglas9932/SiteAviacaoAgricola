@@ -1,0 +1,138 @@
+.SessaoSobreNos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+
+.LinhaCards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    gap: 30px; 
+}
+
+.TituloSessao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2vh;
+    font-size: 24px;
+  }
+  .TituloSessao div{
+    background-color: #2424247e;
+    height: 2px;
+    width: 110%;
+  }
+
+
+
+
+  /**********************************************************************************************************************************************/
+
+
+.corpo {
+    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    object-fit: contain;
+    justify-content: flex-start; 
+    height: 50%; 
+  }
+
+  .TextoDescricoes {
+    align-self: stretch;
+    position: relative;
+    font-size: 0.8vw;
+  }
+  .DivDescricao {
+    align-self: stretch;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+  }
+
+  .TextoHistorico {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 83px;
+    flex-shrink: 0;
+  }
+  .DivHistorico,
+  .TextoHistorico{
+    align-self: stretch;
+    display: flex;
+  }
+  .DivHistorico {
+    overflow: hidden;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0px 0px 0px;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .imagens {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex: 1;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    gap: 10px;
+  }
+
+
+  .DivInformacoes {
+    width: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+    align-self: stretch;
+    overflow: hidden;
+  }
+
+
+  .DivImagemSobreNos {
+    align-self: stretch;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: flex-end;    
+    width: 50%;
+    justify-content: center;
+  }
+
+  .ImagemSobreNos {   
+    position: relative;
+    border-radius: 20px;
+    max-width: 100%;
+    max-height: 100%;
+    width: 70%;
+    object-fit: cover;
+  }

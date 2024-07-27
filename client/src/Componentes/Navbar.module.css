@@ -160,7 +160,7 @@ nav .title .responsive-image {
         border-radius: 5px; 
       }
 
-    nav ul.open {
+    .MenuOpen {
         display: flex;
         padding: 5px;
     }

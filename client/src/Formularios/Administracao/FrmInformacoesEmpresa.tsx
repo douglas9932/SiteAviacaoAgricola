@@ -4,23 +4,19 @@ import { useEffect, useMemo,  useState } from 'react';
 import { EAcoesDaTela } from '../../Classes/Enums/EAcoesDaTela';
 import { FrmInformacoesEmpresaController } from '../Controllers/FrmInformacoesEmpresaController';
 import { Comum } from '../../Classes/Comum';
-import { TBEMPRESAS } from '../../Classes/Tabelas/TBEMPRESA';
+import { TBEMPRESA } from '../../Classes/Tabelas/TBEMPRESA';
 import Swal from 'sweetalert2';
 import { Mensagens } from '../../Classes/Mensagens';
-
-
+import ImgBtnSobreNos from '../../Imagens/Icones/ImgBtnSobreNos.svg'
+import FrmCadSobreNos from './FrmCadSobreNos'
 
 const FrmInformacoesEmpresa = () => {
 
   const controller = useMemo(() => new FrmInformacoesEmpresaController(), []);
-  
-  
-  const [objTBEMPRESA, setObject] = useState<TBEMPRESAS>(new TBEMPRESAS());
-  // var objTBEMPRESA: TBEMPRESAS = new TBEMPRESAS();
-  // const setObject = async (parObj: TBEMPRESAS) => {
-  //   objTBEMPRESA = parObj;
-  // }
-     
+  const [showModalFrmSobreNos, setShowModalFrmSobreNos] = useState(false);
+
+  const [objTBEMPRESA, setObject] = useState<TBEMPRESA>(new TBEMPRESA());
+       
   const [AcaoAtualTela, setAcaoAtualTela] = useState<EAcoesDaTela>(EAcoesDaTela.Nenhuma);
   
   const [errorIcon, setErrorIcon] = useState<string | null>(null);
@@ -272,7 +268,8 @@ const FrmInformacoesEmpresa = () => {
         ExtImgLogo,
         ImgLogo,
         ExtImgIcone,
-        ImgIcone
+        ImgIcone,
+        null
       )
   
       controller.Salvar().then((success) => {
@@ -303,7 +300,7 @@ const FrmInformacoesEmpresa = () => {
     setAcaoAtualTela(EAcoesDaTela.Nenhuma);    
   }
 
-  const handleChange = (field: keyof TBEMPRESAS) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (field: keyof TBEMPRESA) => (event: React.ChangeEvent<HTMLInputElement>) => {
     var { value } = event.target;
 
     if(field === null){
@@ -322,10 +319,17 @@ const FrmInformacoesEmpresa = () => {
       value = (Comum.formatCpf(value));
     }
 
-    setObject((prev: TBEMPRESAS) => ( {...prev, [field]: value} as TBEMPRESAS));
+    setObject((prev: TBEMPRESA) => ( {...prev, [field]: value} as TBEMPRESA));
 
   };
   
+  const BtnSobreNos_Click = ()=>{
+
+    setShowModalFrmSobreNos(true);
+
+  }
+
+
   return (    
     <div className={styles.Formulario}>
       <div className={styles.Cabecalho}>
@@ -459,7 +463,7 @@ const FrmInformacoesEmpresa = () => {
                     <input
                     value={objTBEMPRESA.SEGMENTO}
                       className={styles.CssInputs}
-                      onChange={(e) => objTBEMPRESA.SEGMENTO = (e.target.value)}
+                      onChange={handleChange('SEGMENTO')}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
                   </div>
@@ -469,6 +473,7 @@ const FrmInformacoesEmpresa = () => {
                   <div className={styles.CampoTextbox}>
                     <input
                       value={objTBEMPRESA.RESPONSAVEL}
+                      onChange={handleChange('RESPONSAVEL')}
                       className={styles.CssInputs}
                       readOnly = {AcaoAtualTela === EAcoesDaTela.Nenhuma}
                     />
@@ -536,7 +541,17 @@ const FrmInformacoesEmpresa = () => {
 
             </div>
 
+            <div className={styles.DivLinha}>                
+                <div className={styles.TextBox} style={{maxWidth: '200px'}}>
+                  <button className={styles.BotaoSobreNos} onClick={BtnSobreNos_Click}>
+                    <img className={styles.ImagemBotaoSobreNos} alt='' src={ImgBtnSobreNos}></img>
+                    <label className={styles.TextLabel}>Sessão Sobre Nós</label>
+                  </button>
+                </div>                
+            </div>
+
       </div>
+
       <div className={styles.Foother}>
             {AcaoAtualTela === EAcoesDaTela.Editando &&(
               <div style={{display: 'flex', flexDirection:'row', gap:'20px',}}>
@@ -554,6 +569,8 @@ const FrmInformacoesEmpresa = () => {
               </button>
             )}
       </div>
+
+      <FrmCadSobreNos show={showModalFrmSobreNos} onClose={() => setShowModalFrmSobreNos(false)} parDados={objTBEMPRESA}/>
     </div>
   );
 };

@@ -226,11 +226,19 @@ const port = 32322;
             LOGO_236X67,
             EXTENSAO_ICONE,
             ICONE,
+            DESCRICAOSOBRENOS,
+            HISTORICOSOBRENOS,
+            OBJETIVOSOBRENOS,
+            IMAGEMSOBRENOS,
             DTCADASTRO,
             DTALTERACAO,
             IDSTATUSEMPRESA)
             VALUES
             (
+              ?,
+              ?,
+              ?,
+              ?,
               ?,
               ?,
               ?,
@@ -263,9 +271,14 @@ const port = 32322;
                   parObjTBEMPRESA.RESPONSAVEL,
                   parObjTBEMPRESA.CPFRESPONSAVEL.replace(/[^a-zA-Z0-9]/g, ''),
                   parObjTBEMPRESA.EXTENSAO_LOGO_236X67,
-            decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? "",
-            parObjTBEMPRESA.EXTENSAO_ICONE,
-            decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? ""]
+                  decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? "",
+                  parObjTBEMPRESA.EXTENSAO_ICONE,
+                  decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? "",
+                  parObjTBEMPRESA.DESCRICAOSOBRENOS,
+                  parObjTBEMPRESA.HISTORICOSOBRENOS,
+                  parObjTBEMPRESA.OBJETIVOSOBRENOS,
+                  decodeURIComponent(escape(atob(parObjTBEMPRESA.IMAGEMSOBRENOS ?? ""))) ?? "",
+                ]
           , (error, results) => {   
           
               if (error) {
@@ -277,7 +290,11 @@ const port = 32322;
                 const insertedId = results.insertId;  
                 res.json({ ID: insertedId, });
                 return;
-              } 
+              } else if(results.affectedRows > 0){
+                const insertedId = results.insertId;  
+                res.json({ ID: insertedId, });
+                return;
+              }
           
         });
 
@@ -300,6 +317,10 @@ const port = 32322;
                     LOGO_236X67 = ?,
                     EXTENSAO_ICONE = ?,
                     ICONE = ?,
+                    DESCRICAOSOBRENOS = ?,
+                    HISTORICOSOBRENOS = ?,
+                    OBJETIVOSOBRENOS = ?,
+                    IMAGEMSOBRENOS = ?,
                     DTALTERACAO = NOW()
                     WHERE IDEMPRESA = ?`;
     
@@ -311,15 +332,20 @@ const port = 32322;
                   parObjTBEMPRESA.ENDERECO,
                   parObjTBEMPRESA.TELEFONE.replace(/[^a-zA-Z0-9]/g, ''),
                   parObjTBEMPRESA.CELULAR.replace(/[^a-zA-Z0-9]/g, ''),
-                  format(parseISO(parObjTBEMPRESA.DATAABERTURA), 'yyyy-MM-dd'),
+                  (format(parseISO(parObjTBEMPRESA.DATAABERTURA), 'yyyy-MM-dd')),
                   parObjTBEMPRESA.SEGMENTO,
                   parObjTBEMPRESA.RESPONSAVEL,
                   parObjTBEMPRESA.CPFRESPONSAVEL.replace(/[^a-zA-Z0-9]/g, ''),
                   parObjTBEMPRESA.EXTENSAO_LOGO_236X67,
-                  decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? "",
+                  (decodeURIComponent(escape(atob(parObjTBEMPRESA.LOGO_236X67 ?? ""))) ?? ""),
                   parObjTBEMPRESA.EXTENSAO_ICONE,
-                  decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? "",                
-                  parObjTBEMPRESA.IDEMPRESA]
+                  (decodeURIComponent(escape(atob(parObjTBEMPRESA.ICONE ?? ""))) ?? ""),    
+                  parObjTBEMPRESA.DESCRICAOSOBRENOS,
+                  parObjTBEMPRESA.HISTORICOSOBRENOS,
+                  parObjTBEMPRESA.OBJETIVOSOBRENOS,
+                  (decodeURIComponent(escape(atob(parObjTBEMPRESA.IMAGEMSOBRENOS ?? ""))) ?? ""),             
+                  parObjTBEMPRESA.IDEMPRESA
+                ]
                 , (error, results) => {
 
                   if (error) {

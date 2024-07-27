@@ -86,7 +86,7 @@ export const Navbar = () => {
           <span></span>
           <span></span>
         </div>
-        <ul className={menuOpen ? "open" : ""}>
+        <ul className={menuOpen ? (styles.MenuOpen) : ""}>
           <li>
             <button
               className={`${styles.ButtonMenu} ${activeSection === 'SessaoHome' ? 'active' : ''}`}

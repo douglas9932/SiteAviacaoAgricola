@@ -11,6 +11,7 @@ import LoginController from './Controllers/Servicos/LoginController';
 import { Mensagens } from './Classes/Mensagens';
 import { SessaoNoticias } from './Formularios/SessaoNoticias';
 import { SessaoTestes } from './Formularios/SessaoTestes';
+import { SessaoSobreNos } from './Formularios/SessaoSobreNos';
 
 
 function App() {
@@ -64,9 +65,8 @@ function App() {
           </div>
           <div className={styles.SeparadorDeSessoes}></div> 
 
-          <div  style={{ height: '50vh', background: '#f0f0f0' }}>
-            <Focar id="SessaoSobre"/>
-            <h1>Sobre</h1>
+          <div  style={{ height: '60vh', background: '#f0f0f0' }}>
+            <SessaoSobreNos/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
 
