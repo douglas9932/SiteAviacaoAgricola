@@ -1,5 +1,5 @@
 
-button img{
+  button img{
     background-color: transparent;
     cursor: pointer;
   }     
@@ -33,7 +33,9 @@ button img{
   }
 
 
-
+  button:hover {
+    background-color: #ffffff2a;
+  }
  
  
  

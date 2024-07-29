@@ -40,6 +40,27 @@ const Foother = () => {
         }
       };
 
+      const OpenInGoogleMaps = ( address: string ) => {
+          const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+          window.open(url, '_blank');
+      };
+
+      const OpenEmailClient  = (email: string) => {
+        const mailtoLink = `mailto:${email}`;
+        window.location.href = mailtoLink;
+      };
+
+      const OpenWhatsApp = (phoneNumber: string) => {
+        const whatsappUrl = `whatsapp://send?phone=+55 ${phoneNumber}&text=${encodeURIComponent('Escrever Uma Mensagem!')}`;
+        window.open(whatsappUrl, '_blank');
+      };
+
+      const OpenDialer = ( phoneNumber: string ) => {
+          const telUrl = `tel:${phoneNumber}`;
+          window.location.href = telUrl;
+        };
+
+        
       return (
         <footer className={styles.footer}>
           <div className={styles.logocontainer}>
@@ -54,21 +75,21 @@ const Foother = () => {
                 <div className={styles.Sede}>
                     <label>{contato.NMCIDADECONTATO}</label>
                     <div className={styles.Infos}>
-                        <div>
+                        <div style={{cursor: 'pointer'}} onClick={()=>OpenEmailClient(contato.EMAILCONTATO)}>
                             <img src={imageEmail} alt="Email"></img>
-                            <label>{contato.EMAILCONTATO}</label>
+                            <label style={{cursor: 'pointer'}}>{contato.EMAILCONTATO}</label>
                         </div>
-                        <div>
+                        <div style={{cursor: 'pointer'}} onClick={()=>OpenWhatsApp(contato.CELULAR)}>
                             <img src={imageWhats} alt="Whatsapp"></img>
-                            <label>{contato.CELULAR}</label>
+                            <label style={{cursor: 'pointer'}}>{contato.CELULAR}</label>
                         </div>
-                        <div>
+                        <div style={{cursor: 'pointer'}} onClick={()=>OpenDialer(contato.TELEFONE)}>
                             <img src={imageTelefone} alt="Telefone"></img>
-                            <label>{contato.TELEFONE}</label>
+                            <label  style={{cursor: 'pointer'}}>{contato.TELEFONE}</label>
                         </div>
                     </div>
                     <div className={styles.cssEndereco}>
-                        <label>Endereço: {contato.ENDERECO}</label>
+                        <label onClick={() => OpenInGoogleMaps(contato.ENDERECO)}>Endereço: {contato.ENDERECO}</label>
                     </div>
                 </div>
               ))}

@@ -76,7 +76,7 @@ export const Navbar = () => {
   return (
     <nav>
        <div className={styles.container}>
-        <div className={styles.imagecontainer}>
+        <div className={styles.DivLogo}>
           <Link to="/" className={styles.title}>
             <img src={imageLogo} alt="Description" className= {styles.responsiveimage}  onClick={() => scrollToSection('SessaoHome')}/>
           </Link>

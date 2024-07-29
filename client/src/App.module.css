@@ -21,6 +21,11 @@
   pointer-events: none;
 }
 
+.DivApiSessaoSobreNos{
+  height: 70vh;
+  background: #f0f0f0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -59,23 +64,6 @@
 }
 
 
-/* .notification-wrapper {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 300px;
-}
-
-.notification-item {
-  box-shadow: 0 0 10px rgba(0,0,0, 0.3);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  animation: SlideLeft 0.4s;
-  animation-fill-mode: forwards;
-  width: 300px;
-} */
-
 @keyframes SlideLeft {
   0% {
       margin-left: 120%;
@@ -93,5 +81,19 @@
 
   100% {
       margin-left: 120%;
+  }
+}
+
+
+
+@media (max-width: 740px) {
+  .DivApiSessaoSobreNos{
+    height: 60vh;
+  }
+}
+
+@media (max-width: 460px) {
+  .DivApiSessaoSobreNos{
+    height: 50vh;
   }
 }

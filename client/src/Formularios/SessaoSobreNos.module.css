@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 50px;
+    object-fit: contain;
+    max-height: 100%;
 }
-
 
 .LinhaCards{
     display: flex;
@@ -37,22 +37,22 @@
 
 
 .corpo {
-    width: 100%;
-    flex: 1;
+    display: flex;
     flex-direction: column;
     overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    align-self: stretch;
-    object-fit: contain;
-    justify-content: flex-start; 
-    height: 50%; 
+    width: 100%;
+    flex: 1;    
+    padding-top: 4vh;
   }
 
   .TextoDescricoes {
-    align-self: stretch;
     position: relative;
-    font-size: 0.8vw;
+    align-self: stretch;
+    font-size:1vw;
+    height: auto;
+    min-height: auto;   
+    overflow: auto;
+    white-space: pre-wrap; 
   }
   .DivDescricao {
     align-self: stretch;
@@ -61,6 +61,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    padding-bottom: 10px;
     padding: 10px;
   }
 
@@ -68,7 +69,6 @@
     position: relative;
     align-items: center;
     justify-content: center;
-    height: 83px;
     flex-shrink: 0;
   }
   .DivHistorico,
@@ -81,9 +81,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 0px 0px 0px;
     text-align: center;
-    font-size: 30px;
+    font-size: 2vw; 
   }
   
   .imagens {
@@ -94,8 +93,6 @@
     flex: 1;
     flex-direction: row;
     align-items: flex-start;
-    padding: 10px;
-    gap: 10px;
   }
 
 
@@ -106,9 +103,8 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 10px;
     box-sizing: border-box;
-    gap: 10px;
+    /* gap: 10px; */
     align-self: stretch;
     overflow: hidden;
   }
@@ -121,7 +117,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
     box-sizing: border-box;
     justify-content: flex-end;    
     width: 50%;
@@ -135,4 +130,49 @@
     max-height: 100%;
     width: 70%;
     object-fit: cover;
+  }
+
+
+
+  @media (max-width: 940px) {
+    .DivImagemSobreNos {
+      width: 35%;
+    }
+    .DivInformacoes{
+      width: 65%;
+    }
+    .DivHistorico{
+      font-size: 3vw;
+    }
+    .TextoDescricoes{
+      font-size: 1.5vw;
+    }
+  }
+
+  @media (max-width: 450px) {
+   .LinhaCards{
+    width: 95%;
+    }
+  
+    .DivImagemSobreNos{
+      visibility: hidden;
+      width: 0px;
+    }
+
+    .DivInformacoes{
+      width: 100%;
+    }
+
+    .DivHistorico{
+      font-size: 5vw;
+    }
+
+    .TextoHistorico{
+      font-size: 3.8vw;
+      font-weight: bold;
+    }
+
+    .TextoDescricoes{
+      font-size: 2.5vw;
+    }
   }

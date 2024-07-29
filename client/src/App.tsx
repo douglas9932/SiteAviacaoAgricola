@@ -13,7 +13,6 @@ import { SessaoNoticias } from './Formularios/SessaoNoticias';
 import { SessaoTestes } from './Formularios/SessaoTestes';
 import { SessaoSobreNos } from './Formularios/SessaoSobreNos';
 
-
 function App() {
   
   useEffect(() => {
@@ -61,11 +60,11 @@ function App() {
         <div className={styles.Body}>
           <div>
             <Home/>
-            <button onClick={Evento}></button>
+            {/* <button onClick={Evento}></button> */}
           </div>
           <div className={styles.SeparadorDeSessoes}></div> 
 
-          <div  style={{ height: '60vh', background: '#f0f0f0' }}>
+          <div className={styles.DivApiSessaoSobreNos}>
             <SessaoSobreNos/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
@@ -90,7 +89,6 @@ function App() {
             <SessaoTestes/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
-
 
           <div style={{ height: '100vh', background: '#f0f0f0' }}>
             <Focar id="SessaoContato"/>

@@ -79,9 +79,15 @@
   font-size: 14px;
 }
 
+.cssEndereco label {
+  cursor: pointer;
+}
+
 .navigation {
   display: flex;
-  max-width: 35vh;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
 }
 
 .navigation button {
@@ -128,7 +134,7 @@
 
     .contacts {
       padding: 0;
-      align-items: start;
+      align-items: center;
       gap: 10px;
     }
 
@@ -146,9 +152,11 @@
   
     .navigation {
       padding: 0;
-      align-items: start;
+      padding-top: 20px;
+      margin: 0 0;
+      align-items: center;
       max-width: 100%;
-      width: auto;
+      width: 100%;
     }
     .BotoesNavegacao {
       padding-left: 0vh;
