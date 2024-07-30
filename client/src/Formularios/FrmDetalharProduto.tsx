@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import stylesApp from '../App.module.css';
 import styles from './FrmDetalharProduto.module.css';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import LoginController from '../Controllers/Servicos/LoginController';
 import { Mensagens } from '../Classes/Mensagens';
 import { Navbar } from '../Componentes/Navbar';
@@ -10,7 +9,6 @@ import Focar from '../Componentes/Focar';
 import FootherDesktop from '../Componentes/FootherDesktop';
 import { FrmDetalharProdutoController } from './Controllers/FrmDetalharProdutoController';
 import { TBPRODUTOS } from '../Classes/Tabelas/TBPRODUTOS';
-import ReactHtmlParser from 'react-html-parser';
 import { TBPARTESPRODUTOS } from '../Classes/Tabelas/TBPARTESPRODUTOS';
 
 
@@ -19,7 +17,6 @@ function FrmDetalharProduto() {
 
   controller = useMemo(() => new FrmDetalharProdutoController(), []);  
 
-  const navigate = useNavigate();
   const [ObjProduto, setObjProduto ] = useState<TBPRODUTOS>();
   const [ObjPartes, ObjLstPartes ] = useState<TBPARTESPRODUTOS [] | []>();
   
@@ -99,12 +96,10 @@ function FrmDetalharProduto() {
   }
   const sessoes = criarSessao(ObjPartes ?? [], quantidade);
 
-  return (
-    
+  return (    
       <div className={stylesApp.App}>
         <Navbar />
         <div className={stylesApp.Body}>
-
         <div  style={{minHeight: '100%'}}>
           <div className={styles.DivCorpoParent}>
               <div className={styles.DivDescricaoeImagens}>
@@ -135,26 +130,6 @@ function FrmDetalharProduto() {
                   ))}
                 </div>
               ))}
-
-                {/* <div className={styles.Sessao}>
-                  <label>1 - Parte 1</label>
-                  <label>2 - Parte 2</label>
-                  <label>3 - Parte 3</label>
-                  <label>4 - Parte 4</label>
-                  <label>5 - Parte 5</label>
-
-                  <label>1 - Parte 1</label>
-                  <label>2 - Parte 2</label>
-                  <label>3 - Parte 3</label>
-                  <label>4 - Parte 4</label>
-                  <label>5 - Parte 5</label>
-
-                  <label>1 - Parte 1</label>
-                  <label>2 - Parte 2</label>
-                  <label>3 - Parte 3</label>
-                  <label>4 - Parte 4</label>
-                  <label>5 - Parte 5</label>
-                </div> */}
               </div>
           </div>
         </div>

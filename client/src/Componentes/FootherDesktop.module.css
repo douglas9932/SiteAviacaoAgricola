@@ -109,6 +109,10 @@
   align-items: start;
 }
 
+.BotoesNavegacao button:hover {
+  background-color: #ffffff34;
+}
+
 @media (max-width: 900px) {
     .logocontainer {
       width: 100%;

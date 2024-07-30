@@ -29,10 +29,18 @@ const Carousel = ({parUsaImagensLocal, parImages }: CarouselProps ) => {
     }
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % Imagens.length);
+
+      if(currentIndex.toString() === "NaN"){
+
+        if(Imagens.length > 1){
+          setCurrentIndex(1);
+        }
+      }
     }, 5000);
   };
 
   useEffect(() => {
+    
     startAutoSlide();
     return () => {
       if (intervalRef.current) {
@@ -41,18 +49,27 @@ const Carousel = ({parUsaImagensLocal, parImages }: CarouselProps ) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      startAutoSlide();
+    }
+  }, [currentIndex]);
+
   const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? Imagens.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-    startAutoSlide();
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? Imagens.length - 1 : prevIndex - 1));
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      startAutoSlide();
+    }
   };
 
   const goToNext = () => {
-    const isLastSlide = currentIndex === Imagens.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-    startAutoSlide();
+    setCurrentIndex((prevIndex) => (prevIndex === Imagens.length - 1 ? 0 : prevIndex + 1));
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      startAutoSlide();
+    }
   };
 
   const CarregarImagens = () => {
@@ -75,7 +92,6 @@ const Carousel = ({parUsaImagensLocal, parImages }: CarouselProps ) => {
         ))
     }   
   }
-
 
   return ( 
       <div className={styles.carousel}>

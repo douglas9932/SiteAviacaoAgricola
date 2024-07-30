@@ -74,7 +74,7 @@ function App() {
           </div>
           <div className={styles.SeparadorDeSessoes}></div>
 
-          <div style={{ height: '100vh', background: '#f0f0f0' }}>
+          <div>
             <SessaoNoticias/>
           </div>
           <div className={styles.SeparadorDeSessoes}></div>

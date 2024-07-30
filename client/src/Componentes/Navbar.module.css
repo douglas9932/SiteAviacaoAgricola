@@ -223,3 +223,7 @@
         width: 40%;
     }
 }
+
+    .ButtonMenu:hover {
+        background-color: #ffffff34;
+    }

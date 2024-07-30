@@ -1,5 +1,5 @@
 import styles from "./FootherDesktop.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import imageLogo from '../Imagens/LogoStoll.png';
 import imageEmail from '../Imagens/Contatos/Email.svg';
 import imageWhats from '../Imagens/Contatos/Whatsapp.svg';
@@ -10,7 +10,7 @@ import { TBCONTATOS } from "../Classes/Tabelas/TBCONTATOS";
 
 
 const Foother = () => {
-    
+  const navigate = useNavigate();
 
   const controller = useMemo(() => new FrmContatosController(), []);
   const [ObjLstContatos, setObjLstContatos ] = useState<TBCONTATOS[] | []>();
@@ -37,6 +37,9 @@ const Foother = () => {
               behavior: 'smooth',
             });
           }
+        }else{      
+          localStorage.setItem('focarElement', sectionId)
+          navigate("/");      
         }
       };
 
@@ -93,24 +96,6 @@ const Foother = () => {
                     </div>
                 </div>
               ))}
-
-                {/* <div className={styles.Sede}>
-                    <label>Toledo</label>
-                    <div className={styles.Infos}>
-                        <div>
-                            <img src={imageEmail} alt="Email"></img>
-                            <label>contato@exemplo.com</label>
-                        </div>
-                        <div>
-                            <img src={imageWhats} alt="Whats"></img>
-                            <label>(11) 1234-5678</label>
-                        </div>
-                    </div>
-                    <div className={styles.cssEndereco}>
-                        <label>Endereço: Rua Exemplo, 123</label>
-                    </div>
-                </div> */}
-
             </div>
 
             <div className={styles.navigation}>

@@ -63,7 +63,7 @@ export const Navbar = () => {
       if (navbarElement) {
         const navbarHeight = navbarElement.offsetHeight;
         window.scrollTo({
-          top: (focarElement.offsetTop - navbarHeight - 25),
+          top: (focarElement.offsetTop - navbarHeight - 5),
           behavior: 'smooth',
         });
       }

@@ -11,7 +11,9 @@ import FrmGerProdutos from './Formularios/Administracao/FrmGerProdutos';
 import FrmGerNoticias from './Formularios/Administracao/FrmGerNoticias';
 import FrmGerTestes from './Formularios/Administracao/FrmGerTestes';
 import FrmDetalharProduto from './Formularios/FrmDetalharProduto';
+import FrmDetalharNoticia from './Formularios/FrmDetalharNoticia';
 import NotFoundPage from './Formularios/NotFoundPage'; // Página 404
+import { TBNOTICIAS } from './Classes/Tabelas/TBNOTICIAS';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -27,6 +29,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/Administracao/Noticias" element={<ModeloVazio><FrmGerNoticias /></ModeloVazio>} />
       <Route path="/Administracao/Testes" element={<ModeloVazio><FrmGerTestes /></ModeloVazio>} />
       <Route path="/DetalharProduto" element={<FrmDetalharProduto />} />
+      <Route path="/DetalharNoticia" element={<FrmDetalharNoticia/>} />
 
 
 
