@@ -25,6 +25,10 @@ const port = 32322;
         // password: 'TescaroSoft',
         // database: 'db_stoll',
         
+        // host: 'localhost',
+        // user: 'srv5_root',
+        // password: 'Stoll12345',
+        // database: 'srv5_DB_STOLL',
         
         host: '193.203.175.85',
         user: 'u156150556_root',
