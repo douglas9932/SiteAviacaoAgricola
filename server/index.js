@@ -25,23 +25,17 @@ const port = 32322;
         // password: 'TescaroSoft',
         // database: 'db_stoll',
         
-        // host: 'localhost',
-        // user: 'srv5_root',
-        // password: 'Stoll12345',
-        // database: 'srv5_DB_STOLL',
+         host: '92.112.176.30',
+         user: 'srv5_root',
+         password: 'Stoll12345',
+         database: 'srv5_DB_STOLL',
         
-        host: '193.203.175.85',
-        user: 'u156150556_root',
-        password: 'Root_Stoll12345',
-        database: 'u156150556_DB_STOLL',
+        //host: '193.203.175.85',
+        //user: 'u156150556_root',
+        //password: 'Root_Stoll12345',
+        //database: 'u156150556_DB_STOLL',
     
-        // keepAliveInitialDelay: 10000, // 0 by default.
-        // enableKeepAlive: true, // false by default
-        // waitForConnections: true,
-    
-        // connectionLimit: 50,
-        // queueLimit: 0  
-        // connectTimeout: 10000
+  
       });
 
       connection.connect((err) => {
@@ -112,7 +106,7 @@ const port = 32322;
       executarConsulta('SELECT 1 + 1 AS TESTE', (error, results) => {
       
         if (error) {
-          res.status(500).json({ error: 'Erro ao buscar usuários', mensagem: error});
+          res.status(500).json({ error: 'Erro ao Testar Conexão', mensagem: error});
           return;
         }
 
