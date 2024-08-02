@@ -1,7 +1,7 @@
 {
   "name": "site_aviacao_agricola",
   "version": "0.1.0",
-  "homepage": "https://grey-dunlin-976543.hostingersite.com/",
+  "homepage": "http://tescarosoft.com.br",
   "private": true,
   "dependencies": {
     "@babel/code-frame": "^7.24.7",
