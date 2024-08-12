@@ -63,7 +63,7 @@ export class FrmProdutosController{
                       this.clearErrorAfterTimeout(setError);
                       return;
                     }
-                    const fileName = file.name;
+                    //const fileName = file.name;
                     setImage(e.target.result as string);
                   // }
                 }
@@ -89,7 +89,7 @@ export class FrmProdutosController{
                       this.clearErrorAfterTimeout(setError);
                       return;
                     }
-                    const fileName = file.name;
+                    //const fileName = file.name;
                     setImage(e.target.result as string);
                   // }
                 }

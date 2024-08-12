@@ -13,7 +13,6 @@ import FrmGerTestes from './Formularios/Administracao/FrmGerTestes';
 import FrmDetalharProduto from './Formularios/FrmDetalharProduto';
 import FrmDetalharNoticia from './Formularios/FrmDetalharNoticia';
 import NotFoundPage from './Formularios/NotFoundPage'; // Página 404
-import { TBNOTICIAS } from './Classes/Tabelas/TBNOTICIAS';
 
 const AppRoutes: React.FC = () => {
   return (

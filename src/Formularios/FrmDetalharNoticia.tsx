@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import {  useEffect,  useState } from 'react';
 import stylesApp from '../App.module.css';
 import styles from './FrmDetalharNoticia.module.css';
 import Swal from 'sweetalert2';
@@ -8,13 +8,10 @@ import { Navbar } from '../Componentes/Navbar';
 import Focar from '../Componentes/Focar';
 import FootherDesktop from '../Componentes/FootherDesktop';
 import { TBNOTICIAS } from '../Classes/Tabelas/TBNOTICIAS';
-import { useNavigate } from 'react-router-dom';
 
 
 
 const FrmDetalharNoticia= () => {
-
-    const navigate = useNavigate();
 
   const [ObjNoticia, setObjNoticia ] = useState<TBNOTICIAS>();
   

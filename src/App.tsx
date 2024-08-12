@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import styles from './App.module.css';
 import Focar from './Componentes/Focar';
 import FootherDesktop from './Componentes/FootherDesktop';
@@ -47,12 +47,7 @@ function App() {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, []);
-  
-  
-  const navigate = useNavigate();
-  const Evento=()=>{
-    navigate("/Administracao/Home")
-  }
+    
   return (
     
       <div className={styles.App}>

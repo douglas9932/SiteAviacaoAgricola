@@ -24,7 +24,7 @@ export const SessaoSobreNos = () => {
     <div className={styles.SessaoSobreNos}>
         <Focar id="SessaoSobre"/>
         <div className={styles.TituloSessao}>
-            <label>Sobre nósix</label>
+            <label>Sobre nós</label>
             <div></div>
         </div>
 

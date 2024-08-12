@@ -134,7 +134,7 @@ export class FrmImagensCarouselController{
                     this.clearErrorAfterTimeout(setError);
                     return;
                   }
-                  const fileName = file.name;
+                  //const fileName = file.name;
                   setImage(e.target.result as string);
                 // }
               }
@@ -160,7 +160,7 @@ export class FrmImagensCarouselController{
                     this.clearErrorAfterTimeout(setError);
                     return;
                   }
-                  const fileName = file.name;
+                  //const fileName = file.name;
                   setImage(e.target.result as string);
                 // }
               }

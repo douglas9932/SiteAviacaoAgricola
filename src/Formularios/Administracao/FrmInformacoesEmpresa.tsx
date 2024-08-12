@@ -41,11 +41,11 @@ const FrmInformacoesEmpresa = () => {
   useEffect(() => {
     
     if (objTBEMPRESA.IDEMPRESA > 0) {
-      if(ImgLogo == null || ImgLogo == ''){
+      if(ImgLogo === null || ImgLogo === ''){
         setLogo(objTBEMPRESA.LOGO_236X67 || null);
       }
 
-      if(ImgIcone == null || ImgIcone == ''){
+      if(ImgIcone === null || ImgIcone === ''){
         setIcone(objTBEMPRESA.ICONE || null);
       }
     }
@@ -58,14 +58,14 @@ const FrmInformacoesEmpresa = () => {
   var blxRetorno = true;
 
 
-  if(objTBEMPRESA.NOMEFANTASIA == ''){    
+  if(objTBEMPRESA.NOMEFANTASIA === ''){    
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Nome Fantasia"),
       icon: "warning"
     }); 
     return false;   
   }
-  if(objTBEMPRESA.RAZAOSOCIAL == ''){
+  if(objTBEMPRESA.RAZAOSOCIAL === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Razao Social"),
@@ -73,7 +73,7 @@ const FrmInformacoesEmpresa = () => {
     });
     return false; 
   }
-  if(objTBEMPRESA.CNPJ == ''){
+  if(objTBEMPRESA.CNPJ === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("CNPJ"),
@@ -101,7 +101,7 @@ const FrmInformacoesEmpresa = () => {
       }
     }
   }
-  if(objTBEMPRESA.INSCRICAOESTADUAL == ''){
+  if(objTBEMPRESA.INSCRICAOESTADUAL === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Inscrição Estadual"),
@@ -128,7 +128,7 @@ const FrmInformacoesEmpresa = () => {
       }
     }
   }
-  if(objTBEMPRESA.ENDERECO == ''){
+  if(objTBEMPRESA.ENDERECO === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Endereço"),
@@ -136,7 +136,7 @@ const FrmInformacoesEmpresa = () => {
     });
     return false; 
   }
-  if(objTBEMPRESA.TELEFONE == ''){
+  if(objTBEMPRESA.TELEFONE === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Telefone"),
@@ -154,7 +154,7 @@ const FrmInformacoesEmpresa = () => {
       return false; 
     }
   }
-  if(objTBEMPRESA.CELULAR == ''){
+  if(objTBEMPRESA.CELULAR === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Celular"),
@@ -172,7 +172,7 @@ const FrmInformacoesEmpresa = () => {
       return false; 
     }
   }
-  if(objTBEMPRESA.SEGMENTO == ''){
+  if(objTBEMPRESA.SEGMENTO === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Segmento/Atividade"),
@@ -180,7 +180,7 @@ const FrmInformacoesEmpresa = () => {
     });
     return false; 
   }
-  if(objTBEMPRESA.DATAABERTURA == ''){
+  if(objTBEMPRESA.DATAABERTURA === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Data de Abertura"),
@@ -198,7 +198,7 @@ const FrmInformacoesEmpresa = () => {
       return false; 
     }
   }
-  if(objTBEMPRESA.RESPONSAVEL == ''){
+  if(objTBEMPRESA.RESPONSAVEL === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("Responsável"),
@@ -206,7 +206,7 @@ const FrmInformacoesEmpresa = () => {
     });
     return false; 
   }
-  if(objTBEMPRESA.CPFRESPONSAVEL == ''){
+  if(objTBEMPRESA.CPFRESPONSAVEL === ''){
      
     Swal.fire({
       text: Mensagens.CampoObrigatorio("CPF do Responsavel"),
@@ -232,7 +232,7 @@ const FrmInformacoesEmpresa = () => {
       }
     }
   }
-  if(ImgLogo == null || ImgLogo == ''){
+  if(ImgLogo === null || ImgLogo === ''){
      
     Swal.fire({
       text: Mensagens.ImagemObrigatoria("Logo"),
@@ -240,7 +240,7 @@ const FrmInformacoesEmpresa = () => {
     });
     return false; 
   }
-  if(ImgIcone == null || ImgIcone == ''){
+  if(ImgIcone === null || ImgIcone === ''){
      
     Swal.fire({
       text: Mensagens.ImagemObrigatoria("Icone"),
@@ -307,15 +307,15 @@ const FrmInformacoesEmpresa = () => {
       return;
     }
 
-    if(field == 'CNPJ'){
+    if(field === 'CNPJ'){
       value = (Comum.formatCnpj(value));
-    }else if(field == 'INSCRICAOESTADUAL'){
+    }else if(field === 'INSCRICAOESTADUAL'){
       value = (Comum.formatIe(value));
-    }else if(field == 'CELULAR'){
+    }else if(field === 'CELULAR'){
       value = (Comum.formatCelular(value));
-    }else if(field == 'TELEFONE'){
+    }else if(field === 'TELEFONE'){
       value = (Comum.formatTelefone(value));
-    }else if(field == 'CPFRESPONSAVEL'){
+    }else if(field === 'CPFRESPONSAVEL'){
       value = (Comum.formatCpf(value));
     }
 
