@@ -12,7 +12,13 @@ class LoginController extends Component{
         const response = await API.api.post('/ValidarLogin', {          
             parLogin: parLogin,
             parSenha: parSenha          
-        });      
+        }
+        //,
+        //{
+        //  headers: {
+        //       'Authorization': `Bearer ${token}` // Adicionando o token no cabeçalho
+        //}
+    });      
 
 
         if(response.data.valid){
